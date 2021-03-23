@@ -8,36 +8,26 @@ using System.Threading.Tasks;
 
 namespace APO_AndrzejMróz_17870.Fuction
 {
-    class GrayScale : IFilter
-    {
-        private bool m_hasDialog;
-
-        public bool hasDialog
-        {
-            get
-            {
-                return m_hasDialog;
-            }
-        }
-
-        private Image image;
+    class GrayScale : IOperations
+    {               
+       private Image image;
 
         public GrayScale()
         {
-            m_hasDialog = false;
+            
         }
 
-        public void setImage(Image image)
+        public void SetImage(Image image)
         {
             this.image = image;
         }
 
         public void Convert()
         {
-            //get a graphics object from the new image
+            //Download a bitmap form image
             Graphics g = Graphics.FromImage(image);
 
-            //create the grayscale ColorMatrix
+            //create grayscale matrix
             ColorMatrix colorMatrix = new ColorMatrix(
                new float[][]
                   {
@@ -48,29 +38,21 @@ namespace APO_AndrzejMróz_17870.Fuction
                      new float[] {0, 0, 0, 0, 1}
                   });
 
-            //create some image attributes
+            //adds attributes
             ImageAttributes attributes = new ImageAttributes();
 
-            //set the color matrix attribute
+            //set the matrix attribute
             attributes.SetColorMatrix(colorMatrix);
 
             //draw the original image on the new image
-            //using the grayscale color matrix
+            //using the grayscale matrix
             g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height),
                0, 0, image.Width, image.Height, GraphicsUnit.Pixel, attributes);
 
-            //dispose the Graphics object
+            //dispose the bitmap
             g.Dispose();
         }
 
-        #region IFilter Members
-
-
-        public bool showDialog()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
+       
     }
 }

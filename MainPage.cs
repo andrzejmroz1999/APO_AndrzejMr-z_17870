@@ -19,17 +19,15 @@ namespace APO_AndrzejMróz_17870
             InitializeComponent();
         }
 
-        private void useFilter(IFilter filter)
+        private void useFunction(IOperations operation)
         {
             ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
 
-            filter.setImage(activeChild.bitmap);
+            operation.SetImage(activeChild.bitmap);
 
-            if (filter.hasDialog)
-                if (!filter.showDialog())
-                    return;
 
-            filter.Convert();
+
+            operation.Convert();
 
             activeChild.refresh();
         }
@@ -43,14 +41,14 @@ namespace APO_AndrzejMróz_17870
             ImageForm picture = new ImageForm(this);
             picture.MdiParent = this;
             picture.Text = new StringBuilder("Image: ").Append(++Counter).ToString();
-            picture.loadImage(openFileDialog1.FileName);
+            picture.LoadImage(openFileDialog1.FileName);
             picture.Show();
         }
 
         private void konwertujDoSzarości8BitToolStripMenuItem_Click(object sender, EventArgs e)
         {
        
-            useFilter(new GrayScale());
+            useFunction(new GrayScale());
         
         }
 
@@ -67,14 +65,10 @@ namespace APO_AndrzejMróz_17870
             }
         }
 
-        private void zapiszJakoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void inforamcjeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sf = new SaveFileDialog();
-            sf.Filter = "JPG(*.JPG)|*.jpg";
-            if (sf.ShowDialog() == DialogResult.OK)
-            {
-                ActiveMdiChild.Controls.GetType
-            }
+            InfoForm f = new InfoForm();
+            f.Show();
         }
     }
 }

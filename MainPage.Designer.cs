@@ -32,8 +32,6 @@ namespace APO_AndrzejMróz_17870
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otwórzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zapiszJakoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplikujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.zamknijToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +39,7 @@ namespace APO_AndrzejMróz_17870
             this.obrazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.konwertujDoSzarości8BitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.inforamcjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +47,8 @@ namespace APO_AndrzejMróz_17870
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.plikToolStripMenuItem,
-            this.obrazToolStripMenuItem});
+            this.obrazToolStripMenuItem,
+            this.inforamcjeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -59,8 +59,6 @@ namespace APO_AndrzejMróz_17870
             // 
             this.plikToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.otwórzToolStripMenuItem,
-            this.zapiszToolStripMenuItem,
-            this.zapiszJakoToolStripMenuItem,
             this.duplikujToolStripMenuItem,
             this.toolStripSeparator1,
             this.zamknijToolStripMenuItem,
@@ -72,45 +70,32 @@ namespace APO_AndrzejMróz_17870
             // otwórzToolStripMenuItem
             // 
             this.otwórzToolStripMenuItem.Name = "otwórzToolStripMenuItem";
-            this.otwórzToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.otwórzToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.otwórzToolStripMenuItem.Text = "Otwórz...";
             this.otwórzToolStripMenuItem.Click += new System.EventHandler(this.otwórzToolStripMenuItem_Click);
-            // 
-            // zapiszToolStripMenuItem
-            // 
-            this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.zapiszToolStripMenuItem.Text = "Zapisz";
-            // 
-            // zapiszJakoToolStripMenuItem
-            // 
-            this.zapiszJakoToolStripMenuItem.Name = "zapiszJakoToolStripMenuItem";
-            this.zapiszJakoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.zapiszJakoToolStripMenuItem.Text = "Zapisz jako...";
-            this.zapiszJakoToolStripMenuItem.Click += new System.EventHandler(this.zapiszJakoToolStripMenuItem_Click);
             // 
             // duplikujToolStripMenuItem
             // 
             this.duplikujToolStripMenuItem.Name = "duplikujToolStripMenuItem";
-            this.duplikujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.duplikujToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.duplikujToolStripMenuItem.Text = "Duplikuj";
             this.duplikujToolStripMenuItem.Click += new System.EventHandler(this.duplikujToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(118, 6);
             // 
             // zamknijToolStripMenuItem
             // 
             this.zamknijToolStripMenuItem.Name = "zamknijToolStripMenuItem";
-            this.zamknijToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zamknijToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.zamknijToolStripMenuItem.Text = "Zamknij";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
             // 
             // obrazToolStripMenuItem
             // 
@@ -130,6 +115,13 @@ namespace APO_AndrzejMróz_17870
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // inforamcjeToolStripMenuItem
+            // 
+            this.inforamcjeToolStripMenuItem.Name = "inforamcjeToolStripMenuItem";
+            this.inforamcjeToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.inforamcjeToolStripMenuItem.Text = "Inforamcje";
+            this.inforamcjeToolStripMenuItem.Click += new System.EventHandler(this.inforamcjeToolStripMenuItem_Click);
             // 
             // MainPage
             // 
@@ -153,8 +145,6 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem otwórzToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zapiszJakoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplikujToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem zamknijToolStripMenuItem;
@@ -162,6 +152,7 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.ToolStripMenuItem konwertujDoSzarości8BitToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem inforamcjeToolStripMenuItem;
     }
 }
 
