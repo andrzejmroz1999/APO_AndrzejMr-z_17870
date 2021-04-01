@@ -70,5 +70,54 @@ namespace APO_AndrzejMróz_17870
             InfoForm f = new InfoForm();
             f.Show();
         }
+
+        private void rozciąganieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;                  
+            activeChild.rozciaganie(0,256);
+        }
+
+        private void negacjaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild != null)
+            {
+                activeChild.negacja();
+            }
+        }
+
+        private void progowanieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Progowanie", "Podaj wartość do progowania");
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.progowanie(Convert.ToInt32(dialog.value));
+        }
+
+        private void operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("ProgowanieLevel", "Podaj wartości do progowania");
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.progowanieLevel(Convert.ToInt32(dialog.combovalue1), Convert.ToInt32(dialog.combovalue2));
+        }
     }
 }

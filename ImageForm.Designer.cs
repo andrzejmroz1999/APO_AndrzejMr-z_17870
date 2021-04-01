@@ -31,6 +31,8 @@ namespace APO_AndrzejMróz_17870
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -44,8 +46,6 @@ namespace APO_AndrzejMróz_17870
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -83,10 +83,30 @@ namespace APO_AndrzejMróz_17870
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(92, 233);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(46, 23);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Table";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(44, 233);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(42, 23);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Gray";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(178, 187);
+            this.radioButton4.Location = new System.Drawing.Point(178, 199);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(33, 17);
             this.radioButton4.TabIndex = 10;
@@ -98,7 +118,7 @@ namespace APO_AndrzejMróz_17870
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(179, 211);
+            this.radioButton3.Location = new System.Drawing.Point(179, 218);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(32, 17);
             this.radioButton3.TabIndex = 9;
@@ -110,7 +130,7 @@ namespace APO_AndrzejMróz_17870
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(178, 164);
+            this.radioButton2.Location = new System.Drawing.Point(178, 179);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(33, 17);
             this.radioButton2.TabIndex = 8;
@@ -131,7 +151,7 @@ namespace APO_AndrzejMróz_17870
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(187, 233);
+            this.button1.Location = new System.Drawing.Point(187, 238);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 6;
@@ -150,7 +170,7 @@ namespace APO_AndrzejMróz_17870
             // label4
             // 
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.Location = new System.Drawing.Point(65, 196);
+            this.label4.Location = new System.Drawing.Point(65, 203);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 4;
@@ -158,7 +178,7 @@ namespace APO_AndrzejMróz_17870
             // label3
             // 
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Location = new System.Drawing.Point(65, 165);
+            this.label3.Location = new System.Drawing.Point(65, 178);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 20);
             this.label3.TabIndex = 3;
@@ -166,7 +186,7 @@ namespace APO_AndrzejMróz_17870
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 200);
+            this.label2.Location = new System.Drawing.Point(3, 203);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 2;
@@ -175,7 +195,7 @@ namespace APO_AndrzejMróz_17870
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 169);
+            this.label1.Location = new System.Drawing.Point(3, 181);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 1;
@@ -184,9 +204,9 @@ namespace APO_AndrzejMróz_17870
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Location = new System.Drawing.Point(4, 4);
+            this.panel3.Location = new System.Drawing.Point(4, -1);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(260, 150);
+            this.panel3.Size = new System.Drawing.Size(260, 171);
             this.panel3.TabIndex = 0;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseMove);
@@ -211,26 +231,6 @@ namespace APO_AndrzejMróz_17870
             this.radioButton1.Text = "Histogram";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.Click += new System.EventHandler(this.radioButton1_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(44, 233);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(42, 23);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Gray";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(92, 233);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(46, 23);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Table";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // ImageForm
             // 

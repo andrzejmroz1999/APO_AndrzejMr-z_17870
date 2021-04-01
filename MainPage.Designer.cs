@@ -38,8 +38,14 @@ namespace APO_AndrzejMróz_17870
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.obrazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.konwertujDoSzarości8BitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.inforamcjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operacjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rozciąganieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.operacjePunktoweToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.negacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.progowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +54,9 @@ namespace APO_AndrzejMróz_17870
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.plikToolStripMenuItem,
             this.obrazToolStripMenuItem,
-            this.inforamcjeToolStripMenuItem});
+            this.inforamcjeToolStripMenuItem,
+            this.operacjeToolStripMenuItem,
+            this.operacjePunktoweToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -112,16 +120,62 @@ namespace APO_AndrzejMróz_17870
             this.konwertujDoSzarości8BitToolStripMenuItem.Text = "Konwertuj do szarości 8 bit";
             this.konwertujDoSzarości8BitToolStripMenuItem.Click += new System.EventHandler(this.konwertujDoSzarości8BitToolStripMenuItem_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // inforamcjeToolStripMenuItem
             // 
             this.inforamcjeToolStripMenuItem.Name = "inforamcjeToolStripMenuItem";
             this.inforamcjeToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.inforamcjeToolStripMenuItem.Text = "Inforamcje";
             this.inforamcjeToolStripMenuItem.Click += new System.EventHandler(this.inforamcjeToolStripMenuItem_Click);
+            // 
+            // operacjeToolStripMenuItem
+            // 
+            this.operacjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rozciąganieToolStripMenuItem});
+            this.operacjeToolStripMenuItem.Name = "operacjeToolStripMenuItem";
+            this.operacjeToolStripMenuItem.Size = new System.Drawing.Size(148, 20);
+            this.operacjeToolStripMenuItem.Text = "Operacje na histogramie";
+            // 
+            // rozciąganieToolStripMenuItem
+            // 
+            this.rozciąganieToolStripMenuItem.Name = "rozciąganieToolStripMenuItem";
+            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rozciąganieToolStripMenuItem.Text = "rozciąganie";
+            this.rozciąganieToolStripMenuItem.Click += new System.EventHandler(this.rozciąganieToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // operacjePunktoweToolStripMenuItem
+            // 
+            this.operacjePunktoweToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.negacjaToolStripMenuItem,
+            this.progowanieToolStripMenuItem,
+            this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem});
+            this.operacjePunktoweToolStripMenuItem.Name = "operacjePunktoweToolStripMenuItem";
+            this.operacjePunktoweToolStripMenuItem.Size = new System.Drawing.Size(120, 20);
+            this.operacjePunktoweToolStripMenuItem.Text = "operacje punktowe";
+            // 
+            // negacjaToolStripMenuItem
+            // 
+            this.negacjaToolStripMenuItem.Name = "negacjaToolStripMenuItem";
+            this.negacjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.negacjaToolStripMenuItem.Text = "negacja";
+            this.negacjaToolStripMenuItem.Click += new System.EventHandler(this.negacjaToolStripMenuItem_Click);
+            // 
+            // progowanieToolStripMenuItem
+            // 
+            this.progowanieToolStripMenuItem.Name = "progowanieToolStripMenuItem";
+            this.progowanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.progowanieToolStripMenuItem.Text = "progowanie";
+            this.progowanieToolStripMenuItem.Click += new System.EventHandler(this.progowanieToolStripMenuItem_Click);
+            // 
+            // operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem
+            // 
+            this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem.Name = "operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem";
+            this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem.Size = new System.Drawing.Size(382, 22);
+            this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem.Text = "Operator progowania (z zachowaniem poziomów szarości)";
+            this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem.Click += new System.EventHandler(this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem_Click);
             // 
             // MainPage
             // 
@@ -153,6 +207,12 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem inforamcjeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operacjeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rozciąganieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operacjePunktoweToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem negacjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem progowanieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem;
     }
 }
 

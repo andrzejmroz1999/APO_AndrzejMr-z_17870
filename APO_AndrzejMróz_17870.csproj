@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog.Designer.cs">
+      <DependentUpon>Dialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fuctions\GrayScale.cs" />
     <Compile Include="Fuctions\IOperations.cs" />
     <Compile Include="InfoForm.cs">
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialog.resx">
+      <DependentUpon>Dialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>

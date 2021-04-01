@@ -175,8 +175,7 @@ namespace APO_AndrzejMróz_17870
 
         private void drawHistogram()
         {
-            histogram = GetHistogram(bitmap);
-
+            histogram = GetHistogram(bitmap);           
             Graphics graphicsObj = panel3.CreateGraphics();
             Pen pen = new Pen(System.Drawing.Color.Black, 1);
 
@@ -191,7 +190,7 @@ namespace APO_AndrzejMróz_17870
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-            //  drawHistogram();
+           
 
         }
 
@@ -243,13 +242,8 @@ namespace APO_AndrzejMróz_17870
                 label3.Text = e.X.ToString();
                 label4.Text = histogram[e.X].ToString();
             }
-
-           
-
-           
+                    
         }
-
-
 
         private void radioButton1_Click(object sender, EventArgs e)
         {
@@ -402,6 +396,101 @@ namespace APO_AndrzejMróz_17870
                 }
             }
         }
-       
+
+
+        public void rozciaganie(int start, int koniec)
+        {
+            for (int i = 0; i < bitmap.Height; i++)
+            {
+                for (int j = 0; j < bitmap.Width; j++)
+                {
+                    Color c = bitmap.GetPixel(j, i);
+                    int color = 0;
+
+                    if (c.R >= start && c.R <= koniec)
+                    {
+                        color = 255 - (255 * (koniec - c.R) / (koniec - start));
+                    }
+                    bitmap.SetPixel(j, i, Color.FromArgb(color, color, color));
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void negacja()
+        {
+            for (int i = 0; i < bitmap.Height; i++)
+            {
+                for (int j = 0; j < bitmap.Width; j++)
+                {
+                    Color c = bitmap.GetPixel(j, i);
+
+                    bitmap.SetPixel(j, i, Color.FromArgb(255 - c.R, 255 - c.R, 255 - c.R));
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void progowanie(int prog)
+        {
+            for (int i = 0; i < bitmap.Height; i++)
+            {
+                for (int j = 0; j < bitmap.Width; j++)
+                {
+                    Color c = bitmap.GetPixel(j, i);
+
+                    int color = (c.R < prog ? 0 : 255);
+
+                    bitmap.SetPixel(j, i, Color.FromArgb(color, color, color));
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+
+        public int[] progowanieLevel(int p1, int p2)
+        {
+          
+
+         
+            Bitmap bmNew = new Bitmap(pictureBox1.Image);
+
+           
+            int newValuePixel = 0;
+
+            int[] progowanieHist = new int[256];
+
+            for (int x = 0; x < bmNew.Width; ++x)
+            {
+                for (int y = 0; y < bmNew.Height; ++y)
+                {
+                    Color c = bmNew.GetPixel(x, y);
+
+                    if (c.R >= p1 && c.R <= p2)
+                    {
+                        newValuePixel = c.R;
+                    }
+                    else
+                    {
+                        newValuePixel = 0;
+                    }
+
+                    progowanieHist[newValuePixel] += 1;
+
+                    Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
+
+                  
+                        bmNew.SetPixel(x, y, newColor);
+                    
+                }
+            }
+           pictureBox1.Image = bmNew;
+            pictureBox1.Refresh();
+            bitmap = bmNew;
+            drawHistogram();
+
+            return progowanieHist;
+        }
+
     }
 }
