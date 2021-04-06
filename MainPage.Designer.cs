@@ -41,11 +41,14 @@ namespace APO_AndrzejMróz_17870
             this.inforamcjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operacjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rozciąganieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.operacjePunktoweToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.negacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ąganieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redukcjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.segmentacjaWododziałowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +59,8 @@ namespace APO_AndrzejMróz_17870
             this.obrazToolStripMenuItem,
             this.inforamcjeToolStripMenuItem,
             this.operacjeToolStripMenuItem,
-            this.operacjePunktoweToolStripMenuItem});
+            this.operacjePunktoweToolStripMenuItem,
+            this.segmentacjaWododziałowaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -138,20 +142,18 @@ namespace APO_AndrzejMróz_17870
             // rozciąganieToolStripMenuItem
             // 
             this.rozciąganieToolStripMenuItem.Name = "rozciąganieToolStripMenuItem";
-            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.rozciąganieToolStripMenuItem.Text = "rozciąganie";
             this.rozciąganieToolStripMenuItem.Click += new System.EventHandler(this.rozciąganieToolStripMenuItem_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // operacjePunktoweToolStripMenuItem
             // 
             this.operacjePunktoweToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.negacjaToolStripMenuItem,
             this.progowanieToolStripMenuItem,
-            this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem});
+            this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem,
+            this.ąganieToolStripMenuItem,
+            this.redukcjaToolStripMenuItem});
             this.operacjePunktoweToolStripMenuItem.Name = "operacjePunktoweToolStripMenuItem";
             this.operacjePunktoweToolStripMenuItem.Size = new System.Drawing.Size(120, 20);
             this.operacjePunktoweToolStripMenuItem.Text = "operacje punktowe";
@@ -159,14 +161,14 @@ namespace APO_AndrzejMróz_17870
             // negacjaToolStripMenuItem
             // 
             this.negacjaToolStripMenuItem.Name = "negacjaToolStripMenuItem";
-            this.negacjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.negacjaToolStripMenuItem.Size = new System.Drawing.Size(382, 22);
             this.negacjaToolStripMenuItem.Text = "negacja";
             this.negacjaToolStripMenuItem.Click += new System.EventHandler(this.negacjaToolStripMenuItem_Click);
             // 
             // progowanieToolStripMenuItem
             // 
             this.progowanieToolStripMenuItem.Name = "progowanieToolStripMenuItem";
-            this.progowanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.progowanieToolStripMenuItem.Size = new System.Drawing.Size(382, 22);
             this.progowanieToolStripMenuItem.Text = "progowanie";
             this.progowanieToolStripMenuItem.Click += new System.EventHandler(this.progowanieToolStripMenuItem_Click);
             // 
@@ -176,6 +178,31 @@ namespace APO_AndrzejMróz_17870
             this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem.Size = new System.Drawing.Size(382, 22);
             this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem.Text = "Operator progowania (z zachowaniem poziomów szarości)";
             this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem.Click += new System.EventHandler(this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem_Click);
+            // 
+            // ąganieToolStripMenuItem
+            // 
+            this.ąganieToolStripMenuItem.Name = "ąganieToolStripMenuItem";
+            this.ąganieToolStripMenuItem.Size = new System.Drawing.Size(382, 22);
+            this.ąganieToolStripMenuItem.Text = "rozciaganie";
+            this.ąganieToolStripMenuItem.Click += new System.EventHandler(this.ąganieToolStripMenuItem_Click);
+            // 
+            // redukcjaToolStripMenuItem
+            // 
+            this.redukcjaToolStripMenuItem.Name = "redukcjaToolStripMenuItem";
+            this.redukcjaToolStripMenuItem.Size = new System.Drawing.Size(382, 22);
+            this.redukcjaToolStripMenuItem.Text = "Redukcja";
+            this.redukcjaToolStripMenuItem.Click += new System.EventHandler(this.redukcjaToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // segmentacjaWododziałowaToolStripMenuItem
+            // 
+            this.segmentacjaWododziałowaToolStripMenuItem.Name = "segmentacjaWododziałowaToolStripMenuItem";
+            this.segmentacjaWododziałowaToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
+            this.segmentacjaWododziałowaToolStripMenuItem.Text = "Segmentacja wododziałowa";
+            this.segmentacjaWododziałowaToolStripMenuItem.Click += new System.EventHandler(this.segmentacjaWododziałowaToolStripMenuItem_Click);
             // 
             // MainPage
             // 
@@ -213,6 +240,9 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.ToolStripMenuItem negacjaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem progowanieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ąganieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem redukcjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem segmentacjaWododziałowaToolStripMenuItem;
     }
 }
 

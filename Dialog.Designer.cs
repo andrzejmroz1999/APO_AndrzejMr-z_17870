@@ -40,8 +40,14 @@ namespace APO_AndrzejMróz_17870
             this.labelDesc = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.trackBar4 = new System.Windows.Forms.TrackBar();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
             this.SuspendLayout();
             // 
             // trackBar2
@@ -101,7 +107,7 @@ namespace APO_AndrzejMróz_17870
             // myCancelButton
             // 
             this.myCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.myCancelButton.Location = new System.Drawing.Point(134, 101);
+            this.myCancelButton.Location = new System.Drawing.Point(134, 247);
             this.myCancelButton.Name = "myCancelButton";
             this.myCancelButton.Size = new System.Drawing.Size(75, 23);
             this.myCancelButton.TabIndex = 11;
@@ -111,7 +117,7 @@ namespace APO_AndrzejMróz_17870
             // myAcceptButton
             // 
             this.myAcceptButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.myAcceptButton.Location = new System.Drawing.Point(31, 101);
+            this.myAcceptButton.Location = new System.Drawing.Point(15, 247);
             this.myAcceptButton.Name = "myAcceptButton";
             this.myAcceptButton.Size = new System.Drawing.Size(75, 23);
             this.myAcceptButton.TabIndex = 10;
@@ -144,11 +150,49 @@ namespace APO_AndrzejMróz_17870
             this.textBox3.TabIndex = 19;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
+            // trackBar3
+            // 
+            this.trackBar3.Location = new System.Drawing.Point(11, 105);
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(224, 45);
+            this.trackBar3.TabIndex = 20;
+            this.trackBar3.Visible = false;
+            this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
+            // 
+            // trackBar4
+            // 
+            this.trackBar4.Location = new System.Drawing.Point(12, 156);
+            this.trackBar4.Name = "trackBar4";
+            this.trackBar4.Size = new System.Drawing.Size(224, 45);
+            this.trackBar4.TabIndex = 21;
+            this.trackBar4.Visible = false;
+            this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(261, 105);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(28, 20);
+            this.textBox4.TabIndex = 22;
+            this.textBox4.Visible = false;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(261, 156);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(28, 20);
+            this.textBox5.TabIndex = 23;
+            this.textBox5.Visible = false;
+            // 
             // Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 147);
+            this.ClientSize = new System.Drawing.Size(301, 282);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.trackBar4);
+            this.Controls.Add(this.trackBar3);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.trackBar2);
@@ -164,6 +208,8 @@ namespace APO_AndrzejMróz_17870
             this.Text = "Dialog";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +228,9 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.Label labelDesc;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.TrackBar trackBar4;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

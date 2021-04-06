@@ -16,8 +16,10 @@ namespace APO_AndrzejMróz_17870
         public String value2;
         public int combovalue1;
         public int combovalue2;
+        public int combovalue3;
+        public int combovalue4;
 
-       
+
 
         private class Item
         {
@@ -55,6 +57,43 @@ namespace APO_AndrzejMróz_17870
 
             textBox1.Text = Convert.ToString(trackBar1.Value);
             textBox2.Text = Convert.ToString(trackBar2.Value);
+
+            if (title == "Rozciaganie")
+            {
+                trackBar1.Visible = true;
+                trackBar2.Visible = true;
+            }
+            
+                if (title == "Redukcja")
+            {
+                trackBar1.Visible = true;
+                trackBar2.Visible = true;
+                trackBar3.Visible = true;
+                trackBar4.Visible = true;
+
+                trackBar1.Minimum = 0;
+                trackBar2.Minimum = 0;
+                trackBar3.Minimum = 0;
+                trackBar4.Minimum = 0;
+
+                trackBar1.Maximum = 255;
+                trackBar2.Maximum = 255;
+                trackBar3.Maximum = 255;
+                trackBar4.Maximum = 255;
+
+                
+                textBox1.Text = Convert.ToString(trackBar1.Value);
+                textBox3.Text = Convert.ToString(trackBar2.Value);
+                textBox4.Text = Convert.ToString(trackBar1.Value);
+                textBox5.Text = Convert.ToString(trackBar2.Value);
+                textBox1.Visible = true;
+                textBox3.Visible = true;
+                textBox4.Visible = true;
+                textBox5.Visible = true;
+
+            }
+
+
         }
 
         public Dialog(String title, String label, Form[] forms)
@@ -93,6 +132,8 @@ namespace APO_AndrzejMróz_17870
                 {
                     combovalue1 = trackBar1.Value;
                     combovalue2 = trackBar2.Value;
+                    combovalue3 = trackBar3.Value;
+                    combovalue4 = trackBar4.Value;
                 }
                 catch (Exception error) { }
             }
@@ -133,6 +174,16 @@ namespace APO_AndrzejMróz_17870
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             trackBar2.Value = int.Parse(textBox3.Text);
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+            textBox4.Text = trackBar3.Value.ToString();
+        }
+
+        private void trackBar4_Scroll(object sender, EventArgs e)
+        {
+            textBox5.Text = trackBar4.Value.ToString();
         }
     }
 }

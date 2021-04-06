@@ -77,7 +77,7 @@ namespace APO_AndrzejMróz_17870
 
             if (activeChild == null)
                 return;                  
-            activeChild.rozciaganie(0,256);
+            activeChild.RozciaganieHistogram(0,256);
         }
 
         private void negacjaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -118,6 +118,50 @@ namespace APO_AndrzejMróz_17870
                 return;
 
             activeChild.progowanieLevel(Convert.ToInt32(dialog.combovalue1), Convert.ToInt32(dialog.combovalue2));
+        }
+
+        private void ąganieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Rozciaganie", "Podaj wartości do rozciagania:");
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.rozciaganie(Convert.ToInt32(dialog.combovalue1), Convert.ToInt32(dialog.combovalue2));
+        }
+
+        private void redukcjaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Redukcja", "Podaj wartości 4 wartości (p1>p2>p3>p4:");
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.Redukcja(Convert.ToInt32(dialog.combovalue1), Convert.ToInt32(dialog.combovalue2), Convert.ToInt32(dialog.combovalue3), Convert.ToInt32(dialog.combovalue4));
+        }
+
+        private void segmentacjaWododziałowaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Segmentacja Wododziałowa", "Ilość kroków wygładzania (1:50):", "Wypełnienie regionów (1-z obr,2-śre. regi.)");
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            activeChild.wododzial(Convert.ToInt32(dialog.value), Convert.ToInt32(dialog.value2));
         }
     }
 }
