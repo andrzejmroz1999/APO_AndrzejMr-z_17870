@@ -29,7 +29,7 @@ namespace APO_AndrzejMróz_17870
         private const int MAX_VALUE = 255;
         
 
-        public int MinValueHistogram()
+        public int HistogramMinValue()
         {
             int minValue = 0;
             int minCunter = 0;
@@ -43,7 +43,7 @@ namespace APO_AndrzejMróz_17870
             return minValue;
         }
 
-        public int MaxValueHistogram()
+        public int HistogramMaxValue()
         {
             int maxValue = 0;
             int maxCunter = 255;
@@ -432,8 +432,8 @@ namespace APO_AndrzejMróz_17870
         public void RozciaganieHistogram(int start, int koniec)
         {
             drawHistogram();
-            int minValueHistogram = MinValueHistogram();
-            int maxValueHistogram = MaxValueHistogram();
+            int minValueHistogram = HistogramMinValue();
+            int maxValueHistogram = HistogramMaxValue();
             int newValuePixel = 0;
 
             int[] stretchHist = new int[MAX_VALUE + 1];
@@ -478,40 +478,64 @@ namespace APO_AndrzejMróz_17870
             pictureBox1.Refresh();
             drawHistogram();
         }
+      
         public void progowanie(int prog)
         {
-            for (int i = 0; i < bitmap.Height; i++)
+
+            int newValuePixel = 0, newValuePicture = 0;
+
+            int[] progowanieHist = new int[2];
+
+            for (int x = 0; x < bitmap.Width; ++x)
             {
-                for (int j = 0; j < bitmap.Width; j++)
+                for (int y = 0; y < bitmap.Height; ++y)
                 {
-                    Color c = bitmap.GetPixel(j, i);
+                    Color c = bitmap.GetPixel(x, y);
 
-                    int color = (c.R < prog ? 0 : 255);
+                    if (c.R <= prog)
+                    {
+                        newValuePixel = 0;
+                    }
+                    else
+                    {
+                        newValuePixel = 1;
+                    }
 
-                    bitmap.SetPixel(j, i, Color.FromArgb(color, color, color));
+                    progowanieHist[newValuePixel] += 1;
+
+                    if (newValuePixel == 1) { newValuePicture = 255; }
+                    else { newValuePicture = 0; }
+
+                    Color newColor = Color.FromArgb(255, newValuePicture, newValuePicture, newValuePicture);
+
+                    
+                        bitmap.SetPixel(x, y, newColor);
+                  
                 }
             }
+          
+
             pictureBox1.Refresh();
             drawHistogram();
         }
 
-        public int[] progowanieLevel(int p1, int p2)
+        public void progowanieOdcienie(int p1, int p2)
         {
           
 
          
-            Bitmap bmNew = new Bitmap(pictureBox1.Image);
+            Bitmap bmpNew = new Bitmap(pictureBox1.Image);
 
            
             int newValuePixel = 0;
 
-            int[] progowanieHist = new int[256];
+            
 
-            for (int x = 0; x < bmNew.Width; ++x)
+            for (int x = 0; x < bmpNew.Width; ++x)
             {
-                for (int y = 0; y < bmNew.Height; ++y)
+                for (int y = 0; y < bmpNew.Height; ++y)
                 {
-                    Color c = bmNew.GetPixel(x, y);
+                    Color c = bmpNew.GetPixel(x, y);
 
                     if (c.R >= p1 && c.R <= p2)
                     {
@@ -522,125 +546,73 @@ namespace APO_AndrzejMróz_17870
                         newValuePixel = 0;
                     }
 
-                    progowanieHist[newValuePixel] += 1;
+                    
 
                     Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
 
                   
-                        bmNew.SetPixel(x, y, newColor);
+                        bmpNew.SetPixel(x, y, newColor);
                     
                 }
             }
-           pictureBox1.Image = bmNew;
+           pictureBox1.Image = bmpNew;
             pictureBox1.Refresh();
-            bitmap = bmNew;
+            bitmap = bmpNew;
             drawHistogram();
 
-            return progowanieHist;
+           
         }
 
-        public int[] rozciaganie(int p1, int p2)
+        public void rozciaganie(int p1, int p2)
         {
+                             
+            // zmienic zakrs
+           
+            for (int x = 0; x < bitmap.Width; x++)
+                for (int y = 0; y < bitmap.Height; y++)
+                //if (p1 < p2)
+                {
+                    if (bitmap.GetPixel(x, y).R > p1 && bitmap.GetPixel(x, y).R <= p2)
+                    {
+                        var av = ((bitmap.GetPixel(x, y).R - p1) * ((256 - 1) / (p2 - p1)));
+                        bitmap.SetPixel(x, y, Color.FromArgb(bitmap.GetPixel(x, y).A, av, av, av));
+                    }
+                }
+        
+
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+
+           
+        }
+
+        public void Redukcja(int p1)
+        {
+            byte[] upo = new byte[256];
+            float param1 = 255.0f / (p1 - 1);
+            float param2 = 256.0f / (p1);
+            for (int i = 0; i < 256; ++i)
+            {
+                upo[i] = (byte)((byte)(i / param2) * param1);
+            }
+            for (int i = 0; i < bitmap.Size.Width; ++i)
+            {
+                for (int j = 0; j < bitmap.Size.Height; ++j)
+                {
+                    Color color = bitmap.GetPixel(i, j);
+                    byte newColor = upo[color.R];
+                    bitmap.SetPixel(i, j, Color.FromArgb(color.A, newColor, newColor, newColor));
+                }
+            }
+
+
+
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+
             
-
-           
-            int newValuePixel = 0;
-
-            int[] rozciaganieHist = new int[256];
-
-            for (int x = 0; x < bitmap.Width; ++x)
-            {
-                for (int y = 0; y < bitmap.Height; ++y)
-                {
-                    Color c = bitmap.GetPixel(x, y);
-
-                    if (c.R >= p1 && c.R <= p2)
-                    {
-                        newValuePixel = ((c.R - p1) * 255) / (p2 - p1);
-                    }
-                    else
-                    {
-                        newValuePixel = 0;
-                    }
-
-                    rozciaganieHist[newValuePixel] += 1;
-
-                    Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
-
-                   
-                        bitmap.SetPixel(x, y, newColor);
-                  
-                }
-            }
-
-            pictureBox1.Refresh();
-            drawHistogram();
-            Refresh();
-
-            return rozciaganieHist;
-        }
-
-        public int[] Redukcja(int p1, int p2 , int p3 , int p4)
-        {
-           
-
-          
-
-           
-            int newValuePixel = 0;
-
-            int[] redukcjaHist = new int[256];
-
-            Random rnd = new Random();
-
-            int random1 = rnd.Next(p1, p2);
-            int random2 = rnd.Next(p2, p3);
-            int random3 = rnd.Next(p3, p4);
-
-            for (int x = 0; x < bitmap.Width; ++x)
-            {
-                for (int y = 0; y < bitmap.Height; ++y)
-                {
-                    Color c = bitmap.GetPixel(x, y);
-
-                    if (c.R > p1 && c.R <= p2)
-                    {
-                        newValuePixel = random1;
-                    }
-                    else
-                    {
-                        if (c.R > p2 && c.R <= p3)
-                        {
-                            newValuePixel = random2;
-                        }
-                        else
-                        {
-                            if (c.R > p3 && c.R <= p4)
-                            {
-                                newValuePixel = random3;
-                            }
-                            else
-                            {
-                                newValuePixel = 255;
-                            }
-                        }
-                    }
-
-                    redukcjaHist[newValuePixel] += 1;
-
-                    Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
-
-                   
-                        bitmap.SetPixel(x, y, newColor);
-                   
-                }
-            }
-
-            pictureBox1.Refresh();
-            drawHistogram();
-            Refresh();
-
-            return redukcjaHist;
         }
 
         public void wododzial(int kr, int opcja)

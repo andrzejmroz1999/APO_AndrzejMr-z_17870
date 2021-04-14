@@ -47,8 +47,8 @@ namespace APO_AndrzejMróz_17870
             this.operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ąganieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redukcjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.segmentacjaWododziałowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,7 +169,7 @@ namespace APO_AndrzejMróz_17870
             // 
             this.progowanieToolStripMenuItem.Name = "progowanieToolStripMenuItem";
             this.progowanieToolStripMenuItem.Size = new System.Drawing.Size(382, 22);
-            this.progowanieToolStripMenuItem.Text = "progowanie";
+            this.progowanieToolStripMenuItem.Text = "progowanie ";
             this.progowanieToolStripMenuItem.Click += new System.EventHandler(this.progowanieToolStripMenuItem_Click);
             // 
             // operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem
@@ -193,16 +193,16 @@ namespace APO_AndrzejMróz_17870
             this.redukcjaToolStripMenuItem.Text = "Redukcja";
             this.redukcjaToolStripMenuItem.Click += new System.EventHandler(this.redukcjaToolStripMenuItem_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // segmentacjaWododziałowaToolStripMenuItem
             // 
             this.segmentacjaWododziałowaToolStripMenuItem.Name = "segmentacjaWododziałowaToolStripMenuItem";
             this.segmentacjaWododziałowaToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
             this.segmentacjaWododziałowaToolStripMenuItem.Text = "Segmentacja wododziałowa";
             this.segmentacjaWododziałowaToolStripMenuItem.Click += new System.EventHandler(this.segmentacjaWododziałowaToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainPage
             // 

@@ -41,6 +41,14 @@ namespace APO_AndrzejMróz_17870
             InitializeComponent();
             Text = title;
             labelDesc.Text = label;
+
+           
+                 if (title == "Progowanie")
+            {
+                trackBar1.Visible = true;
+                
+            }
+
             if (title == "ProgowanieLevel")
             {
                 trackBar1.Visible = true;
@@ -67,29 +75,17 @@ namespace APO_AndrzejMróz_17870
                 if (title == "Redukcja")
             {
                 trackBar1.Visible = true;
-                trackBar2.Visible = true;
-                trackBar3.Visible = true;
-                trackBar4.Visible = true;
+              
 
-                trackBar1.Minimum = 0;
-                trackBar2.Minimum = 0;
-                trackBar3.Minimum = 0;
-                trackBar4.Minimum = 0;
-
-                trackBar1.Maximum = 255;
-                trackBar2.Maximum = 255;
-                trackBar3.Maximum = 255;
-                trackBar4.Maximum = 255;
+               
 
                 
                 textBox1.Text = Convert.ToString(trackBar1.Value);
-                textBox3.Text = Convert.ToString(trackBar2.Value);
-                textBox4.Text = Convert.ToString(trackBar1.Value);
-                textBox5.Text = Convert.ToString(trackBar2.Value);
+               
                 textBox1.Visible = true;
-                textBox3.Visible = true;
-                textBox4.Visible = true;
-                textBox5.Visible = true;
+                textBox3.Visible = false;
+                textBox4.Visible = false;
+                textBox5.Visible = false;
 
             }
 
@@ -126,8 +122,8 @@ namespace APO_AndrzejMróz_17870
         {
             value = textBox.Text;
             value2 = textBox2.Text;
-            if ( trackBar2.Visible == true && trackBar1.Visible == true)
-            {
+          //  if ( trackBar2.Visible == true && trackBar1.Visible == true)
+         //   {
                 try
                 {
                     combovalue1 = trackBar1.Value;
@@ -136,7 +132,7 @@ namespace APO_AndrzejMróz_17870
                     combovalue4 = trackBar4.Value;
                 }
                 catch (Exception error) { }
-            }
+        //    }
            
 
             myAcceptButton.DialogResult = DialogResult.OK;

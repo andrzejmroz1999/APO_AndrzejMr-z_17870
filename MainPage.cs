@@ -102,7 +102,7 @@ namespace APO_AndrzejMróz_17870
             if (dialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            activeChild.progowanie(Convert.ToInt32(dialog.value));
+            activeChild.progowanie(Convert.ToInt32(dialog.combovalue1));
         }
 
         private void operatorProgowaniazZachowaniemPoziomówSzarościToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace APO_AndrzejMróz_17870
             if (dialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            activeChild.progowanieLevel(Convert.ToInt32(dialog.combovalue1), Convert.ToInt32(dialog.combovalue2));
+            activeChild.progowanieOdcienie(Convert.ToInt32(dialog.combovalue1), Convert.ToInt32(dialog.combovalue2));
         }
 
         private void ąganieToolStripMenuItem_Click(object sender, EventArgs e)
@@ -147,7 +147,7 @@ namespace APO_AndrzejMróz_17870
             if (dialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            activeChild.Redukcja(Convert.ToInt32(dialog.combovalue1), Convert.ToInt32(dialog.combovalue2), Convert.ToInt32(dialog.combovalue3), Convert.ToInt32(dialog.combovalue4));
+            activeChild.Redukcja(Convert.ToInt32(dialog.combovalue1));
         }
 
         private void segmentacjaWododziałowaToolStripMenuItem_Click(object sender, EventArgs e)
