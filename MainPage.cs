@@ -163,5 +163,140 @@ namespace APO_AndrzejMróz_17870
                 return;
             activeChild.wododzial(Convert.ToInt32(dialog.value), Convert.ToInt32(dialog.value2));
         }
+
+        private void linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            WygladzanieForm wygladzanie = new WygladzanieForm();
+
+            if (wygladzanie.ShowDialog() == DialogResult.Cancel)
+                return;
+            activeChild.Wygladzanie(Convert.ToInt32(wygladzanie.value1), Convert.ToInt32(wygladzanie.value2), Convert.ToInt32(wygladzanie.value3), Convert.ToInt32(wygladzanie.value4), Convert.ToInt32(wygladzanie.value5), Convert.ToInt32(wygladzanie.value6), Convert.ToInt32(wygladzanie.value7), Convert.ToInt32(wygladzanie.value8), Convert.ToInt32(wygladzanie.value9));
+        }
+
+        private void x3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+            activeChild.Mediana3x3();
+        }
+
+        private void x5ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+            activeChild.Mediana5x5();
+        }
+
+        private void x7ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+            activeChild.Mediana7x7();
+        }
+
+        private void prewittToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            PrewittForm prewittForm = new PrewittForm();
+
+            if (prewittForm.ShowDialog() == DialogResult.Cancel)
+                return;
+            activeChild.Prewitt(Convert.ToInt32(prewittForm.value1), Convert.ToInt32(prewittForm.value2), Convert.ToInt32(prewittForm.value3), Convert.ToInt32(prewittForm.value4), Convert.ToInt32(prewittForm.value5), Convert.ToInt32(prewittForm.value6), Convert.ToInt32(prewittForm.value7), Convert.ToInt32(prewittForm.value8), Convert.ToInt32(prewittForm.value9));
+        }
+
+        private void aNDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Operacja logiczna AND",
+                "Wybierz obraz", this.MdiChildren);
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.and(((ImageForm)this.MdiChildren[dialog.combovalue]).bitmap);
+        }
+
+        private void oRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Operacja logiczna OR",
+                "Wybierz obraz", this.MdiChildren);
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.or(((ImageForm)this.MdiChildren[dialog.combovalue]).bitmap);
+        }
+
+        private void xORToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Operacja logiczna XOR",
+                "Wybierz obraz", this.MdiChildren);
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.xor(((ImageForm)this.MdiChildren[dialog.combovalue]).bitmap);
+        }
+
+        private void dodawanieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Dodawanie",
+                "Wybierz obraz który chcesz dodać", this.MdiChildren);
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.add(((ImageForm)this.MdiChildren[dialog.combovalue]).bitmap);
+        }
+
+        private void odejmowanieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Dialog dialog = new Dialog("Odejmowanie",
+                "Wybierz obraz który chcesz odjąć", this.MdiChildren);
+
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            activeChild.sub(((ImageForm)this.MdiChildren[dialog.combovalue]).bitmap);
+        }
     }
 }

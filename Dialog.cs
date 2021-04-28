@@ -14,6 +14,7 @@ namespace APO_AndrzejMróz_17870
     {
         public String value;
         public String value2;
+        public int combovalue;
         public int combovalue1;
         public int combovalue2;
         public int combovalue3;
@@ -31,7 +32,7 @@ namespace APO_AndrzejMróz_17870
             }
             public override string ToString()
             {
-                
+
                 return Name;
             }
         };
@@ -42,11 +43,11 @@ namespace APO_AndrzejMróz_17870
             Text = title;
             labelDesc.Text = label;
 
-           
-                 if (title == "Progowanie")
+
+            if (title == "Progowanie")
             {
                 trackBar1.Visible = true;
-                
+
             }
 
             if (title == "ProgowanieLevel")
@@ -66,29 +67,35 @@ namespace APO_AndrzejMróz_17870
             textBox1.Text = Convert.ToString(trackBar1.Value);
             textBox2.Text = Convert.ToString(trackBar2.Value);
 
-            if (title == "Rozciaganie")
+            if (title == "Rozciaganie" )
             {
                 trackBar1.Visible = true;
                 trackBar2.Visible = true;
             }
-            
-                if (title == "Redukcja")
+
+            if (title == "Redukcja")
             {
                 trackBar1.Visible = true;
-              
 
-               
 
-                
+
+
+
                 textBox1.Text = Convert.ToString(trackBar1.Value);
-               
+
                 textBox1.Visible = true;
                 textBox3.Visible = false;
                 textBox4.Visible = false;
                 textBox5.Visible = false;
 
             }
-
+            if (title == "Operacja logiczna AND" || title == "Operacja logiczna OR" || title == "Operacja logiczna XOR" || title == "Odejmowanie" || title == "Dodawanie")
+            {
+                textBox1.Visible = true;
+                comboBox1.Visible = true;
+                textBox1.Visible = false;
+                textBox2.Visible = false;
+            }
 
         }
 
@@ -105,7 +112,7 @@ namespace APO_AndrzejMróz_17870
                 comboBox1.Items.Add(new Item(form.Text, i++));
             }
 
-           
+
         }
 
         public Dialog(String title, String label, String label2)
@@ -122,18 +129,19 @@ namespace APO_AndrzejMróz_17870
         {
             value = textBox.Text;
             value2 = textBox2.Text;
-          //  if ( trackBar2.Visible == true && trackBar1.Visible == true)
-         //   {
-                try
-                {
-                    combovalue1 = trackBar1.Value;
-                    combovalue2 = trackBar2.Value;
-                    combovalue3 = trackBar3.Value;
-                    combovalue4 = trackBar4.Value;
-                }
-                catch (Exception error) { }
-        //    }
-           
+            //  if ( trackBar2.Visible == true && trackBar1.Visible == true)
+            //   {
+            try
+            {
+                combovalue1 = trackBar1.Value;
+                combovalue2 = trackBar2.Value;
+                combovalue3 = trackBar3.Value;
+                combovalue4 = trackBar4.Value;
+            }
+            catch (Exception error) { }
+
+            //    }
+
 
             myAcceptButton.DialogResult = DialogResult.OK;
         }
@@ -152,14 +160,14 @@ namespace APO_AndrzejMróz_17870
         {
             trackBar1.Maximum = trackBar2.Value;
             trackBar2.Minimum = trackBar1.Value;
-           
+
         }
 
         private void trackBar2_ValueChanged(object sender, EventArgs e)
         {
             trackBar1.Maximum = trackBar2.Value;
             trackBar2.Minimum = trackBar1.Value;
-            
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

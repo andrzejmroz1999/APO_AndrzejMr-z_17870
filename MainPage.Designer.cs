@@ -48,7 +48,20 @@ namespace APO_AndrzejMróz_17870
             this.ąganieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redukcjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.segmentacjaWododziałowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operacjeSasiedztwaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.x3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.x5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.x7ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prewittToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.operacjeLogiczneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aNDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dodawanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.odejmowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,10 +73,12 @@ namespace APO_AndrzejMróz_17870
             this.inforamcjeToolStripMenuItem,
             this.operacjeToolStripMenuItem,
             this.operacjePunktoweToolStripMenuItem,
-            this.segmentacjaWododziałowaToolStripMenuItem});
+            this.segmentacjaWododziałowaToolStripMenuItem,
+            this.operacjeSasiedztwaToolStripMenuItem,
+            this.operacjeLogiczneToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(956, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -200,16 +215,118 @@ namespace APO_AndrzejMróz_17870
             this.segmentacjaWododziałowaToolStripMenuItem.Text = "Segmentacja wododziałowa";
             this.segmentacjaWododziałowaToolStripMenuItem.Click += new System.EventHandler(this.segmentacjaWododziałowaToolStripMenuItem_Click);
             // 
+            // operacjeSasiedztwaToolStripMenuItem
+            // 
+            this.operacjeSasiedztwaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem,
+            this.mediToolStripMenuItem,
+            this.prewittToolStripMenuItem});
+            this.operacjeSasiedztwaToolStripMenuItem.Name = "operacjeSasiedztwaToolStripMenuItem";
+            this.operacjeSasiedztwaToolStripMenuItem.Size = new System.Drawing.Size(125, 20);
+            this.operacjeSasiedztwaToolStripMenuItem.Text = "Operacje sasiedztwa";
+            // 
+            // linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem
+            // 
+            this.linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem.Name = "linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem";
+            this.linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem.Size = new System.Drawing.Size(356, 22);
+            this.linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem.Text = "Liniowe wygładzanie | wyostrzanie | detekcja krawedzi";
+            this.linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem.Click += new System.EventHandler(this.linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem_Click);
+            // 
+            // mediToolStripMenuItem
+            // 
+            this.mediToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.x3ToolStripMenuItem,
+            this.x5ToolStripMenuItem,
+            this.x7ToolStripMenuItem});
+            this.mediToolStripMenuItem.Name = "mediToolStripMenuItem";
+            this.mediToolStripMenuItem.Size = new System.Drawing.Size(356, 22);
+            this.mediToolStripMenuItem.Text = "Filtracja medianowa";
+            // 
+            // x3ToolStripMenuItem
+            // 
+            this.x3ToolStripMenuItem.Name = "x3ToolStripMenuItem";
+            this.x3ToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.x3ToolStripMenuItem.Text = "3x3";
+            this.x3ToolStripMenuItem.Click += new System.EventHandler(this.x3ToolStripMenuItem_Click);
+            // 
+            // x5ToolStripMenuItem
+            // 
+            this.x5ToolStripMenuItem.Name = "x5ToolStripMenuItem";
+            this.x5ToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.x5ToolStripMenuItem.Text = "5x5";
+            this.x5ToolStripMenuItem.Click += new System.EventHandler(this.x5ToolStripMenuItem_Click);
+            // 
+            // x7ToolStripMenuItem
+            // 
+            this.x7ToolStripMenuItem.Name = "x7ToolStripMenuItem";
+            this.x7ToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.x7ToolStripMenuItem.Text = "7x7";
+            this.x7ToolStripMenuItem.Click += new System.EventHandler(this.x7ToolStripMenuItem_Click);
+            // 
+            // prewittToolStripMenuItem
+            // 
+            this.prewittToolStripMenuItem.Name = "prewittToolStripMenuItem";
+            this.prewittToolStripMenuItem.Size = new System.Drawing.Size(356, 22);
+            this.prewittToolStripMenuItem.Text = "Prewitt";
+            this.prewittToolStripMenuItem.Click += new System.EventHandler(this.prewittToolStripMenuItem_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // operacjeLogiczneToolStripMenuItem
+            // 
+            this.operacjeLogiczneToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aNDToolStripMenuItem,
+            this.oRToolStripMenuItem,
+            this.xORToolStripMenuItem,
+            this.dodawanieToolStripMenuItem,
+            this.odejmowanieToolStripMenuItem});
+            this.operacjeLogiczneToolStripMenuItem.Name = "operacjeLogiczneToolStripMenuItem";
+            this.operacjeLogiczneToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
+            this.operacjeLogiczneToolStripMenuItem.Text = "Operacje logiczne";
+            // 
+            // aNDToolStripMenuItem
+            // 
+            this.aNDToolStripMenuItem.Name = "aNDToolStripMenuItem";
+            this.aNDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aNDToolStripMenuItem.Text = "AND";
+            this.aNDToolStripMenuItem.Click += new System.EventHandler(this.aNDToolStripMenuItem_Click);
+            // 
+            // oRToolStripMenuItem
+            // 
+            this.oRToolStripMenuItem.Name = "oRToolStripMenuItem";
+            this.oRToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.oRToolStripMenuItem.Text = "OR";
+            this.oRToolStripMenuItem.Click += new System.EventHandler(this.oRToolStripMenuItem_Click);
+            // 
+            // xORToolStripMenuItem
+            // 
+            this.xORToolStripMenuItem.Name = "xORToolStripMenuItem";
+            this.xORToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xORToolStripMenuItem.Text = "XOR";
+            this.xORToolStripMenuItem.Click += new System.EventHandler(this.xORToolStripMenuItem_Click);
+            // 
+            // dodawanieToolStripMenuItem
+            // 
+            this.dodawanieToolStripMenuItem.Name = "dodawanieToolStripMenuItem";
+            this.dodawanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dodawanieToolStripMenuItem.Text = "dodawanie";
+            this.dodawanieToolStripMenuItem.Click += new System.EventHandler(this.dodawanieToolStripMenuItem_Click);
+            // 
+            // odejmowanieToolStripMenuItem
+            // 
+            this.odejmowanieToolStripMenuItem.Name = "odejmowanieToolStripMenuItem";
+            this.odejmowanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.odejmowanieToolStripMenuItem.Text = "odejmowanie";
+            this.odejmowanieToolStripMenuItem.Click += new System.EventHandler(this.odejmowanieToolStripMenuItem_Click);
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(956, 450);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.Name = "MainPage";
@@ -243,6 +360,19 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.ToolStripMenuItem ąganieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redukcjaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem segmentacjaWododziałowaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operacjeSasiedztwaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mediToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem x3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem x5ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem x7ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prewittToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operacjeLogiczneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aNDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xORToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dodawanieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem odejmowanieToolStripMenuItem;
     }
 }
 

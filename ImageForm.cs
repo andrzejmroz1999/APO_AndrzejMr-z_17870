@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Emgu.CV;
+using Emgu.CV.Structure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,7 +29,7 @@ namespace APO_AndrzejMróz_17870
         double[,] red, green, blue;
         private const int MIN_VALUE = 0;
         private const int MAX_VALUE = 255;
-        
+
 
         public int HistogramMinValue()
         {
@@ -202,11 +204,11 @@ namespace APO_AndrzejMróz_17870
             return Histogram;
         }
 
-       
+
 
         private void drawHistogram()
         {
-            histogram = GetHistogram(bitmap);           
+            histogram = GetHistogram(bitmap);
             Graphics graphicsObj = panel3.CreateGraphics();
             Pen pen = new Pen(System.Drawing.Color.Black, 1);
 
@@ -216,12 +218,12 @@ namespace APO_AndrzejMróz_17870
             {
                 graphicsObj.DrawLine(pen, i, 150, i, 150 - histogram[i] * 150 / max);
             }
-            
+
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-           
+
 
         }
 
@@ -273,7 +275,7 @@ namespace APO_AndrzejMróz_17870
                 label3.Text = e.X.ToString();
                 label4.Text = histogram[e.X].ToString();
             }
-                    
+
         }
 
         private void radioButton1_Click(object sender, EventArgs e)
@@ -308,7 +310,7 @@ namespace APO_AndrzejMróz_17870
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+
             int w = bitmap.Width;
             int h = bitmap.Height;
             red = new double[w, h];
@@ -355,7 +357,7 @@ namespace APO_AndrzejMróz_17870
             for (int i = 0; i < 256; i++)
             {
                 graphicsObj.DrawLine(pen, i, 256, i, 150 - His_R[i] * 150 / max);
-                
+
             }
             Pen penG = new Pen(System.Drawing.Color.Green, 1);
             max = His_G.Max();
@@ -374,9 +376,9 @@ namespace APO_AndrzejMróz_17870
             {
                 graphicsObj.Clear(panel3.BackColor);
                 Pen r = new Pen(System.Drawing.Color.Red, 1);
-               
+
                 long maxR = His_G.Max();
-                
+
                 for (int i = 0; i < 256; i++)
                 {
                     graphicsObj.DrawLine(r, i, 256, i, 150 - His_R[i] * 150 / max);
@@ -458,7 +460,7 @@ namespace APO_AndrzejMróz_17870
                     Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
                     bitmap.SetPixel(x, y, newColor);
 
-                    
+
                 }
             }
             pictureBox1.Refresh();
@@ -478,7 +480,7 @@ namespace APO_AndrzejMróz_17870
             pictureBox1.Refresh();
             drawHistogram();
         }
-      
+
         public void progowanie(int prog)
         {
 
@@ -508,12 +510,12 @@ namespace APO_AndrzejMróz_17870
 
                     Color newColor = Color.FromArgb(255, newValuePicture, newValuePicture, newValuePicture);
 
-                    
-                        bitmap.SetPixel(x, y, newColor);
-                  
+
+                    bitmap.SetPixel(x, y, newColor);
+
                 }
             }
-          
+
 
             pictureBox1.Refresh();
             drawHistogram();
@@ -521,15 +523,15 @@ namespace APO_AndrzejMróz_17870
 
         public void progowanieOdcienie(int p1, int p2)
         {
-          
 
-         
+
+
             Bitmap bmpNew = new Bitmap(pictureBox1.Image);
 
-           
+
             int newValuePixel = 0;
 
-            
+
 
             for (int x = 0; x < bmpNew.Width; ++x)
             {
@@ -546,28 +548,28 @@ namespace APO_AndrzejMróz_17870
                         newValuePixel = 0;
                     }
 
-                    
+
 
                     Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
 
-                  
-                        bmpNew.SetPixel(x, y, newColor);
-                    
+
+                    bmpNew.SetPixel(x, y, newColor);
+
                 }
             }
-           pictureBox1.Image = bmpNew;
+            pictureBox1.Image = bmpNew;
             pictureBox1.Refresh();
             bitmap = bmpNew;
             drawHistogram();
 
-           
+
         }
 
         public void rozciaganie(int p1, int p2)
         {
-                             
-            // zmienic zakrs
-           
+
+            // zmienic zakres 4 parametry
+
             for (int x = 0; x < bitmap.Width; x++)
                 for (int y = 0; y < bitmap.Height; y++)
                 //if (p1 < p2)
@@ -578,13 +580,13 @@ namespace APO_AndrzejMróz_17870
                         bitmap.SetPixel(x, y, Color.FromArgb(bitmap.GetPixel(x, y).A, av, av, av));
                     }
                 }
-        
+
 
             pictureBox1.Refresh();
             drawHistogram();
             Refresh();
 
-           
+
         }
 
         public void Redukcja(int p1)
@@ -612,7 +614,410 @@ namespace APO_AndrzejMróz_17870
             drawHistogram();
             Refresh();
 
-            
+
+        }
+
+        public void Wygladzanie(int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9)
+        {
+            int sumaMasek = v1 + v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9;
+            int c1V, c2V, c3V, c4V, c5V, c6V, c7V, c8V, c9V;
+            int newValuePixel = 0;
+
+            if (!(v1 == 0 && v2 == 0 && v3 == 0 && v4 == 0 && v5 == 0 && v6 == 0 && v7 == 0 && v8 == 0 && v9 == 0))
+            {
+                for (int x = 1; x < bitmap.Width - 1; ++x)
+                {
+                    for (int y = 1; y < bitmap.Height - 1; ++y)
+                    {
+                        Color c1 = bitmap.GetPixel(x - 1, y - 1);
+                        Color c2 = bitmap.GetPixel(x, y - 1);
+                        Color c3 = bitmap.GetPixel(x + 1, y - 1);
+                        Color c4 = bitmap.GetPixel(x - 1, y);
+                        Color c5 = bitmap.GetPixel(x, y);
+                        Color c6 = bitmap.GetPixel(x + 1, y);
+                        Color c7 = bitmap.GetPixel(x - 1, y + 1);
+                        Color c8 = bitmap.GetPixel(x, y + 1);
+                        Color c9 = bitmap.GetPixel(x + 1, y + 1);
+
+                        c1V = c1.R * v1;
+                        c2V = c2.R * v2;
+                        c3V = c3.R * v3;
+                        c4V = c4.R * v4;
+                        c5V = c5.R * v5;
+                        c6V = c6.R * v6;
+                        c7V = c7.R * v7;
+                        c8V = c8.R * v8;
+                        c9V = c9.R * v9;
+
+                        if (v1 > 0 && v2 > 0 && v3 > 0 && v4 > 0 && v5 > 0 && v6 > 0 && v7 > 0 && v8 > 0 && v9 > 0)
+                        {
+                            newValuePixel = Convert.ToInt32((double)(c1V + c2V + c3V + c4V + c5V + c6V + c7V + c8V + c9V) / sumaMasek);
+                        }
+                        else
+                        {
+                            newValuePixel = c1V + c2V + c3V + c4V + c5V + c6V + c7V + c8V + c9V;
+                        }
+
+
+                        if (newValuePixel > 255) { newValuePixel = 255; }
+                        if (newValuePixel < 0) { newValuePixel = 0; }
+
+                        Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
+
+                        bitmap.SetPixel(x, y, newColor);
+                    }
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+
+        }
+        private int Mediana(int[] intArray)
+        {
+            int centerItem = Convert.ToInt32((double)intArray.Length / 2);
+
+            Array.Sort(intArray);
+
+            return intArray[centerItem];
+        }
+
+        public void Mediana3x3()
+        {
+            int newValuePixel = 0;
+
+
+
+            for (int x = 1; x < bitmap.Width - 1; ++x)
+            {
+                for (int y = 1; y < bitmap.Height - 1; ++y)
+                {
+                    Color c1 = bitmap.GetPixel(x - 1, y - 1);
+                    Color c2 = bitmap.GetPixel(x, y - 1);
+                    Color c3 = bitmap.GetPixel(x + 1, y - 1);
+                    Color c4 = bitmap.GetPixel(x - 1, y);
+                    Color c5 = bitmap.GetPixel(x, y);
+                    Color c6 = bitmap.GetPixel(x + 1, y);
+                    Color c7 = bitmap.GetPixel(x - 1, y + 1);
+                    Color c8 = bitmap.GetPixel(x, y + 1);
+                    Color c9 = bitmap.GetPixel(x + 1, y + 1);
+
+                    int[] environment = new int[] { c1.R, c2.R, c3.R, c4.R, c5.R, c6.R, c7.R, c8.R, c9.R };
+
+                    newValuePixel = Mediana(environment);
+
+                    Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
+
+                    bitmap.SetPixel(x, y, newColor);
+                }
+            }
+
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+        }
+        public void Mediana5x5()
+        {
+            int newValuePixel = 0;
+
+
+
+
+
+            for (int x = 2; x < bitmap.Width - 2; ++x)
+            {
+                for (int y = 2; y < bitmap.Height - 2; ++y)
+                {
+                    // Row 1
+                    Color c1 = bitmap.GetPixel(x - 2, y - 2);
+                    Color c2 = bitmap.GetPixel(x - 1, y - 2);
+                    Color c3 = bitmap.GetPixel(x, y - 2);
+                    Color c4 = bitmap.GetPixel(x + 1, y - 2);
+                    Color c5 = bitmap.GetPixel(x + 2, y - 2);
+
+                    // Row 2
+                    Color c6 = bitmap.GetPixel(x - 2, y - 1);
+                    Color c7 = bitmap.GetPixel(x - 1, y - 1);
+                    Color c8 = bitmap.GetPixel(x, y - 1);
+                    Color c9 = bitmap.GetPixel(x + 1, y - 1);
+                    Color c10 = bitmap.GetPixel(x + 2, y - 1);
+
+                    // Row 3
+                    Color c11 = bitmap.GetPixel(x - 2, y);
+                    Color c12 = bitmap.GetPixel(x - 1, y);
+                    Color c13 = bitmap.GetPixel(x, y);
+                    Color c14 = bitmap.GetPixel(x + 1, y);
+                    Color c15 = bitmap.GetPixel(x + 2, y);
+
+                    // Row 4
+                    Color c16 = bitmap.GetPixel(x - 2, y + 1);
+                    Color c17 = bitmap.GetPixel(x - 1, y + 1);
+                    Color c18 = bitmap.GetPixel(x, y + 1);
+                    Color c19 = bitmap.GetPixel(x + 1, y + 1);
+                    Color c20 = bitmap.GetPixel(x + 2, y + 1);
+
+                    // Row 5
+                    Color c21 = bitmap.GetPixel(x - 2, y + 2);
+                    Color c22 = bitmap.GetPixel(x - 1, y + 2);
+                    Color c23 = bitmap.GetPixel(x, y + 2);
+                    Color c24 = bitmap.GetPixel(x + 1, y + 2);
+                    Color c25 = bitmap.GetPixel(x + 2, y + 2);
+
+                    int[] environment = new int[] { c1.R, c2.R, c3.R, c4.R, c5.R, c6.R, c7.R, c8.R, c9.R, c10.R,
+                                                    c11.R, c12.R, c13.R, c14.R, c15.R, c16.R, c17.R, c18.R, c19.R, c20.R,
+                                                    c21.R, c22.R, c23.R, c24.R, c25.R};
+
+                    newValuePixel = Mediana(environment);
+
+                    Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
+
+                    bitmap.SetPixel(x, y, newColor);
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+        }
+        public void Mediana7x7()
+        {
+            int newValuePixel = 0;
+
+
+            for (int x = 3; x < bitmap.Width - 3; ++x)
+            {
+                for (int y = 3; y < bitmap.Height - 3; ++y)
+                {
+                    // Row 1
+                    Color c1 = bitmap.GetPixel(x - 3, y - 3);
+                    Color c2 = bitmap.GetPixel(x - 2, y - 3);
+                    Color c3 = bitmap.GetPixel(x - 1, y - 3);
+                    Color c4 = bitmap.GetPixel(x, y - 3);
+                    Color c5 = bitmap.GetPixel(x + 1, y - 3);
+                    Color c6 = bitmap.GetPixel(x + 2, y - 3);
+                    Color c7 = bitmap.GetPixel(x + 3, y - 3);
+
+                    // Row 2
+                    Color c8 = bitmap.GetPixel(x - 3, y - 2);
+                    Color c9 = bitmap.GetPixel(x - 2, y - 2);
+                    Color c10 = bitmap.GetPixel(x - 1, y - 2);
+                    Color c11 = bitmap.GetPixel(x, y - 2);
+                    Color c12 = bitmap.GetPixel(x + 1, y - 2);
+                    Color c13 = bitmap.GetPixel(x + 2, y - 2);
+                    Color c14 = bitmap.GetPixel(x + 3, y - 2);
+
+                    // Row 3
+                    Color c15 = bitmap.GetPixel(x - 3, y - 1);
+                    Color c16 = bitmap.GetPixel(x - 2, y - 1);
+                    Color c17 = bitmap.GetPixel(x - 1, y - 1);
+                    Color c18 = bitmap.GetPixel(x, y - 1);
+                    Color c19 = bitmap.GetPixel(x + 1, y - 1);
+                    Color c20 = bitmap.GetPixel(x + 2, y - 1);
+                    Color c21 = bitmap.GetPixel(x + 3, y - 1);
+
+                    // Row 4
+                    Color c22 = bitmap.GetPixel(x - 3, y);
+                    Color c23 = bitmap.GetPixel(x - 2, y);
+                    Color c24 = bitmap.GetPixel(x - 1, y);
+                    Color c25 = bitmap.GetPixel(x, y);
+                    Color c26 = bitmap.GetPixel(x + 1, y);
+                    Color c27 = bitmap.GetPixel(x + 2, y);
+                    Color c28 = bitmap.GetPixel(x + 3, y);
+
+                    // Row 5
+                    Color c29 = bitmap.GetPixel(x - 3, y + 1);
+                    Color c30 = bitmap.GetPixel(x - 2, y + 1);
+                    Color c31 = bitmap.GetPixel(x - 1, y + 1);
+                    Color c32 = bitmap.GetPixel(x, y + 1);
+                    Color c33 = bitmap.GetPixel(x + 1, y + 1);
+                    Color c34 = bitmap.GetPixel(x + 2, y + 1);
+                    Color c35 = bitmap.GetPixel(x + 3, y + 1);
+
+                    // Row 6
+                    Color c36 = bitmap.GetPixel(x - 3, y + 2);
+                    Color c37 = bitmap.GetPixel(x - 2, y + 2);
+                    Color c38 = bitmap.GetPixel(x - 1, y + 2);
+                    Color c39 = bitmap.GetPixel(x, y + 2);
+                    Color c40 = bitmap.GetPixel(x + 1, y + 2);
+                    Color c41 = bitmap.GetPixel(x + 2, y + 2);
+                    Color c42 = bitmap.GetPixel(x + 3, y + 2);
+
+                    // Row 7
+                    Color c43 = bitmap.GetPixel(x - 3, y + 3);
+                    Color c44 = bitmap.GetPixel(x - 2, y + 3);
+                    Color c45 = bitmap.GetPixel(x - 1, y + 3);
+                    Color c46 = bitmap.GetPixel(x, y + 3);
+                    Color c47 = bitmap.GetPixel(x + 1, y + 3);
+                    Color c48 = bitmap.GetPixel(x + 2, y + 3);
+                    Color c49 = bitmap.GetPixel(x + 3, y + 3);
+
+                    int[] environment = new int[] { c1.R, c2.R, c3.R, c4.R, c5.R, c6.R, c7.R, c8.R, c9.R, c10.R,
+                                                    c11.R, c12.R, c13.R, c14.R, c15.R, c16.R, c17.R, c18.R, c19.R, c20.R,
+                                                    c21.R, c22.R, c23.R, c24.R, c25.R, c26.R, c27.R, c28.R, c29.R, c30.R,
+                                                    c31.R, c32.R, c33.R, c34.R, c35.R, c36.R, c37.R, c38.R, c39.R, c40.R,
+                                                    c41.R, c42.R, c43.R, c44.R, c45.R, c46.R, c47.R, c48.R, c49.R };
+
+                    newValuePixel = Mediana(environment);
+
+                    Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
+
+                    bitmap.SetPixel(x, y, newColor);
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+        }
+
+        public void Prewitt(int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9)
+        {
+            /*    int newValuePixel = 0;
+                int p1V, p2V, p3V, p4V, p5V, p6V, p7V, p8V, p9V;
+                if (!(v1 == 0 && v2 == 0 && v3 == 0 && v4 == 0 && v5 == 0 && v6 == 0 && v7 == 0 && v8 == 0 && v9 == 0))
+                {
+
+                    for (int x = 1; x < bitmap.Width - 1; ++x)
+                    {
+                        for (int y = 1; y < bitmap.Height - 1; ++y)
+                        {
+                            Color p1 = bitmap.GetPixel(x - 1, y - 1);
+                            Color p2 = bitmap.GetPixel(x, y - 1);
+                            Color p3 = bitmap.GetPixel(x + 1, y - 1);
+                            Color p4 = bitmap.GetPixel(x - 1, y);
+                            Color p5 = bitmap.GetPixel(x, y);
+                            Color p6 = bitmap.GetPixel(x + 1, y);
+                            Color p7 = bitmap.GetPixel(x - 1, y + 1);
+                            Color p8 = bitmap.GetPixel(x, y + 1);
+                            Color p9 = bitmap.GetPixel(x + 1, y + 1);
+
+                            p1V = p1.R * v1;
+                            p2V = p2.R * v2;
+                            p3V = p3.R * v3;
+                            p4V = p4.R * v4;
+                            p5V = p5.R * v5;
+                            p6V = p6.R * v6;
+                            p7V = p7.R * v7;
+                            p8V = p8.R * v8;
+                            p9V = p9.R * v9;
+
+                            newValuePixel = p1V + p2V + p3V + p4V + p5V + p6V + p7V + p8V + p9V;
+
+                            if (newValuePixel > 255) { newValuePixel = 255; }
+                            if (newValuePixel < 0) { newValuePixel = 0; }
+
+                            Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
+                            bitmap.SetPixel(x, y, newColor);
+                        }
+                    }
+                    pictureBox1.Refresh();
+                    drawHistogram();
+                    Refresh();       
+                }
+            */
+            float[,] matrix = new float[,] { { v1, v2, v3 }, { v4, v5, v6 }, { v7, v8, v9 } };
+            ConvolutionKernelF kernel = new ConvolutionKernelF(matrix);
+
+           
+            List<PictureBox> pictureList = new List<PictureBox>();
+            pictureList.Add(pictureBox1);
+
+            var img = ((Bitmap)pictureList[pictureList.Count].Image).ToImage<Bgr, byte>();
+            var imgDst = new Image<Bgr, byte>(pictureList[tabControl.SelectedIndex].Image.Width,
+                pictureList[tabControl.SelectedIndex].Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Filter2D(img, imgDst, kernel, new Point(-1, 1), 0, borderType: Emgu.CV.CvEnum.BorderType.Replicate);
+            pictureList[tabControl.SelectedIndex].Image = imgDst.ToBitmap();
+            GC.Collect();
+
+        }
+        public void and(Bitmap bitmap2)
+        {
+            for (int i = 0; i < bitmap.Height; i++)
+            {
+                for (int j = 0; j < bitmap.Width; j++)
+                {
+                    Color c = bitmap.GetPixel(j, i);
+                    Color d = bitmap2.GetPixel(j, i);
+
+                    int color = c.R & d.R;
+
+                    bitmap.SetPixel(j, i, Color.FromArgb(color, color, color));
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+        }
+
+        public void or(Bitmap bitmap2)
+        {
+            for (int i = 0; i < bitmap.Height; i++)
+            {
+                for (int j = 0; j < bitmap.Width; j++)
+                {
+                    Color c = bitmap.GetPixel(j, i);
+                    Color d = bitmap2.GetPixel(j, i);
+
+                    int color = c.R | d.R;
+
+                    bitmap.SetPixel(j, i, Color.FromArgb(color, color, color));
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+        }
+
+        public void xor(Bitmap bitmap2)
+        {
+            for (int i = 0; i < bitmap.Height; i++)
+            {
+                for (int j = 0; j < bitmap.Width; j++)
+                {
+                    Color c = bitmap.GetPixel(j, i);
+                    Color d = bitmap2.GetPixel(j, i);
+
+                    int color = c.R ^ d.R;
+
+                    bitmap.SetPixel(j, i, Color.FromArgb(color, color, color));
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
+        }
+        public void add(Bitmap bitmap2)
+        {
+            for (int i = 0; i < bitmap.Height; i++)
+            {
+                for (int j = 0; j < bitmap.Width; j++)
+                {
+                    Color c = bitmap.GetPixel(j, i);
+                    Color d = bitmap2.GetPixel(j, i);
+
+                    int color = (c.R + d.R) / 2;
+
+                    bitmap.SetPixel(j, i, Color.FromArgb(color, color, color));
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+
+        public void sub(Bitmap bitmap2)
+        {
+            for (int i = 0; i < bitmap.Height; i++)
+            {
+                for (int j = 0; j < bitmap.Width; j++)
+                {
+                    Color c = bitmap.GetPixel(j, i);
+                    Color d = bitmap2.GetPixel(j, i);
+
+                    int color = Math.Abs(c.R - d.R);
+
+                    bitmap.SetPixel(j, i, Color.FromArgb(color, color, color));
+                }
+            }
+            pictureBox1.Refresh();
+            drawHistogram();
         }
 
         public void wododzial(int kr, int opcja)
@@ -635,7 +1040,7 @@ namespace APO_AndrzejMróz_17870
             for (x = 0; x < kr; x++)
             {
                 krok = x + 1;
-               
+
 
                 for (i = 1; i < bitmap.Height - 1; i++)
                 {
@@ -662,7 +1067,7 @@ namespace APO_AndrzejMróz_17870
 
             }
 
-          
+
 
             // Gradient morfologiczny
             int pam;
@@ -821,7 +1226,7 @@ namespace APO_AndrzejMróz_17870
 
                 for (poziom = min; poziom <= max; poziom++)
                 {
-                   
+
 
                     if (poziom == min)
                     {
@@ -929,7 +1334,7 @@ namespace APO_AndrzejMróz_17870
 
                 }// for poziom
 
-              
+
 
                 // obliczenie średniej regionów
                 int[] sr = new int[region];
@@ -1014,14 +1419,14 @@ namespace APO_AndrzejMróz_17870
                 ekran.Dispose();
                 pictureBox1.Image = bitmap;
                 pictureBox1.Refresh();
-               
+
                 Invalidate();
 
             }
             catch (System.StackOverflowException ex)
             {
                 Invalidate();
-               
+
                 MessageBox.Show("Przekroczono maksymalny rozmiar stosu w środowisku C# !!! \nProwdopododnie zbyt duża ilość pikseli tej samej barwy."
                     + "\n\n---> Pomniejsz zdjęcie i spróbuj ponownie.\n\n" + ex, "Błąd środowiska C#", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
