@@ -12,6 +12,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Emgu.CV.Cuda;
+
+
+
+
 
 namespace APO_AndrzejMróz_17870
 {
@@ -29,6 +34,8 @@ namespace APO_AndrzejMróz_17870
         double[,] red, green, blue;
         private const int MIN_VALUE = 0;
         private const int MAX_VALUE = 255;
+       
+      
 
 
         public int HistogramMinValue()
@@ -619,55 +626,15 @@ namespace APO_AndrzejMróz_17870
 
         public void Wygladzanie(int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9)
         {
-            int sumaMasek = v1 + v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9;
-            int c1V, c2V, c3V, c4V, c5V, c6V, c7V, c8V, c9V;
-            int newValuePixel = 0;
+            float[,] matrix = new float[,] { { v1, v2, v3 }, { v4, v5, v6 }, { v7, v8, v9 } };
+            ConvolutionKernelF kernel = new ConvolutionKernelF(matrix);
+            var img = ((Bitmap)pictureBox1.Image).ToImage<Bgr, byte>();
+            var imgDst = new Image<Bgr, byte>(pictureBox1.Image.Width,
+            pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Filter2D(img, imgDst, kernel, new Point(-1, 1), 0, borderType: Emgu.CV.CvEnum.BorderType.Replicate);
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
 
-            if (!(v1 == 0 && v2 == 0 && v3 == 0 && v4 == 0 && v5 == 0 && v6 == 0 && v7 == 0 && v8 == 0 && v9 == 0))
-            {
-                for (int x = 1; x < bitmap.Width - 1; ++x)
-                {
-                    for (int y = 1; y < bitmap.Height - 1; ++y)
-                    {
-                        Color c1 = bitmap.GetPixel(x - 1, y - 1);
-                        Color c2 = bitmap.GetPixel(x, y - 1);
-                        Color c3 = bitmap.GetPixel(x + 1, y - 1);
-                        Color c4 = bitmap.GetPixel(x - 1, y);
-                        Color c5 = bitmap.GetPixel(x, y);
-                        Color c6 = bitmap.GetPixel(x + 1, y);
-                        Color c7 = bitmap.GetPixel(x - 1, y + 1);
-                        Color c8 = bitmap.GetPixel(x, y + 1);
-                        Color c9 = bitmap.GetPixel(x + 1, y + 1);
-
-                        c1V = c1.R * v1;
-                        c2V = c2.R * v2;
-                        c3V = c3.R * v3;
-                        c4V = c4.R * v4;
-                        c5V = c5.R * v5;
-                        c6V = c6.R * v6;
-                        c7V = c7.R * v7;
-                        c8V = c8.R * v8;
-                        c9V = c9.R * v9;
-
-                        if (v1 > 0 && v2 > 0 && v3 > 0 && v4 > 0 && v5 > 0 && v6 > 0 && v7 > 0 && v8 > 0 && v9 > 0)
-                        {
-                            newValuePixel = Convert.ToInt32((double)(c1V + c2V + c3V + c4V + c5V + c6V + c7V + c8V + c9V) / sumaMasek);
-                        }
-                        else
-                        {
-                            newValuePixel = c1V + c2V + c3V + c4V + c5V + c6V + c7V + c8V + c9V;
-                        }
-
-
-                        if (newValuePixel > 255) { newValuePixel = 255; }
-                        if (newValuePixel < 0) { newValuePixel = 0; }
-
-                        Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
-
-                        bitmap.SetPixel(x, y, newColor);
-                    }
-                }
-            }
             pictureBox1.Refresh();
             drawHistogram();
             Refresh();
@@ -870,64 +837,21 @@ namespace APO_AndrzejMróz_17870
 
         public void Prewitt(int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9)
         {
-            /*    int newValuePixel = 0;
-                int p1V, p2V, p3V, p4V, p5V, p6V, p7V, p8V, p9V;
-                if (!(v1 == 0 && v2 == 0 && v3 == 0 && v4 == 0 && v5 == 0 && v6 == 0 && v7 == 0 && v8 == 0 && v9 == 0))
-                {
-
-                    for (int x = 1; x < bitmap.Width - 1; ++x)
-                    {
-                        for (int y = 1; y < bitmap.Height - 1; ++y)
-                        {
-                            Color p1 = bitmap.GetPixel(x - 1, y - 1);
-                            Color p2 = bitmap.GetPixel(x, y - 1);
-                            Color p3 = bitmap.GetPixel(x + 1, y - 1);
-                            Color p4 = bitmap.GetPixel(x - 1, y);
-                            Color p5 = bitmap.GetPixel(x, y);
-                            Color p6 = bitmap.GetPixel(x + 1, y);
-                            Color p7 = bitmap.GetPixel(x - 1, y + 1);
-                            Color p8 = bitmap.GetPixel(x, y + 1);
-                            Color p9 = bitmap.GetPixel(x + 1, y + 1);
-
-                            p1V = p1.R * v1;
-                            p2V = p2.R * v2;
-                            p3V = p3.R * v3;
-                            p4V = p4.R * v4;
-                            p5V = p5.R * v5;
-                            p6V = p6.R * v6;
-                            p7V = p7.R * v7;
-                            p8V = p8.R * v8;
-                            p9V = p9.R * v9;
-
-                            newValuePixel = p1V + p2V + p3V + p4V + p5V + p6V + p7V + p8V + p9V;
-
-                            if (newValuePixel > 255) { newValuePixel = 255; }
-                            if (newValuePixel < 0) { newValuePixel = 0; }
-
-                            Color newColor = Color.FromArgb(255, newValuePixel, newValuePixel, newValuePixel);
-                            bitmap.SetPixel(x, y, newColor);
-                        }
-                    }
-                    pictureBox1.Refresh();
-                    drawHistogram();
-                    Refresh();       
-                }
-            */
-            float[,] matrix = new float[,] { { v1, v2, v3 }, { v4, v5, v6 }, { v7, v8, v9 } };
-            ConvolutionKernelF kernel = new ConvolutionKernelF(matrix);
-
            
-            List<PictureBox> pictureList = new List<PictureBox>();
-            pictureList.Add(pictureBox1);
-
-            var img = ((Bitmap)pictureList[pictureList.Count].Image).ToImage<Bgr, byte>();
-            var imgDst = new Image<Bgr, byte>(pictureList[tabControl.SelectedIndex].Image.Width,
-                pictureList[tabControl.SelectedIndex].Image.Height, new Bgr(0, 0, 0));
+            float[,] matrix = new float[,] { { v1, v2, v3 }, { v4, v5, v6 }, { v7, v8, v9 } };
+            ConvolutionKernelF kernel = new ConvolutionKernelF(matrix);                                    
+            var img = ((Bitmap)pictureBox1.Image).ToImage<Bgr, byte>();
+            var imgDst = new Image<Bgr, byte>(pictureBox1.Image.Width,
+            pictureBox1.Image.Height, new Bgr(0, 0, 0));
             Emgu.CV.CvInvoke.Filter2D(img, imgDst, kernel, new Point(-1, 1), 0, borderType: Emgu.CV.CvEnum.BorderType.Replicate);
-            pictureList[tabControl.SelectedIndex].Image = imgDst.ToBitmap();
+            pictureBox1.Image = imgDst.ToBitmap();
             GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+            Refresh();
 
         }
+
         public void and(Bitmap bitmap2)
         {
             for (int i = 0; i < bitmap.Height; i++)
@@ -1018,6 +942,125 @@ namespace APO_AndrzejMróz_17870
             }
             pictureBox1.Refresh();
             drawHistogram();
+        }
+
+        public  void Erozja(Emgu.CV.CvEnum.BorderType type, Emgu.CV.CvEnum.ElementShape shape)
+        {
+            Bitmap bitmap = (Bitmap)pictureBox1.Image;
+            Mat kernel = CvInvoke.GetStructuringElement(shape, new Size(5, 5), new Point(-1, -1));
+            var img = bitmap.ToImage<Bgr, byte>();
+            var imgDst = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Erode(img, imgDst, kernel, new Point(-1, -1), 2, type, new MCvScalar(1.0));
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void Dylacja( Emgu.CV.CvEnum.BorderType type, Emgu.CV.CvEnum.ElementShape shape)
+        {
+            Bitmap bitmap = (Bitmap)pictureBox1.Image;
+            Mat kernel = CvInvoke.GetStructuringElement(shape, new Size(5, 5), new Point(-1, -1));
+            var img = bitmap.ToImage<Bgr, byte>();
+            var imgDst = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Dilate(img, imgDst, kernel, new Point(-1, -1), 2, type, new MCvScalar(1.0));
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void Otwarcie( Emgu.CV.CvEnum.BorderType type, Emgu.CV.CvEnum.ElementShape shape)
+        {
+            Bitmap bitmap = (Bitmap)pictureBox1.Image;
+            Mat kernel = CvInvoke.GetStructuringElement(shape, new Size(5, 5), new Point(-1, -1));
+            var img = bitmap.ToImage<Bgr, byte>();
+            var imgDst = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.MorphologyEx(img, imgDst, Emgu.CV.CvEnum.MorphOp.Open, kernel, new Point(-1, -1), 2, type, new MCvScalar(1.0));
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public  void Zamkniecie( Emgu.CV.CvEnum.BorderType type, Emgu.CV.CvEnum.ElementShape shape)
+        {
+            Bitmap bitmap = (Bitmap)pictureBox1.Image;
+            Mat kernel = CvInvoke.GetStructuringElement(shape, new Size(5, 5), new Point(-1, -1));
+            var img = bitmap.ToImage<Bgr, byte>();
+            var imgDst = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.MorphologyEx(img, imgDst, Emgu.CV.CvEnum.MorphOp.Close, kernel, new Point(-1, -1), 2, type, new MCvScalar(1.0));
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+
+        public  void Szkieletyzacja( Emgu.CV.CvEnum.BorderType type, Emgu.CV.CvEnum.ElementShape shape)
+        {
+            Bitmap bitmap = (Bitmap)pictureBox1.Image;
+            Mat kernel = CvInvoke.GetStructuringElement(shape, new Size(3, 3), new Point(-1, -1));
+
+            var original = bitmap.ToImage<Gray, byte>();
+            var skel = new Image<Gray, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Gray(0));
+            var imgCopy = bitmap.ToImage<Gray, byte>();
+
+            while (true)
+            {
+                var imgOpen = new Image<Gray, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Gray(0));
+                Emgu.CV.CvInvoke.MorphologyEx(imgCopy, imgOpen, Emgu.CV.CvEnum.MorphOp.Open, kernel, new Point(-1, -1), 1, type, new MCvScalar(1.0));
+                var imgTemp = new Image<Gray, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Gray(0));
+                Emgu.CV.CvInvoke.Subtract(imgCopy, imgOpen, imgTemp);
+                var imgEroded = new Image<Gray, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Gray(0));
+                Emgu.CV.CvInvoke.Erode(imgCopy, imgEroded, kernel, new Point(-1, -1), 1, type, new MCvScalar(1.0));
+                Emgu.CV.CvInvoke.BitwiseOr(skel, imgTemp, skel);
+                imgCopy = imgEroded;
+                if (Emgu.CV.CvInvoke.CountNonZero(imgCopy) == 0)
+                {
+                    break;
+                }
+            }
+
+            pictureBox1.Image = skel.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void FiltracjaJednoetapowa(Emgu.CV.CvEnum.BorderType type)
+        {
+            var mask = new float[,]
+            {
+                {1, -1, 0, -1, 1},
+                { -1, 1, 0, 1, -1},
+                { 0, 0, 0, 0, 0},
+                { -1, 1, 0, 1, -1},
+                { 1, -1, 0, -1, 1}
+            };
+            ConvolutionKernelF kernel = new ConvolutionKernelF(mask);
+            Bitmap bitmap = (Bitmap)pictureBox1.Image;
+
+            var img = bitmap.ToImage<Bgr, byte>();
+
+            var imgDst = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Filter2D(img, imgDst, kernel, new Point(-1, -1), 0, type);
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+        }
+        public void FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType type)
+        {
+            var maskWygladzanie = new float[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+            var maskWyostrzanie = new float[,] { { 1, -2, 1 }, { -2, 4, -2 }, { 1, -2, 1 } };
+
+            ConvolutionKernelF kernelWygladzanie = new ConvolutionKernelF(maskWygladzanie);
+            ConvolutionKernelF kernelWyostrzanie = new ConvolutionKernelF(maskWyostrzanie);
+            Bitmap bitmap = (Bitmap)pictureBox1.Image;
+
+            var img = bitmap.ToImage<Bgr, byte>();
+
+            var imgRes1 = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Filter2D(img, imgRes1, kernelWygladzanie, new Point(-1, -1), 0, type);
+
+            var imgRes2 = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Filter2D(imgRes1, imgRes2, kernelWyostrzanie, new Point(-1, -1), 0, type);
+            pictureBox1.Image = imgRes2.ToBitmap();
+            GC.Collect();
         }
 
         public void wododzial(int kr, int opcja)

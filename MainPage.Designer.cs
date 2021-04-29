@@ -55,13 +55,58 @@ namespace APO_AndrzejMróz_17870
             this.x5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x7ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prewittToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.operacjeLogiczneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aNDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodawanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.odejmowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operacjeMorfologiczneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rombToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.erozjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otwarcieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zamknięcieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.szkieletyzacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.isolatedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflecetedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectedToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectedToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectedToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectedToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectedToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicatedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filtracjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jednoetapowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dwuetapowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.isolatedToolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reflectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.replicateToolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,10 +120,11 @@ namespace APO_AndrzejMróz_17870
             this.operacjePunktoweToolStripMenuItem,
             this.segmentacjaWododziałowaToolStripMenuItem,
             this.operacjeSasiedztwaToolStripMenuItem,
-            this.operacjeLogiczneToolStripMenuItem});
+            this.operacjeLogiczneToolStripMenuItem,
+            this.operacjeMorfologiczneToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(956, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1052, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -270,10 +316,6 @@ namespace APO_AndrzejMróz_17870
             this.prewittToolStripMenuItem.Text = "Prewitt";
             this.prewittToolStripMenuItem.Click += new System.EventHandler(this.prewittToolStripMenuItem_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // operacjeLogiczneToolStripMenuItem
             // 
             this.operacjeLogiczneToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -289,44 +331,407 @@ namespace APO_AndrzejMróz_17870
             // aNDToolStripMenuItem
             // 
             this.aNDToolStripMenuItem.Name = "aNDToolStripMenuItem";
-            this.aNDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aNDToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aNDToolStripMenuItem.Text = "AND";
             this.aNDToolStripMenuItem.Click += new System.EventHandler(this.aNDToolStripMenuItem_Click);
             // 
             // oRToolStripMenuItem
             // 
             this.oRToolStripMenuItem.Name = "oRToolStripMenuItem";
-            this.oRToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.oRToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.oRToolStripMenuItem.Text = "OR";
             this.oRToolStripMenuItem.Click += new System.EventHandler(this.oRToolStripMenuItem_Click);
             // 
             // xORToolStripMenuItem
             // 
             this.xORToolStripMenuItem.Name = "xORToolStripMenuItem";
-            this.xORToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xORToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.xORToolStripMenuItem.Text = "XOR";
             this.xORToolStripMenuItem.Click += new System.EventHandler(this.xORToolStripMenuItem_Click);
             // 
             // dodawanieToolStripMenuItem
             // 
             this.dodawanieToolStripMenuItem.Name = "dodawanieToolStripMenuItem";
-            this.dodawanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dodawanieToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.dodawanieToolStripMenuItem.Text = "dodawanie";
             this.dodawanieToolStripMenuItem.Click += new System.EventHandler(this.dodawanieToolStripMenuItem_Click);
             // 
             // odejmowanieToolStripMenuItem
             // 
             this.odejmowanieToolStripMenuItem.Name = "odejmowanieToolStripMenuItem";
-            this.odejmowanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.odejmowanieToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.odejmowanieToolStripMenuItem.Text = "odejmowanie";
             this.odejmowanieToolStripMenuItem.Click += new System.EventHandler(this.odejmowanieToolStripMenuItem_Click);
+            // 
+            // operacjeMorfologiczneToolStripMenuItem
+            // 
+            this.operacjeMorfologiczneToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rombToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.szkieletyzacjaToolStripMenuItem,
+            this.filtracjaToolStripMenuItem});
+            this.operacjeMorfologiczneToolStripMenuItem.Name = "operacjeMorfologiczneToolStripMenuItem";
+            this.operacjeMorfologiczneToolStripMenuItem.Size = new System.Drawing.Size(146, 20);
+            this.operacjeMorfologiczneToolStripMenuItem.Text = "Operacje morfologiczne";
+            // 
+            // rombToolStripMenuItem
+            // 
+            this.rombToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.erozjaToolStripMenuItem,
+            this.dyToolStripMenuItem,
+            this.otwarcieToolStripMenuItem,
+            this.zamknięcieToolStripMenuItem});
+            this.rombToolStripMenuItem.Name = "rombToolStripMenuItem";
+            this.rombToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rombToolStripMenuItem.Text = "romb";
+            // 
+            // erozjaToolStripMenuItem
+            // 
+            this.erozjaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem,
+            this.reflectedToolStripMenuItem,
+            this.replicateToolStripMenuItem});
+            this.erozjaToolStripMenuItem.Name = "erozjaToolStripMenuItem";
+            this.erozjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.erozjaToolStripMenuItem.Text = "Erozja";
+            // 
+            // dyToolStripMenuItem
+            // 
+            this.dyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem1,
+            this.reflectedToolStripMenuItem1,
+            this.replicateToolStripMenuItem1});
+            this.dyToolStripMenuItem.Name = "dyToolStripMenuItem";
+            this.dyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dyToolStripMenuItem.Text = "Dylatacja";
+            // 
+            // otwarcieToolStripMenuItem
+            // 
+            this.otwarcieToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem2,
+            this.reflecetedToolStripMenuItem,
+            this.replicateToolStripMenuItem2});
+            this.otwarcieToolStripMenuItem.Name = "otwarcieToolStripMenuItem";
+            this.otwarcieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.otwarcieToolStripMenuItem.Text = "Otwarcie";
+            // 
+            // zamknięcieToolStripMenuItem
+            // 
+            this.zamknięcieToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem3,
+            this.reflectedToolStripMenuItem2,
+            this.replicateToolStripMenuItem3});
+            this.zamknięcieToolStripMenuItem.Name = "zamknięcieToolStripMenuItem";
+            this.zamknięcieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zamknięcieToolStripMenuItem.Text = "Zamknięcie";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6});
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Text = "kwadrat";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem4,
+            this.reflectedToolStripMenuItem3,
+            this.replicateToolStripMenuItem4});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Text = "Erozja";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem5,
+            this.reflectedToolStripMenuItem4,
+            this.replicateToolStripMenuItem5});
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Text = "Dylatacja";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem6,
+            this.reflectedToolStripMenuItem5,
+            this.replicateToolStripMenuItem6});
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem5.Text = "Otwarcie";
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem7,
+            this.reflectedToolStripMenuItem6,
+            this.replicatedToolStripMenuItem});
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem6.Text = "Zamknięcie";
+            // 
+            // szkieletyzacjaToolStripMenuItem
+            // 
+            this.szkieletyzacjaToolStripMenuItem.Name = "szkieletyzacjaToolStripMenuItem";
+            this.szkieletyzacjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.szkieletyzacjaToolStripMenuItem.Text = "szkieletyzacja";
+            this.szkieletyzacjaToolStripMenuItem.Click += new System.EventHandler(this.szkieletyzacjaToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // isolatedToolStripMenuItem
+            // 
+            this.isolatedToolStripMenuItem.Name = "isolatedToolStripMenuItem";
+            this.isolatedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem.Text = "Isolated";
+            this.isolatedToolStripMenuItem.Click += new System.EventHandler(this.isolatedToolStripMenuItem_Click);
+            // 
+            // reflectedToolStripMenuItem
+            // 
+            this.reflectedToolStripMenuItem.Name = "reflectedToolStripMenuItem";
+            this.reflectedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reflectedToolStripMenuItem.Text = "Reflected";
+            this.reflectedToolStripMenuItem.Click += new System.EventHandler(this.reflectedToolStripMenuItem_Click);
+            // 
+            // replicateToolStripMenuItem
+            // 
+            this.replicateToolStripMenuItem.Name = "replicateToolStripMenuItem";
+            this.replicateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem.Text = "Replicate";
+            this.replicateToolStripMenuItem.Click += new System.EventHandler(this.replicateToolStripMenuItem_Click);
+            // 
+            // isolatedToolStripMenuItem1
+            // 
+            this.isolatedToolStripMenuItem1.Name = "isolatedToolStripMenuItem1";
+            this.isolatedToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem1.Text = "Isolated";
+            this.isolatedToolStripMenuItem1.Click += new System.EventHandler(this.isolatedToolStripMenuItem1_Click);
+            // 
+            // reflectedToolStripMenuItem1
+            // 
+            this.reflectedToolStripMenuItem1.Name = "reflectedToolStripMenuItem1";
+            this.reflectedToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.reflectedToolStripMenuItem1.Text = "Reflected";
+            this.reflectedToolStripMenuItem1.Click += new System.EventHandler(this.reflectedToolStripMenuItem1_Click);
+            // 
+            // replicateToolStripMenuItem1
+            // 
+            this.replicateToolStripMenuItem1.Name = "replicateToolStripMenuItem1";
+            this.replicateToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem1.Text = "Replicate";
+            this.replicateToolStripMenuItem1.Click += new System.EventHandler(this.replicateToolStripMenuItem1_Click);
+            // 
+            // isolatedToolStripMenuItem2
+            // 
+            this.isolatedToolStripMenuItem2.Name = "isolatedToolStripMenuItem2";
+            this.isolatedToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem2.Text = "Isolated";
+            this.isolatedToolStripMenuItem2.Click += new System.EventHandler(this.isolatedToolStripMenuItem2_Click);
+            // 
+            // reflecetedToolStripMenuItem
+            // 
+            this.reflecetedToolStripMenuItem.Name = "reflecetedToolStripMenuItem";
+            this.reflecetedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reflecetedToolStripMenuItem.Text = "Refleceted";
+            this.reflecetedToolStripMenuItem.Click += new System.EventHandler(this.reflecetedToolStripMenuItem_Click);
+            // 
+            // replicateToolStripMenuItem2
+            // 
+            this.replicateToolStripMenuItem2.Name = "replicateToolStripMenuItem2";
+            this.replicateToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem2.Text = "Replicate";
+            this.replicateToolStripMenuItem2.Click += new System.EventHandler(this.replicateToolStripMenuItem2_Click);
+            // 
+            // isolatedToolStripMenuItem3
+            // 
+            this.isolatedToolStripMenuItem3.Name = "isolatedToolStripMenuItem3";
+            this.isolatedToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem3.Text = "Isolated";
+            this.isolatedToolStripMenuItem3.Click += new System.EventHandler(this.isolatedToolStripMenuItem3_Click);
+            // 
+            // reflectedToolStripMenuItem2
+            // 
+            this.reflectedToolStripMenuItem2.Name = "reflectedToolStripMenuItem2";
+            this.reflectedToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.reflectedToolStripMenuItem2.Text = "Reflected";
+            this.reflectedToolStripMenuItem2.Click += new System.EventHandler(this.reflectedToolStripMenuItem2_Click);
+            // 
+            // replicateToolStripMenuItem3
+            // 
+            this.replicateToolStripMenuItem3.Name = "replicateToolStripMenuItem3";
+            this.replicateToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem3.Text = "Replicate";
+            this.replicateToolStripMenuItem3.Click += new System.EventHandler(this.replicateToolStripMenuItem3_Click);
+            // 
+            // isolatedToolStripMenuItem4
+            // 
+            this.isolatedToolStripMenuItem4.Name = "isolatedToolStripMenuItem4";
+            this.isolatedToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem4.Text = "Isolated";
+            this.isolatedToolStripMenuItem4.Click += new System.EventHandler(this.isolatedToolStripMenuItem4_Click);
+            // 
+            // reflectedToolStripMenuItem3
+            // 
+            this.reflectedToolStripMenuItem3.Name = "reflectedToolStripMenuItem3";
+            this.reflectedToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.reflectedToolStripMenuItem3.Text = "Reflected";
+            this.reflectedToolStripMenuItem3.Click += new System.EventHandler(this.reflectedToolStripMenuItem3_Click);
+            // 
+            // replicateToolStripMenuItem4
+            // 
+            this.replicateToolStripMenuItem4.Name = "replicateToolStripMenuItem4";
+            this.replicateToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem4.Text = "Replicate";
+            this.replicateToolStripMenuItem4.Click += new System.EventHandler(this.replicateToolStripMenuItem4_Click);
+            // 
+            // isolatedToolStripMenuItem5
+            // 
+            this.isolatedToolStripMenuItem5.Name = "isolatedToolStripMenuItem5";
+            this.isolatedToolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem5.Text = "Isolated";
+            this.isolatedToolStripMenuItem5.Click += new System.EventHandler(this.isolatedToolStripMenuItem5_Click);
+            // 
+            // reflectedToolStripMenuItem4
+            // 
+            this.reflectedToolStripMenuItem4.Name = "reflectedToolStripMenuItem4";
+            this.reflectedToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.reflectedToolStripMenuItem4.Text = "Reflected";
+            this.reflectedToolStripMenuItem4.Click += new System.EventHandler(this.reflectedToolStripMenuItem4_Click);
+            // 
+            // replicateToolStripMenuItem5
+            // 
+            this.replicateToolStripMenuItem5.Name = "replicateToolStripMenuItem5";
+            this.replicateToolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem5.Text = "Replicate";
+            this.replicateToolStripMenuItem5.Click += new System.EventHandler(this.replicateToolStripMenuItem5_Click);
+            // 
+            // isolatedToolStripMenuItem6
+            // 
+            this.isolatedToolStripMenuItem6.Name = "isolatedToolStripMenuItem6";
+            this.isolatedToolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem6.Text = "Isolated";
+            this.isolatedToolStripMenuItem6.Click += new System.EventHandler(this.isolatedToolStripMenuItem6_Click);
+            // 
+            // reflectedToolStripMenuItem5
+            // 
+            this.reflectedToolStripMenuItem5.Name = "reflectedToolStripMenuItem5";
+            this.reflectedToolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.reflectedToolStripMenuItem5.Text = "Reflected";
+            this.reflectedToolStripMenuItem5.Click += new System.EventHandler(this.reflectedToolStripMenuItem5_Click);
+            // 
+            // replicateToolStripMenuItem6
+            // 
+            this.replicateToolStripMenuItem6.Name = "replicateToolStripMenuItem6";
+            this.replicateToolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem6.Text = "Replicate";
+            this.replicateToolStripMenuItem6.Click += new System.EventHandler(this.replicateToolStripMenuItem6_Click);
+            // 
+            // isolatedToolStripMenuItem7
+            // 
+            this.isolatedToolStripMenuItem7.Name = "isolatedToolStripMenuItem7";
+            this.isolatedToolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem7.Text = "Isolated";
+            this.isolatedToolStripMenuItem7.Click += new System.EventHandler(this.isolatedToolStripMenuItem7_Click);
+            // 
+            // reflectedToolStripMenuItem6
+            // 
+            this.reflectedToolStripMenuItem6.Name = "reflectedToolStripMenuItem6";
+            this.reflectedToolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.reflectedToolStripMenuItem6.Text = "Reflected";
+            this.reflectedToolStripMenuItem6.Click += new System.EventHandler(this.reflectedToolStripMenuItem6_Click);
+            // 
+            // replicatedToolStripMenuItem
+            // 
+            this.replicatedToolStripMenuItem.Name = "replicatedToolStripMenuItem";
+            this.replicatedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.replicatedToolStripMenuItem.Text = "Replicated";
+            this.replicatedToolStripMenuItem.Click += new System.EventHandler(this.replicatedToolStripMenuItem_Click);
+            // 
+            // filtracjaToolStripMenuItem
+            // 
+            this.filtracjaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.jednoetapowaToolStripMenuItem,
+            this.dwuetapowaToolStripMenuItem});
+            this.filtracjaToolStripMenuItem.Name = "filtracjaToolStripMenuItem";
+            this.filtracjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.filtracjaToolStripMenuItem.Text = "Filtracja";
+            // 
+            // jednoetapowaToolStripMenuItem
+            // 
+            this.jednoetapowaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem8,
+            this.reflectToolStripMenuItem,
+            this.replicateToolStripMenuItem7});
+            this.jednoetapowaToolStripMenuItem.Name = "jednoetapowaToolStripMenuItem";
+            this.jednoetapowaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jednoetapowaToolStripMenuItem.Text = "Jednoetapowa";
+            // 
+            // dwuetapowaToolStripMenuItem
+            // 
+            this.dwuetapowaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isolatedToolStripMenuItem9,
+            this.reflectToolStripMenuItem1,
+            this.replicateToolStripMenuItem8});
+            this.dwuetapowaToolStripMenuItem.Name = "dwuetapowaToolStripMenuItem";
+            this.dwuetapowaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dwuetapowaToolStripMenuItem.Text = "Dwuetapowa";
+            // 
+            // isolatedToolStripMenuItem8
+            // 
+            this.isolatedToolStripMenuItem8.Name = "isolatedToolStripMenuItem8";
+            this.isolatedToolStripMenuItem8.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem8.Text = "Isolated";
+            this.isolatedToolStripMenuItem8.Click += new System.EventHandler(this.isolatedToolStripMenuItem8_Click);
+            // 
+            // reflectToolStripMenuItem
+            // 
+            this.reflectToolStripMenuItem.Name = "reflectToolStripMenuItem";
+            this.reflectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reflectToolStripMenuItem.Text = "Reflect";
+            this.reflectToolStripMenuItem.Click += new System.EventHandler(this.reflectToolStripMenuItem_Click);
+            // 
+            // replicateToolStripMenuItem7
+            // 
+            this.replicateToolStripMenuItem7.Name = "replicateToolStripMenuItem7";
+            this.replicateToolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem7.Text = "Replicate";
+            this.replicateToolStripMenuItem7.Click += new System.EventHandler(this.replicateToolStripMenuItem7_Click);
+            // 
+            // isolatedToolStripMenuItem9
+            // 
+            this.isolatedToolStripMenuItem9.Name = "isolatedToolStripMenuItem9";
+            this.isolatedToolStripMenuItem9.Size = new System.Drawing.Size(180, 22);
+            this.isolatedToolStripMenuItem9.Text = "Isolated";
+            this.isolatedToolStripMenuItem9.Click += new System.EventHandler(this.isolatedToolStripMenuItem9_Click);
+            // 
+            // reflectToolStripMenuItem1
+            // 
+            this.reflectToolStripMenuItem1.Name = "reflectToolStripMenuItem1";
+            this.reflectToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.reflectToolStripMenuItem1.Text = "Reflect";
+            this.reflectToolStripMenuItem1.Click += new System.EventHandler(this.reflectToolStripMenuItem1_Click);
+            // 
+            // replicateToolStripMenuItem8
+            // 
+            this.replicateToolStripMenuItem8.Name = "replicateToolStripMenuItem8";
+            this.replicateToolStripMenuItem8.Size = new System.Drawing.Size(180, 22);
+            this.replicateToolStripMenuItem8.Text = "Replicate";
+            this.replicateToolStripMenuItem8.Click += new System.EventHandler(this.replicateToolStripMenuItem8_Click);
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(956, 450);
+            this.ClientSize = new System.Drawing.Size(1052, 450);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.Name = "MainPage";
@@ -373,6 +778,51 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.ToolStripMenuItem xORToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodawanieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem odejmowanieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operacjeMorfologiczneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rombToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem erozjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem otwarcieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zamknięcieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem szkieletyzacjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reflectedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem reflectedToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem reflecetedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem reflectedToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem reflectedToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem reflectedToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem reflectedToolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem reflectedToolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem replicatedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filtracjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jednoetapowaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem8;
+        private System.Windows.Forms.ToolStripMenuItem reflectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem dwuetapowaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem isolatedToolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem reflectToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem replicateToolStripMenuItem8;
     }
 }
 

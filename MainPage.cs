@@ -298,5 +298,254 @@ namespace APO_AndrzejMróz_17870
 
             activeChild.sub(((ImageForm)this.MdiChildren[dialog.combovalue]).bitmap);
         }
+
+        private void isolatedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Erozja(Emgu.CV.CvEnum.BorderType.Isolated, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void reflectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Erozja(Emgu.CV.CvEnum.BorderType.Reflect, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void replicateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Erozja(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void isolatedToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Erozja(Emgu.CV.CvEnum.BorderType.Isolated, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void reflectedToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Erozja(Emgu.CV.CvEnum.BorderType.Reflect, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void replicateToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Erozja(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void isolatedToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Dylacja(Emgu.CV.CvEnum.BorderType.Isolated, Emgu.CV.CvEnum.ElementShape.Cross);
+
+        }
+
+        private void reflectedToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Dylacja(Emgu.CV.CvEnum.BorderType.Reflect, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void isolatedToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Dylacja(Emgu.CV.CvEnum.BorderType.Isolated, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void replicateToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Dylacja(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void reflectedToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Dylacja(Emgu.CV.CvEnum.BorderType.Reflect, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void replicateToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Dylacja(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void isolatedToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Otwarcie(Emgu.CV.CvEnum.BorderType.Isolated, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void reflecetedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Otwarcie(Emgu.CV.CvEnum.BorderType.Reflect, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void replicateToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Otwarcie(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void isolatedToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Zamkniecie(Emgu.CV.CvEnum.BorderType.Isolated, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void reflectedToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Zamkniecie(Emgu.CV.CvEnum.BorderType.Reflect, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void replicateToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Zamkniecie(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void isolatedToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Otwarcie(Emgu.CV.CvEnum.BorderType.Isolated, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void reflectedToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Otwarcie(Emgu.CV.CvEnum.BorderType.Reflect, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void replicateToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Otwarcie(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void isolatedToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Zamkniecie(Emgu.CV.CvEnum.BorderType.Isolated, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void reflectedToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Zamkniecie(Emgu.CV.CvEnum.BorderType.Reflect, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void replicatedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Zamkniecie(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Rectangle);
+        }
+
+        private void szkieletyzacjaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Szkieletyzacja(Emgu.CV.CvEnum.BorderType.Replicate, Emgu.CV.CvEnum.ElementShape.Cross);
+        }
+
+        private void isolatedToolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.FiltracjaJednoetapowa(Emgu.CV.CvEnum.BorderType.Isolated);
+        }
+
+        private void reflectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.FiltracjaJednoetapowa(Emgu.CV.CvEnum.BorderType.Reflect);
+        }
+
+        private void replicateToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.FiltracjaJednoetapowa(Emgu.CV.CvEnum.BorderType.Replicate);
+        }
+
+        private void isolatedToolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Isolated);
+        }
+
+        private void reflectToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Reflect);
+        }
+
+        private void replicateToolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Replicate);
+        }
     }
 }

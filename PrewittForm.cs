@@ -53,65 +53,65 @@ namespace APO_AndrzejMróz_17870
             int mask1 = 0, mask2 = 0, mask3 = 0, mask4 = 0, mask5 = 0, mask6 = 0, mask7 = 0, mask8 = 0, mask9 = 0;
             if (checkedListPrewitt.SelectedIndex == 0)
             {
-                mask1 = 3; mask2 = 3; mask3 = 3;
-                mask4 = 3; mask5 = 0; mask6 = 3;
-                mask7 = -5; mask8 = -5; mask9 = -5;
+                mask1 = 1; mask2 = 1; mask3 = 1;
+                mask4 = 0; mask5 = 1; mask6 = 0;
+                mask7 = -1; mask8 = -1; mask9 = -1;
             }
 
             // NE
             if (checkedListPrewitt.SelectedIndex == 1)
             {
-                mask1 = 3; mask2 = 3; mask3 = 3;
-                mask4 = -5; mask5 = 0; mask6 = 3;
-                mask7 = -5; mask8 = -5; mask9 = 3;
+                mask1 = 0; mask2 = 1; mask3 = 1;
+                mask4 = -1; mask5 = 1; mask6 = 1;
+                mask7 = -1; mask8 = -1; mask9 = 0;
             }
 
             // E
             if (checkedListPrewitt.SelectedIndex == 2)
             {
-                mask1 = -1; mask2 = 1; mask3 = 1;
-                mask4 = -1; mask5 = -2; mask6 = 1;
-                mask7 = -1; mask8 = 1; mask9 = 1;
+                mask1 = -1; mask2 = 0; mask3 = 1;
+                mask4 = -1; mask5 = -1; mask6 = 1;
+                mask7 = -1; mask8 = 0; mask9 = 1;
             }
 
             // SE
             if (checkedListPrewitt.SelectedIndex == 3)
             {
-                mask1 = -1; mask2 = -1; mask3 = 1;
-                mask4 = -1; mask5 = -2; mask6 = 1;
-                mask7 = 1; mask8 = 1; mask9 = 1;
+                mask1 = -1; mask2 = -1; mask3 = 0;
+                mask4 = -1; mask5 = 1; mask6 = 1;
+                mask7 = 0; mask8 = 1; mask9 = 1;
             }
 
             // S
             if (checkedListPrewitt.SelectedIndex == 4)
             {
                 mask1 = -1; mask2 = -1; mask3 = -1;
-                mask4 = 1; mask5 = -2; mask6 = 1;
+                mask4 = 0; mask5 = 1; mask6 = 0;
                 mask7 = 1; mask8 = 1; mask9 = 1;
             }
 
             // SW
             if (checkedListPrewitt.SelectedIndex == 5)
             {
-                mask1 = 1; mask2 = -1; mask3 = -1;
-                mask4 = 1; mask5 = -2; mask6 = -1;
-                mask7 = 1; mask8 = 1; mask9 = 1;
+                mask1 = 0; mask2 = -1; mask3 = -1;
+                mask4 = 1; mask5 = 1; mask6 = -1;
+                mask7 = 1; mask8 = 1; mask9 = 0;
             }
 
             // W
             if (checkedListPrewitt.SelectedIndex == 6)
             {
-                mask1 = 1; mask2 = 1; mask3 = -1;
-                mask4 = 1; mask5 = -2; mask6 = -1;
-                mask7 = 1; mask8 = 1; mask9 = -1;
+                mask1 = 1; mask2 = 0; mask3 = -1;
+                mask4 = 1; mask5 = 1; mask6 = -1;
+                mask7 = 1; mask8 = 1; mask9 = 0;
             }
 
             // NW
             if (checkedListPrewitt.SelectedIndex == 7)
             {
-                mask1 = 1; mask2 = 1; mask3 = 1;
-                mask4 = 1; mask5 = -2; mask6 = -1;
-                mask7 = 1; mask8 = -1; mask9 = -1;
+                mask1 = 1; mask2 = 1; mask3 = 0;
+                mask4 = 1; mask5 = 1; mask6 = -1;
+                mask7 = 0; mask8 = -1; mask9 = -1;
             }
             value1 = mask1;
             value2 = mask2;
