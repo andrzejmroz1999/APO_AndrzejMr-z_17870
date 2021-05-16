@@ -1042,11 +1042,14 @@ namespace APO_AndrzejMróz_17870
             Emgu.CV.CvInvoke.Filter2D(img, imgDst, kernel, new Point(-1, -1), 0, type);
             pictureBox1.Image = imgDst.ToBitmap();
             GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
         }
-        public void FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType type)
+        public void FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType type, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9, int v10, int v11, int v12, int v13, int v14, int v15, int v16, int v17, int v18)
         {
-            var maskWygladzanie = new float[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
-            var maskWyostrzanie = new float[,] { { 1, -2, 1 }, { -2, 4, -2 }, { 1, -2, 1 } };
+            // dodawanie masek 
+            var maskWygladzanie = new float[,] { { v1, v2, v3 }, { v4, v5, v6 }, { v7, v8, v9 } };
+            var maskWyostrzanie = new float[,] { { v10, v11, v12 }, { v13, v14, v15 }, { v16, v17, v18 } };
 
             ConvolutionKernelF kernelWygladzanie = new ConvolutionKernelF(maskWygladzanie);
             ConvolutionKernelF kernelWyostrzanie = new ConvolutionKernelF(maskWyostrzanie);
@@ -1055,12 +1058,68 @@ namespace APO_AndrzejMróz_17870
             var img = bitmap.ToImage<Bgr, byte>();
 
             var imgRes1 = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
-            Emgu.CV.CvInvoke.Filter2D(img, imgRes1, kernelWygladzanie, new Point(-1, -1), 0, type);
-
+            Emgu.CV.CvInvoke.Filter2D(img, imgRes1, kernelWygladzanie, new Point(-1, -1), 0, type);           
             var imgRes2 = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
             Emgu.CV.CvInvoke.Filter2D(imgRes1, imgRes2, kernelWyostrzanie, new Point(-1, -1), 0, type);
             pictureBox1.Image = imgRes2.ToBitmap();
             GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void ProgowanieAdaptacyjne()
+        {
+           
+            var img = bitmap.ToImage<Gray, byte>();
+            var imgDst = new Image<Gray, byte>(bitmap.Width, bitmap.Height, new Gray(0));
+
+            Emgu.CV.CvInvoke.AdaptiveThreshold(img, imgDst, 255, adaptiveType: Emgu.CV.CvEnum.AdaptiveThresholdType.MeanC,
+                thresholdType: Emgu.CV.CvEnum.ThresholdType.Binary, 11, 5);
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public  void ProgowanieOtsu()
+        {
+           
+            var img = bitmap.ToImage<Gray, byte>();
+            var imgDst = new Image<Gray, byte>(bitmap.Width, bitmap.Height, new Gray(0));
+
+            Emgu.CV.CvInvoke.Threshold(img, imgDst, 0, 255, thresholdType: Emgu.CV.CvEnum.ThresholdType.Otsu);
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void Watershed()
+        {
+            var img = new Bitmap(pictureBox1.Image)
+                   .ToImage<Bgr, byte>();
+            var mask = img.Convert<Gray, byte>()
+                .ThresholdBinaryInv(new Gray(150), new Gray(255));
+            Mat distanceTransofrm = new Mat();
+            CvInvoke.DistanceTransform(mask, distanceTransofrm, null, Emgu.CV.CvEnum.DistType.L2, 3);
+            CvInvoke.Normalize(distanceTransofrm, distanceTransofrm, 0, 255, Emgu.CV.CvEnum.NormType.MinMax);
+            var markers = distanceTransofrm.ToImage<Gray, byte>()
+                .ThresholdBinary(new Gray(50), new Gray(255));
+            CvInvoke.ConnectedComponents(markers, markers);
+            var finalMarkers = markers.Convert<Gray, Int32>();
+
+            CvInvoke.Watershed(img, finalMarkers);
+
+            Image<Gray, byte> boundaries = finalMarkers.Convert<byte>(delegate (Int32 x)
+            {
+                return (byte)(x == -1 ? 255 : 0);
+            });
+
+            boundaries._Dilate(1);
+            img.SetValue(new Bgr(0, 255, 0), boundaries);
+           // AddImage(img, "Watershed Segmentation");
+            pictureBox1.Image = img.ToBitmap();
+
+
+            pictureBox1.Refresh();
+            drawHistogram();
         }
 
         public void wododzial(int kr, int opcja)

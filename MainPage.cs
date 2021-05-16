@@ -529,7 +529,12 @@ namespace APO_AndrzejMróz_17870
             ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
             if (activeChild == null)
                 return;
-            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Isolated);
+
+            WygladzanieForm wygladzanie = new WygladzanieForm("a");
+
+            if (wygladzanie.ShowDialog() == DialogResult.Cancel)
+                return;
+            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Isolated, Convert.ToInt32(wygladzanie.value1), Convert.ToInt32(wygladzanie.value2), Convert.ToInt32(wygladzanie.value3), Convert.ToInt32(wygladzanie.value4), Convert.ToInt32(wygladzanie.value5), Convert.ToInt32(wygladzanie.value6), Convert.ToInt32(wygladzanie.value7), Convert.ToInt32(wygladzanie.value8), Convert.ToInt32(wygladzanie.value9), Convert.ToInt32(wygladzanie.value10), Convert.ToInt32(wygladzanie.value11), Convert.ToInt32(wygladzanie.value12), Convert.ToInt32(wygladzanie.value13), Convert.ToInt32(wygladzanie.value14), Convert.ToInt32(wygladzanie.value15), Convert.ToInt32(wygladzanie.value16), Convert.ToInt32(wygladzanie.value17), Convert.ToInt32(wygladzanie.value18));
         }
 
         private void reflectToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -537,7 +542,13 @@ namespace APO_AndrzejMróz_17870
             ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
             if (activeChild == null)
                 return;
-            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Reflect);
+
+            WygladzanieForm wygladzanie = new WygladzanieForm("a");
+
+            if (wygladzanie.ShowDialog() == DialogResult.Cancel)
+                return;
+            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Reflect,Convert.ToInt32(wygladzanie.value1), Convert.ToInt32(wygladzanie.value2), Convert.ToInt32(wygladzanie.value3), Convert.ToInt32(wygladzanie.value4), Convert.ToInt32(wygladzanie.value5), Convert.ToInt32(wygladzanie.value6), Convert.ToInt32(wygladzanie.value7), Convert.ToInt32(wygladzanie.value8), Convert.ToInt32(wygladzanie.value9), Convert.ToInt32(wygladzanie.value10), Convert.ToInt32(wygladzanie.value11), Convert.ToInt32(wygladzanie.value12), Convert.ToInt32(wygladzanie.value13), Convert.ToInt32(wygladzanie.value14), Convert.ToInt32(wygladzanie.value15), Convert.ToInt32(wygladzanie.value16), Convert.ToInt32(wygladzanie.value17), Convert.ToInt32(wygladzanie.value18));
+            
         }
 
         private void replicateToolStripMenuItem8_Click(object sender, EventArgs e)
@@ -545,7 +556,36 @@ namespace APO_AndrzejMróz_17870
             ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
             if (activeChild == null)
                 return;
-            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Replicate);
+            
+            WygladzanieForm wygladzanie = new WygladzanieForm("a");
+
+            if (wygladzanie.ShowDialog() == DialogResult.Cancel)
+                return;
+            activeChild.FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType.Replicate, Convert.ToInt32(wygladzanie.value1), Convert.ToInt32(wygladzanie.value2), Convert.ToInt32(wygladzanie.value3), Convert.ToInt32(wygladzanie.value4), Convert.ToInt32(wygladzanie.value5), Convert.ToInt32(wygladzanie.value6), Convert.ToInt32(wygladzanie.value7), Convert.ToInt32(wygladzanie.value8), Convert.ToInt32(wygladzanie.value9), Convert.ToInt32(wygladzanie.value10), Convert.ToInt32(wygladzanie.value11), Convert.ToInt32(wygladzanie.value12), Convert.ToInt32(wygladzanie.value13), Convert.ToInt32(wygladzanie.value14), Convert.ToInt32(wygladzanie.value15), Convert.ToInt32(wygladzanie.value16), Convert.ToInt32(wygladzanie.value17), Convert.ToInt32(wygladzanie.value18));
+        }
+
+        private void progowanieAdaptacyjneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.ProgowanieAdaptacyjne();
+        }
+
+        private void progowanieOtsuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.ProgowanieOtsu();
+        }
+
+        private void metodaWododziałowaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.Watershed();
         }
     }
 }

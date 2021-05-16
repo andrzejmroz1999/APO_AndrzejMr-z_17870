@@ -22,7 +22,22 @@ namespace APO_AndrzejMróz_17870
         public decimal value7;
         public decimal value8;
         public decimal value9;
+        public decimal value10;
+        public decimal value11;
+        public decimal value12;
+        public decimal value13;
+        public decimal value14;
+        public decimal value15;
+        public decimal value16;
+        public decimal value17;
+        public decimal value18;
 
+        public WygladzanieForm(string title)
+        {
+            InitializeComponent();
+            standardMaska.Visible = false;
+            label1.Text = "wpisz 1 maske";
+        }
         public WygladzanieForm()
         {
             InitializeComponent();
@@ -42,90 +57,125 @@ namespace APO_AndrzejMróz_17870
 
         private void buttonSelectMask_Click(object sender, EventArgs e)
         {
-            if (standardMaska.SelectedIndex == 0)
+            if (label1.Text == "wpisz 1 maske")
             {
-                mask1.Value = 1; mask2.Value = 1; mask3.Value = 1;
-                mask4.Value = 1; mask5.Value = 1; mask6.Value = 1;
-                mask7.Value = 1; mask8.Value = 1; mask9.Value = 1;
-            }
+                value1 = mask1.Value;
+                value2 = mask2.Value;
+                value3 = mask3.Value;
+                value4 = mask4.Value;
+                value5 = mask5.Value;
+                value6 = mask6.Value;
+                value7 = mask7.Value;
+                value8 = mask8.Value;
+                value9 = mask9.Value;
+                label1.Text = "wpisz 2 maske";
 
-            if (standardMaska.SelectedIndex == 1)
-            {
-                mask1.Value = 1; mask2.Value = 1; mask3.Value = 1;
-                mask4.Value = 1; mask5.Value = 2; mask6.Value = 1;
-                mask7.Value = 1; mask8.Value = 1; mask9.Value = 1;
             }
-
-            if (standardMaska.SelectedIndex == 2)
+            else
             {
-                mask1.Value = 1; mask2.Value = 2; mask3.Value = 1;
-                mask4.Value = 2; mask5.Value = 4; mask6.Value = 2;
-                mask7.Value = 1; mask8.Value = 2; mask9.Value = 1;
-            }
 
-            // WYOSTRZANIE
-            if (standardMaska.SelectedIndex == 3)
-            {
-                mask1.Value = 0; mask2.Value = -1; mask3.Value = 0;
-                mask4.Value = -1; mask5.Value = 4; mask6.Value = -1;
-                mask7.Value = 0; mask8.Value = -1; mask9.Value = 0;
-            }
 
-            if (standardMaska.SelectedIndex == 4)
-            {
-                mask1.Value = -1; mask2.Value = -1; mask3.Value = -1;
-                mask4.Value = -1; mask5.Value = 8; mask6.Value = -1;
-                mask7.Value = -1; mask8.Value = -1; mask9.Value = -1;
-            }
 
-            if (standardMaska.SelectedIndex == 5)
-            {
-                mask1.Value = -1; mask2.Value = -2; mask3.Value = -1;
-                mask4.Value = -2; mask5.Value = 4; mask6.Value = -2;
-                mask7.Value = -1; mask8.Value = -2; mask9.Value = -1;
-            }
+                if (standardMaska.SelectedIndex == 0)
+                {
+                    mask1.Value = 1; mask2.Value = 1; mask3.Value = 1;
+                    mask4.Value = 1; mask5.Value = 1; mask6.Value = 1;
+                    mask7.Value = 1; mask8.Value = 1; mask9.Value = 1;
+                }
 
-            if (standardMaska.SelectedIndex == 6)
-            {
-                mask1.Value = -1; mask2.Value = -1; mask3.Value = -1;
-                mask4.Value = -1; mask5.Value = 9; mask6.Value = -1;
-                mask7.Value = -1; mask8.Value = -1; mask9.Value = -1;
-            }
+                if (standardMaska.SelectedIndex == 1)
+                {
+                    mask1.Value = 1; mask2.Value = 1; mask3.Value = 1;
+                    mask4.Value = 1; mask5.Value = 2; mask6.Value = 1;
+                    mask7.Value = 1; mask8.Value = 1; mask9.Value = 1;
+                }
 
-            // DETEKCJA KRAWEDZI
-            if (standardMaska.SelectedIndex == 7)
-            {
-                mask1.Value = 1; mask2.Value = -2; mask3.Value = 1;
-                mask4.Value = -2; mask5.Value = 5; mask6.Value = -2;
-                mask7.Value = 1; mask8.Value = -2; mask9.Value = 1;
-            }
+                if (standardMaska.SelectedIndex == 2)
+                {
+                    mask1.Value = 1; mask2.Value = 2; mask3.Value = 1;
+                    mask4.Value = 2; mask5.Value = 4; mask6.Value = 2;
+                    mask7.Value = 1; mask8.Value = 2; mask9.Value = 1;
+                }
 
-            if (standardMaska.SelectedIndex == 8)
-            {
-                mask1.Value = -1; mask2.Value = -1; mask3.Value = -1;
-                mask4.Value = -1; mask5.Value = 9; mask6.Value = -1;
-                mask7.Value = -1; mask8.Value = -1; mask9.Value = -1;
-            }
+                // WYOSTRZANIE
+                if (standardMaska.SelectedIndex == 3)
+                {
+                    mask1.Value = 0; mask2.Value = -1; mask3.Value = 0;
+                    mask4.Value = -1; mask5.Value = 4; mask6.Value = -1;
+                    mask7.Value = 0; mask8.Value = -1; mask9.Value = 0;
+                }
 
-            if (standardMaska.SelectedIndex == 9)
-            {
-                mask1.Value = 0; mask2.Value = -1; mask3.Value = 0;
-                mask4.Value = -1; mask5.Value = 5; mask6.Value = -1;
-                mask7.Value = 0; mask8.Value = -1; mask9.Value = 0;
+                if (standardMaska.SelectedIndex == 4)
+                {
+                    mask1.Value = -1; mask2.Value = -1; mask3.Value = -1;
+                    mask4.Value = -1; mask5.Value = 8; mask6.Value = -1;
+                    mask7.Value = -1; mask8.Value = -1; mask9.Value = -1;
+                }
+
+                if (standardMaska.SelectedIndex == 5)
+                {
+                    mask1.Value = -1; mask2.Value = -2; mask3.Value = -1;
+                    mask4.Value = -2; mask5.Value = 4; mask6.Value = -2;
+                    mask7.Value = -1; mask8.Value = -2; mask9.Value = -1;
+                }
+
+                if (standardMaska.SelectedIndex == 6)
+                {
+                    mask1.Value = -1; mask2.Value = -1; mask3.Value = -1;
+                    mask4.Value = -1; mask5.Value = 9; mask6.Value = -1;
+                    mask7.Value = -1; mask8.Value = -1; mask9.Value = -1;
+                }
+
+                // DETEKCJA KRAWEDZI
+                if (standardMaska.SelectedIndex == 7)
+                {
+                    mask1.Value = 1; mask2.Value = -2; mask3.Value = 1;
+                    mask4.Value = -2; mask5.Value = 5; mask6.Value = -2;
+                    mask7.Value = 1; mask8.Value = -2; mask9.Value = 1;
+                }
+
+                if (standardMaska.SelectedIndex == 8)
+                {
+                    mask1.Value = -1; mask2.Value = -1; mask3.Value = -1;
+                    mask4.Value = -1; mask5.Value = 9; mask6.Value = -1;
+                    mask7.Value = -1; mask8.Value = -1; mask9.Value = -1;
+                }
+
+                if (standardMaska.SelectedIndex == 9)
+                {
+                    mask1.Value = 0; mask2.Value = -1; mask3.Value = 0;
+                    mask4.Value = -1; mask5.Value = 5; mask6.Value = -1;
+                    mask7.Value = 0; mask8.Value = -1; mask9.Value = 0;
+                }
             }
         }
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
-            value1 = mask1.Value;
-            value2 = mask2.Value;
-            value3 = mask3.Value;
-            value4 = mask4.Value;
-            value5 = mask5.Value;
-            value6 = mask6.Value;
-            value7 = mask7.Value;
-            value8 = mask8.Value;
-            value9 = mask9.Value;
+            if (label1.Text == "wpisz 2 maske")
+            {
+                value10 = mask1.Value;
+                value11 = mask2.Value;
+                value12 = mask3.Value;
+                value13 = mask4.Value;
+                value14 = mask5.Value;
+                value15 = mask6.Value;
+                value16 = mask7.Value;
+                value17 = mask8.Value;
+                value18 = mask9.Value;
+            }
+            else
+            {
+                value1 = mask1.Value;
+                value2 = mask2.Value;
+                value3 = mask3.Value;
+                value4 = mask4.Value;
+                value5 = mask5.Value;
+                value6 = mask6.Value;
+                value7 = mask7.Value;
+                value8 = mask8.Value;
+                value9 = mask9.Value;
+            }
             buttonExecute.DialogResult = DialogResult.OK;
 
         }
