@@ -106,11 +106,12 @@ namespace APO_AndrzejMróz_17870
             this.isolatedToolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.reflectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.replicateToolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.segmentacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progowanieAdaptacyjneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progowanieOtsuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodaWododziałowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.wyrównanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -200,7 +201,8 @@ namespace APO_AndrzejMróz_17870
             // operacjeToolStripMenuItem
             // 
             this.operacjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rozciąganieToolStripMenuItem});
+            this.rozciąganieToolStripMenuItem,
+            this.wyrównanieToolStripMenuItem});
             this.operacjeToolStripMenuItem.Name = "operacjeToolStripMenuItem";
             this.operacjeToolStripMenuItem.Size = new System.Drawing.Size(148, 20);
             this.operacjeToolStripMenuItem.Text = "Operacje na histogramie";
@@ -208,7 +210,7 @@ namespace APO_AndrzejMróz_17870
             // rozciąganieToolStripMenuItem
             // 
             this.rozciąganieToolStripMenuItem.Name = "rozciąganieToolStripMenuItem";
-            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rozciąganieToolStripMenuItem.Text = "rozciąganie";
             this.rozciąganieToolStripMenuItem.Click += new System.EventHandler(this.rozciąganieToolStripMenuItem_Click);
             // 
@@ -727,10 +729,6 @@ namespace APO_AndrzejMróz_17870
             this.replicateToolStripMenuItem8.Text = "Replicate";
             this.replicateToolStripMenuItem8.Click += new System.EventHandler(this.replicateToolStripMenuItem8_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // segmentacjaToolStripMenuItem
             // 
             this.segmentacjaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -761,6 +759,17 @@ namespace APO_AndrzejMróz_17870
             this.metodaWododziałowaToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.metodaWododziałowaToolStripMenuItem.Text = "Metoda wododziałowa";
             this.metodaWododziałowaToolStripMenuItem.Click += new System.EventHandler(this.metodaWododziałowaToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // wyrównanieToolStripMenuItem
+            // 
+            this.wyrównanieToolStripMenuItem.Name = "wyrównanieToolStripMenuItem";
+            this.wyrównanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.wyrównanieToolStripMenuItem.Text = "wyrównanie";
+            this.wyrównanieToolStripMenuItem.Click += new System.EventHandler(this.wyrównanieToolStripMenuItem_Click);
             // 
             // MainPage
             // 
@@ -863,6 +872,7 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.ToolStripMenuItem progowanieAdaptacyjneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem progowanieOtsuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem metodaWododziałowaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wyrównanieToolStripMenuItem;
     }
 }
 

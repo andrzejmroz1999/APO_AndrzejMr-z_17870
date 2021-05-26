@@ -1,4 +1,5 @@
 ﻿using APO_AndrzejMróz_17870.Fuction;
+using APO_AndrzejMróz_17870.Fuctions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -123,18 +124,23 @@ namespace APO_AndrzejMróz_17870
         private void ąganieToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
-
-            if (activeChild == null)
-                return;
-
-            Dialog dialog = new Dialog("Rozciaganie", "Podaj wartości do rozciagania:");
-
-            if (dialog.ShowDialog() == DialogResult.Cancel)
-                return;
-
-            activeChild.rozciaganie(Convert.ToInt32(dialog.combovalue1), Convert.ToInt32(dialog.combovalue2));
+            if (activeChild != null)
+                useFilter(new UOP());
         }
+        private void useFilter(IFilter filter)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
 
+            filter.setImage(activeChild.bitmap);
+
+            if (filter.hasDialog)
+                if (!filter.showDialog())
+                    return;
+
+            filter.Convert();
+
+            activeChild.refresh();
+        }
         private void redukcjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
@@ -586,6 +592,14 @@ namespace APO_AndrzejMróz_17870
             if (activeChild == null)
                 return;
             activeChild.Watershed();
+        }
+
+        private void wyrównanieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            activeChild.wyrownanie();
         }
     }
 }
