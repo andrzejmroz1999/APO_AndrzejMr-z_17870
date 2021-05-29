@@ -50,16 +50,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AreaAndPerimeter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaAndPerimeter.Designer.cs">
+      <DependentUpon>AreaAndPerimeter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialog.Designer.cs">
       <DependentUpon>Dialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFactors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFactors.Designer.cs">
+      <DependentUpon>FormFactors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fuctions\GrayScale.cs" />
     <Compile Include="Fuctions\IFilter.cs" />
     <Compile Include="Fuctions\IOperations.cs" />
     <Compile Include="Fuctions\UOP.cs" />
+    <Compile Include="Fuctions\Wododział.cs" />
     <Compile Include="InfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +91,12 @@
     <Compile Include="ImageForm.Designer.cs">
       <DependentUpon>ImageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Moments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Moments.Designer.cs">
+      <DependentUpon>Moments.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrewittForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,14 +111,26 @@
     <Compile Include="UopDialog.Designer.cs">
       <DependentUpon>UopDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="WatershedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WatershedForm.Designer.cs">
+      <DependentUpon>WatershedForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WygladzanieForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WygladzanieForm.Designer.cs">
       <DependentUpon>WygladzanieForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AreaAndPerimeter.resx">
+      <DependentUpon>AreaAndPerimeter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog.resx">
       <DependentUpon>Dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFactors.resx">
+      <DependentUpon>FormFactors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
@@ -109,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Moments.resx">
+      <DependentUpon>Moments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrewittForm.resx">
       <DependentUpon>PrewittForm.cs</DependentUpon>
@@ -125,6 +159,9 @@
     </Compile>
     <EmbeddedResource Include="UopDialog.resx">
       <DependentUpon>UopDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatershedForm.resx">
+      <DependentUpon>WatershedForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WygladzanieForm.resx">
       <DependentUpon>WygladzanieForm.cs</DependentUpon>

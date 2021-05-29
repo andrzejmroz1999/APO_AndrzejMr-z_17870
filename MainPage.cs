@@ -12,8 +12,10 @@ using System.Windows.Forms;
 
 namespace APO_AndrzejMróz_17870
 {
+    
     public partial class MainPage : Form
     {
+        public string imgPath;
         private int Counter = 0;
         public MainPage()
         {
@@ -43,6 +45,7 @@ namespace APO_AndrzejMróz_17870
             picture.MdiParent = this;
             picture.Text = new StringBuilder("Image: ").Append(++Counter).ToString();
             picture.LoadImage(openFileDialog1.FileName);
+            imgPath = openFileDialog1.FileName;
             picture.Show();
         }
 
@@ -158,16 +161,7 @@ namespace APO_AndrzejMróz_17870
 
         private void segmentacjaWododziałowaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
-
-            if (activeChild == null)
-                return;
-
-            Dialog dialog = new Dialog("Segmentacja Wododziałowa", "Ilość kroków wygładzania (1:50):", "Wypełnienie regionów (1-z obr,2-śre. regi.)");
-
-            if (dialog.ShowDialog() == DialogResult.Cancel)
-                return;
-            activeChild.wododzial(Convert.ToInt32(dialog.value), Convert.ToInt32(dialog.value2));
+          
         }
 
         private void linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem_Click(object sender, EventArgs e)
@@ -588,10 +582,21 @@ namespace APO_AndrzejMróz_17870
 
         private void metodaWododziałowaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
             ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
             if (activeChild == null)
                 return;
-            activeChild.Watershed();
+
+            WatershedForm watershedForm = new WatershedForm(activeChild.bitmap,imgPath);
+
+            if (watershedForm.ShowDialog() == DialogResult.Cancel)
+                return;
+
+
+            activeChild.Wododzial(watershedForm.result);
+
+
         }
 
         private void wyrównanieToolStripMenuItem_Click(object sender, EventArgs e)
@@ -600,6 +605,46 @@ namespace APO_AndrzejMróz_17870
             if (activeChild == null)
                 return;
             activeChild.wyrownanie();
+        }
+
+        private void momentyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            Moments moments = new Moments(activeChild.bitmap);
+
+            if (moments.ShowDialog() == DialogResult.Cancel)
+                return;
+
+        }
+
+        private void obszarIObwódToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            AreaAndPerimeter areaAndPerimeter = new AreaAndPerimeter(activeChild.bitmap);
+
+            if (areaAndPerimeter.ShowDialog() == DialogResult.Cancel)
+                return;
+        }
+
+        private void wsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm activeChild = (ImageForm)this.ActiveMdiChild;
+
+            if (activeChild == null)
+                return;
+
+            FormFactors formFactors = new FormFactors(activeChild.bitmap);
+
+            if (formFactors.ShowDialog() == DialogResult.Cancel)
+                return;
         }
     }
 }

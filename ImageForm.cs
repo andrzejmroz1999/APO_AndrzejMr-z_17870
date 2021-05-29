@@ -23,6 +23,7 @@ namespace APO_AndrzejMróz_17870
 
     public partial class ImageForm : Form
     {
+        public PictureBox pb = new PictureBox();
         private int[] histogram;
         private int[] histR;
         private int[] histG;
@@ -1153,535 +1154,112 @@ namespace APO_AndrzejMróz_17870
             drawHistogram();
             Bitmap newBitmap = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format24bppRgb);
 
-           
 
-                for (int x = 0; x < bitmap.Width; x++)
-                {
-                    for (int y = 0; y < bitmap.Height; y++)
-                    {
-                        Color pixel = bitmap.GetPixel(x, y);
 
-                        Color newPixel = Color.FromArgb(histR[pixel.R >255 ? pixel.R : 255], histG[pixel.G >255 ? pixel.G : 255] , histB[pixel.B > 255 ? pixel.B : 255]);
-                        newBitmap.SetPixel(x, y, newPixel);
-                        histR[newPixel.R]++;
-                        histG[newPixel.G]++;
-                        histB[newPixel.B]++;
-                    }
-                }
-                bitmap = newBitmap;
-                pictureBox1.Refresh();
-                drawHistogram();
-
-            }
-            public void FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType type, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9, int v10, int v11, int v12, int v13, int v14, int v15, int v16, int v17, int v18)
+            for (int x = 0; x < bitmap.Width; x++)
             {
-                // dodawanie masek 
-                var maskWygladzanie = new float[,] { { v1, v2, v3 }, { v4, v5, v6 }, { v7, v8, v9 } };
-                var maskWyostrzanie = new float[,] { { v10, v11, v12 }, { v13, v14, v15 }, { v16, v17, v18 } };
-
-                ConvolutionKernelF kernelWygladzanie = new ConvolutionKernelF(maskWygladzanie);
-                ConvolutionKernelF kernelWyostrzanie = new ConvolutionKernelF(maskWyostrzanie);
-                Bitmap bitmap = (Bitmap)pictureBox1.Image;
-
-                var img = bitmap.ToImage<Bgr, byte>();
-
-                var imgRes1 = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
-                Emgu.CV.CvInvoke.Filter2D(img, imgRes1, kernelWygladzanie, new Point(-1, -1), 0, type);
-                var imgRes2 = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
-                Emgu.CV.CvInvoke.Filter2D(imgRes1, imgRes2, kernelWyostrzanie, new Point(-1, -1), 0, type);
-                pictureBox1.Image = imgRes2.ToBitmap();
-                GC.Collect();
-                pictureBox1.Refresh();
-                drawHistogram();
-            }
-            public void ProgowanieAdaptacyjne()
-            {
-
-                var img = bitmap.ToImage<Gray, byte>();
-                var imgDst = new Image<Gray, byte>(bitmap.Width, bitmap.Height, new Gray(0));
-
-                Emgu.CV.CvInvoke.AdaptiveThreshold(img, imgDst, 255, adaptiveType: Emgu.CV.CvEnum.AdaptiveThresholdType.MeanC,
-                    thresholdType: Emgu.CV.CvEnum.ThresholdType.Binary, 11, 5);
-                pictureBox1.Image = imgDst.ToBitmap();
-                GC.Collect();
-                pictureBox1.Refresh();
-                drawHistogram();
-            }
-            public void ProgowanieOtsu()
-            {
-
-                var img = bitmap.ToImage<Gray, byte>();
-                var imgDst = new Image<Gray, byte>(bitmap.Width, bitmap.Height, new Gray(0));
-
-                Emgu.CV.CvInvoke.Threshold(img, imgDst, 0, 255, thresholdType: Emgu.CV.CvEnum.ThresholdType.Otsu);
-                pictureBox1.Image = imgDst.ToBitmap();
-                GC.Collect();
-                pictureBox1.Refresh();
-                drawHistogram();
-            }
-            public void Watershed()
-            {
-                var img = new Bitmap(pictureBox1.Image)
-                       .ToImage<Bgr, byte>();
-                var mask = img.Convert<Gray, byte>()
-                    .ThresholdBinaryInv(new Gray(150), new Gray(255));
-                Mat distanceTransofrm = new Mat();
-                CvInvoke.DistanceTransform(mask, distanceTransofrm, null, Emgu.CV.CvEnum.DistType.L2, 3);
-                CvInvoke.Normalize(distanceTransofrm, distanceTransofrm, 0, 255, Emgu.CV.CvEnum.NormType.MinMax);
-                var markers = distanceTransofrm.ToImage<Gray, byte>()
-                    .ThresholdBinary(new Gray(50), new Gray(255));
-                CvInvoke.ConnectedComponents(markers, markers);
-                var finalMarkers = markers.Convert<Gray, Int32>();
-
-                CvInvoke.Watershed(img, finalMarkers);
-
-                Image<Gray, byte> boundaries = finalMarkers.Convert<byte>(delegate (Int32 x)
+                for (int y = 0; y < bitmap.Height; y++)
                 {
-                    return (byte)(x == -1 ? 255 : 0);
-                });
-
-                boundaries._Dilate(1);
-                img.SetValue(new Bgr(0, 255, 0), boundaries);
-                // AddImage(img, "Watershed Segmentation");
-                pictureBox1.Image = img.ToBitmap();
-
-
-                pictureBox1.Refresh();
-                drawHistogram();
-            }
-
-            public void wododzial(int kr, int opcja)
-            {
-                int wynik, x, Wi, Hi, i, j;
-                int poziom;
-                int krok = 0;
-
-                int[,] zdj = new int[bitmap.Width, bitmap.Height];
-
-                Wi = bitmap.Width;
-                Hi = bitmap.Height;
-
-                Bitmap ft = new Bitmap(bitmap);
-                Bitmap temp = new Bitmap(bitmap);
-
-                // Gauss
-                // ilość kroków -> kr
-
-                for (x = 0; x < kr; x++)
-                {
-                    krok = x + 1;
-
-
-                    for (i = 1; i < bitmap.Height - 1; i++)
-                    {
-                        for (j = 1; j < bitmap.Width - 1; j++)
-                        {
-
-                            wynik = 1 * temp.GetPixel(j - 1, i - 1).R + 2 * temp.GetPixel(j, i - 1).R + 1 * temp.GetPixel(j + 1, i - 1).R;
-                            wynik += 2 * temp.GetPixel(j - 1, i).R + 4 * temp.GetPixel(j, i).R + 2 * temp.GetPixel(j + 1, i).R;
-                            wynik += 1 * temp.GetPixel(j - 1, i + 1).R + 2 * temp.GetPixel(j, i + 1).R + 1 * temp.GetPixel(j + 1, i + 1).R;
-
-                            wynik = (int)(wynik / 16);
-
-                            if (wynik > 255)
-                            {
-                                wynik = 255;
-                            }
-
-                            ft.SetPixel(j, i, Color.FromArgb(wynik, wynik, wynik));
-
-                        }
-                    }
-
-                    temp = new Bitmap(ft);
-
-                }
-
-
-
-                // Gradient morfologiczny
-                int pam;
-                int dilate, erosion;
-
-                for (i = 1; i < bitmap.Height - 1; i++)
-                {
-                    for (j = 1; j < bitmap.Width - 1; j++)
-                    {
-                        // Dylatacja - maks z sąsiedztwa
-                        pam = ft.GetPixel(j, i).R;
-
-                        if (pam < ft.GetPixel(j + 1, i).R)
-                        {
-                            pam = ft.GetPixel(j + 1, i).R;
-                        }
-
-                        if (pam < ft.GetPixel(j + 1, i + 1).R)
-                        {
-                            pam = ft.GetPixel(j + 1, i + 1).R;
-                        }
-
-                        if (pam < ft.GetPixel(j, i + 1).R)
-                        {
-                            pam = ft.GetPixel(j, i + 1).R;
-                        }
-
-                        if (pam < ft.GetPixel(j - 1, i + 1).R)
-                        {
-                            pam = ft.GetPixel(j - 1, i + 1).R;
-                        }
-
-                        if (pam < ft.GetPixel(j - 1, i).R)
-                        {
-                            pam = ft.GetPixel(j - 1, i).R;
-                        }
-
-                        if (pam < ft.GetPixel(j - 1, i - 1).R)
-                        {
-                            pam = ft.GetPixel(j - 1, i - 1).R;
-                        }
-
-                        if (pam < ft.GetPixel(j, i - 1).R)
-                        {
-                            pam = ft.GetPixel(j, i - 1).R;
-                        }
-
-                        if (pam < ft.GetPixel(j + 1, i - 1).R)
-                        {
-                            pam = ft.GetPixel(j + 1, i - 1).R;
-                        }
-
-                        dilate = pam;
-
-                        // Erozja - min z sąsiedztwa
-                        pam = ft.GetPixel(j, i).R;
-
-                        if (pam > ft.GetPixel(j + 1, i).R)
-                        {
-                            pam = ft.GetPixel(j + 1, i).R;
-                        }
-
-                        if (pam > ft.GetPixel(j + 1, i + 1).R)
-                        {
-                            pam = ft.GetPixel(j + 1, i + 1).R;
-                        }
-
-                        if (pam > ft.GetPixel(j, i + 1).R)
-                        {
-                            pam = ft.GetPixel(j, i + 1).R;
-                        }
-
-                        if (pam > ft.GetPixel(j - 1, i + 1).R)
-                        {
-                            pam = ft.GetPixel(j - 1, i + 1).R;
-                        }
-
-                        if (pam > ft.GetPixel(j - 1, i).R)
-                        {
-                            pam = ft.GetPixel(j - 1, i).R;
-                        }
-
-                        if (pam > ft.GetPixel(j - 1, i - 1).R)
-                        {
-                            pam = ft.GetPixel(j - 1, i - 1).R;
-                        }
-
-                        if (pam > ft.GetPixel(j, i - 1).R)
-                        {
-                            pam = ft.GetPixel(j, i - 1).R;
-                        }
-
-                        if (pam > ft.GetPixel(j + 1, i - 1).R)
-                        {
-                            pam = ft.GetPixel(j + 1, i - 1).R;
-                        }
-
-                        erosion = pam;
-
-                        pam = dilate - erosion;
-
-                        temp.SetPixel(j, i, Color.FromArgb(pam, pam, pam));
-                    }
-                }
-
-                ft = new Bitmap(temp);
-
-                // Watershed
-                int region = 1;
-                int min = 0, max = 0;
-                int c, d, cx, dy;
-                int punkty = 0, wall = 0;
-
-
-                int[,] water = new int[bitmap.Width, bitmap.Height];
-                int[,] water_t = new int[bitmap.Width, bitmap.Height];
-
-                for (i = 0; i < bitmap.Height; i++)
-                {
-                    for (j = 0; j < bitmap.Width; j++)
-                    {
-                        if (j > 0 && j < bitmap.Width - 1 && i > 0 && i < bitmap.Height - 1)
-                        {
-                            if (j == 1 && i == 1)
-                            {
-                                min = ft.GetPixel(j, i).R;
-                                max = ft.GetPixel(j, i).R;
-                            }
-                            else
-                            {
-                                if (ft.GetPixel(j, i).R < min)
-                                {
-                                    min = ft.GetPixel(j, i).R;
-                                }
-
-                                if (ft.GetPixel(j, i).R > max)
-                                {
-                                    max = ft.GetPixel(j, i).R;
-                                }
-                            }
-
-                            water[j, i] = -1;
-                        }
-                        else
-                        {
-                            water[j, i] = 0;
-                            water_t[j, i] = 0;
-                        }
-
-                        zdj[j, i] = ft.GetPixel(j, i).R;
-                    }
-                }
-
-                try
-                {
-
-                    for (poziom = min; poziom <= max; poziom++)
-                    {
-
-
-                        if (poziom == min)
-                        {
-                            // Krok 1 - pierwsze regiony
-                            for (i = 1; i < Hi - 1; i++)
-                            {
-                                for (j = 1; j < Wi - 1; j++)
-                                {
-                                    if (zdj[j, i] == poziom && water[j, i] == -1)
-                                    {
-                                        zalewanie(j, i, region, poziom, zdj, ref water);
-
-                                        region++;
-                                    }
-                                }
-                            }
-
-                            for (i = 1; i < Hi - 1; i++)
-                            {
-                                for (j = 1; j < Wi - 1; j++)
-                                {
-                                    water_t[j, i] = water[j, i];
-                                }
-                            }
-                        }
-                        else
-                        {
-                            // rozbudowa regionów
-                            do //while (punkty > 0)
-                            {
-                                punkty = 0;
-
-                                for (i = 1; i < Hi - 1; i++)
-                                {
-                                    for (j = 1; j < Wi - 1; j++)
-                                    {
-                                        if (water[j, i] > 0 && (water[j - 1, i - 1] == -1 || water[j - 1, i] == -1 || water[j - 1, i + 1] == -1 || water[j, i - 1] == -1 || water[j, i + 1] == -1 || water[j + 1, i - 1] == -1 || water[j + 1, i] == -1 || water[j + 1, i + 1] == -1))
-                                        {
-                                            for (d = i - 1; d <= i + 1; d++)
-                                            {
-                                                for (c = j - 1; c <= j + 1; c++)
-                                                {
-                                                    if (water_t[c, d] == -1 && zdj[c, d] == poziom)
-                                                    {
-                                                        wall = 0;
-
-                                                        for (dy = d - 1; dy <= d + 1; dy++)
-                                                        {
-                                                            for (cx = c - 1; cx <= c + 1; cx++)
-                                                            {
-                                                                if (water_t[cx, dy] > 0 && water_t[cx, dy] != water[j, i])
-                                                                {
-                                                                    wall = 1;
-
-                                                                    cx = c + 2;
-                                                                    dy = d + 2;
-                                                                }
-                                                            }
-                                                        }
-
-                                                        if (wall == 1)
-                                                        {
-                                                            water_t[c, d] = -4;
-                                                        }
-                                                        else
-                                                        {
-                                                            water_t[c, d] = water[j, i];
-                                                        }
-
-                                                        punkty++;
-
-                                                    } // end if water_t[c,d] == -1
-                                                }
-                                            }// end for c,d
-
-                                        } // end if glowny
-                                    }
-                                } // end for j,i
-
-                                for (i = 1; i < Hi - 1; i++)
-                                {
-                                    for (j = 1; j < Wi - 1; j++)
-                                    {
-                                        water[j, i] = water_t[j, i];
-                                    }
-                                }
-
-                            } while (punkty > 0);
-
-                            // nowe regiony
-                            for (i = 1; i < Hi - 1; i++)
-                            {
-                                for (j = 1; j < Wi - 1; j++)
-                                {
-                                    if (zdj[j, i] == poziom && water[j, i] == -1)
-                                    {
-                                        zalewanie(j, i, region, poziom, zdj, ref water);
-
-                                        region++;
-                                    }
-                                }
-                            }
-
-                        }
-
-                    }// for poziom
-
-
-
-                    // obliczenie średniej regionów
-                    int[] sr = new int[region];
-
-                    if (opcja == 2)
-                    {
-                        int[] li = new int[region];
-
-                        for (i = 0; i < region; i++)
-                        {
-                            sr[i] = 0;
-                            li[i] = 0;
-                        }
-
-                        for (i = 1; i < Hi - 1; i++)
-                        {
-                            for (j = 1; j < Wi - 1; j++)
-                            {
-                                if (water[j, i] > 0)
-                                {
-                                    sr[(water[j, i] - 1)] += bitmap.GetPixel(j, i).R;
-                                    li[(water[j, i] - 1)]++;
-                                }
-                            }
-                        }
-
-                        for (i = 0; i < region; i++)
-                        {
-                            if (li[i] != 0)
-                            {
-                                sr[i] = sr[i] / li[i];
-                            }
-                        }
-
-                    }
-
-
-                    for (i = 1; i < bitmap.Height - 1; i++)
-                    {
-                        for (j = 1; j < bitmap.Width - 1; j++)
-                        {
-                            // granice wododziałów
-                            if (opcja == 1)
-                            {
-                                if (water[j, i] == -4)
-                                {
-                                    bitmap.SetPixel(j, i, Color.FromArgb(255, 0, 0));
-                                }
-                            }
-
-                            // średnie regionów
-                            if (opcja == 2)
-                            {
-                                if (water[j, i] > 0)
-                                {
-                                    bitmap.SetPixel(j, i, Color.FromArgb(sr[(water[j, i] - 1)], sr[(water[j, i] - 1)], sr[(water[j, i] - 1)]));
-                                }
-                                else
-                                {
-                                    if (water[j, i] == -4)
-                                    {
-                                        bitmap.SetPixel(j, i, Color.FromArgb(255, 0, 0));
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                    pictureBox1.Image = bitmap;
-                    drawHistogram();
-
-                    // odrysowanie liczby regionów na obrazie
-                    Graphics nabitmap = Graphics.FromImage(bitmap);
-                    Graphics ekran = CreateGraphics();
-
-                    Font liczba = new Font("Verdana", ekran.DpiY / nabitmap.DpiY * Font.SizeInPoints, FontStyle.Bold);
-
-                    nabitmap.FillRectangle(Brushes.Snow, bitmap.Width - 55, 5, 55, 15);
-                    nabitmap.DrawString((region - 1).ToString(), liczba, Brushes.DarkSlateGray, new Point(bitmap.Width - 55, 5));
-
-                    nabitmap.Dispose();
-                    ekran.Dispose();
-                    pictureBox1.Image = bitmap;
-                    pictureBox1.Refresh();
-
-                    Invalidate();
-
-                }
-                catch (System.StackOverflowException ex)
-                {
-                    Invalidate();
-
-                    MessageBox.Show("Przekroczono maksymalny rozmiar stosu w środowisku C# !!! \nProwdopododnie zbyt duża ilość pikseli tej samej barwy."
-                        + "\n\n---> Pomniejsz zdjęcie i spróbuj ponownie.\n\n" + ex, "Błąd środowiska C#", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-            }
-
-            void zalewanie(int x, int y, int reg, int poz, int[,] z, ref int[,] wat)
-            {
-                if (z[x, y] == poz && wat[x, y] == -1)
-                {
-                    wat[x, y] = reg;
-
-                    zalewanie(x - 1, y - 1, reg, poz, z, ref wat);
-                    zalewanie(x, y - 1, reg, poz, z, ref wat);
-                    zalewanie(x + 1, y - 1, reg, poz, z, ref wat);
-
-                    zalewanie(x - 1, y, reg, poz, z, ref wat);
-                    zalewanie(x + 1, y, reg, poz, z, ref wat);
-
-                    zalewanie(x - 1, y + 1, reg, poz, z, ref wat);
-                    zalewanie(x, y + 1, reg, poz, z, ref wat);
-                    zalewanie(x + 1, y + 1, reg, poz, z, ref wat);
+                    Color pixel = bitmap.GetPixel(x, y);
+
+                    Color newPixel = Color.FromArgb(histR[pixel.R > 255 ? pixel.R : 255], histG[pixel.G > 255 ? pixel.G : 255], histB[pixel.B > 255 ? pixel.B : 255]);
+                    newBitmap.SetPixel(x, y, newPixel);
+                    histR[newPixel.R]++;
+                    histG[newPixel.G]++;
+                    histB[newPixel.B]++;
                 }
             }
+            bitmap = newBitmap;
+            pictureBox1.Refresh();
+            drawHistogram();
+
         }
+        public void FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType type, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9, int v10, int v11, int v12, int v13, int v14, int v15, int v16, int v17, int v18)
+        {
+            // dodawanie masek 
+            var maskWygladzanie = new float[,] { { v1, v2, v3 }, { v4, v5, v6 }, { v7, v8, v9 } };
+            var maskWyostrzanie = new float[,] { { v10, v11, v12 }, { v13, v14, v15 }, { v16, v17, v18 } };
 
+            ConvolutionKernelF kernelWygladzanie = new ConvolutionKernelF(maskWygladzanie);
+            ConvolutionKernelF kernelWyostrzanie = new ConvolutionKernelF(maskWyostrzanie);
+            Bitmap bitmap = (Bitmap)pictureBox1.Image;
+
+            var img = bitmap.ToImage<Bgr, byte>();
+
+            var imgRes1 = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Filter2D(img, imgRes1, kernelWygladzanie, new Point(-1, -1), 0, type);
+            var imgRes2 = new Image<Bgr, byte>(pictureBox1.Image.Width, pictureBox1.Image.Height, new Bgr(0, 0, 0));
+            Emgu.CV.CvInvoke.Filter2D(imgRes1, imgRes2, kernelWyostrzanie, new Point(-1, -1), 0, type);
+            pictureBox1.Image = imgRes2.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void ProgowanieAdaptacyjne()
+        {
+
+            var img = bitmap.ToImage<Gray, byte>();
+            var imgDst = new Image<Gray, byte>(bitmap.Width, bitmap.Height, new Gray(0));
+
+            Emgu.CV.CvInvoke.AdaptiveThreshold(img, imgDst, 255, adaptiveType: Emgu.CV.CvEnum.AdaptiveThresholdType.MeanC,
+                thresholdType: Emgu.CV.CvEnum.ThresholdType.Binary, 11, 5);
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void ProgowanieOtsu()
+        {
+
+            var img = bitmap.ToImage<Gray, byte>();
+            var imgDst = new Image<Gray, byte>(bitmap.Width, bitmap.Height, new Gray(0));
+
+            Emgu.CV.CvInvoke.Threshold(img, imgDst, 0, 255, thresholdType: Emgu.CV.CvEnum.ThresholdType.Otsu);
+            pictureBox1.Image = imgDst.ToBitmap();
+            GC.Collect();
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        public void Wododzial(Bitmap bitmapR)
+        {
+            bitmap = bitmapR;
+            pictureBox1.Image = bitmap;
+            pictureBox1.Refresh();
+            drawHistogram();
+        }
+        //public void Watershed()
+        //{
+        //    var img = new Bitmap(pictureBox1.Image)
+        //           .ToImage<Bgr, byte>();
+        //    var mask = img.Convert<Gray, byte>()
+        //        .ThresholdBinaryInv(new Gray(150), new Gray(255));
+        //    Mat distanceTransofrm = new Mat();
+        //    CvInvoke.DistanceTransform(mask, distanceTransofrm, null, Emgu.CV.CvEnum.DistType.L2, 3);
+        //    CvInvoke.Normalize(distanceTransofrm, distanceTransofrm, 0, 255, Emgu.CV.CvEnum.NormType.MinMax);
+        //    var markers = distanceTransofrm.ToImage<Gray, byte>()
+        //        .ThresholdBinary(new Gray(50), new Gray(255));
+        //    CvInvoke.ConnectedComponents(markers, markers);
+        //    var finalMarkers = markers.Convert<Gray, Int32>();
+
+        //    CvInvoke.Watershed(img, finalMarkers);
+
+        //    Image<Gray, byte> boundaries = finalMarkers.Convert<byte>(delegate (Int32 x)
+        //    {
+        //        return (byte)(x == -1 ? 255 : 0);
+        //    });
+
+        //    boundaries._Dilate(1);
+        //    img.SetValue(new Bgr(0, 255, 0), boundaries);
+        //    // AddImage(img, "Watershed Segmentation");
+        //    pictureBox1.Image = img.ToBitmap();
+
+
+        //    pictureBox1.Refresh();
+        //    drawHistogram();
+        //}
+       
+
+
+    }
     }
 

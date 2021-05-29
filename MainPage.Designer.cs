@@ -41,6 +41,7 @@ namespace APO_AndrzejMróz_17870
             this.inforamcjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operacjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rozciąganieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wyrównanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operacjePunktoweToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.negacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +112,9 @@ namespace APO_AndrzejMróz_17870
             this.progowanieOtsuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodaWododziałowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.wyrównanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.momentyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.obszarIObwódToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -210,9 +213,16 @@ namespace APO_AndrzejMróz_17870
             // rozciąganieToolStripMenuItem
             // 
             this.rozciąganieToolStripMenuItem.Name = "rozciąganieToolStripMenuItem";
-            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.rozciąganieToolStripMenuItem.Text = "rozciąganie";
             this.rozciąganieToolStripMenuItem.Click += new System.EventHandler(this.rozciąganieToolStripMenuItem_Click);
+            // 
+            // wyrównanieToolStripMenuItem
+            // 
+            this.wyrównanieToolStripMenuItem.Name = "wyrównanieToolStripMenuItem";
+            this.wyrównanieToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.wyrównanieToolStripMenuItem.Text = "wyrównanie";
+            this.wyrównanieToolStripMenuItem.Click += new System.EventHandler(this.wyrównanieToolStripMenuItem_Click);
             // 
             // operacjePunktoweToolStripMenuItem
             // 
@@ -263,9 +273,13 @@ namespace APO_AndrzejMróz_17870
             // 
             // segmentacjaWododziałowaToolStripMenuItem
             // 
+            this.segmentacjaWododziałowaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.momentyToolStripMenuItem,
+            this.obszarIObwódToolStripMenuItem,
+            this.wsToolStripMenuItem});
             this.segmentacjaWododziałowaToolStripMenuItem.Name = "segmentacjaWododziałowaToolStripMenuItem";
-            this.segmentacjaWododziałowaToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
-            this.segmentacjaWododziałowaToolStripMenuItem.Text = "Segmentacja wododziałowa";
+            this.segmentacjaWododziałowaToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.segmentacjaWododziałowaToolStripMenuItem.Text = "Analiza obrazu";
             this.segmentacjaWododziałowaToolStripMenuItem.Click += new System.EventHandler(this.segmentacjaWododziałowaToolStripMenuItem_Click);
             // 
             // operacjeSasiedztwaToolStripMenuItem
@@ -764,12 +778,26 @@ namespace APO_AndrzejMróz_17870
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // wyrównanieToolStripMenuItem
+            // momentyToolStripMenuItem
             // 
-            this.wyrównanieToolStripMenuItem.Name = "wyrównanieToolStripMenuItem";
-            this.wyrównanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.wyrównanieToolStripMenuItem.Text = "wyrównanie";
-            this.wyrównanieToolStripMenuItem.Click += new System.EventHandler(this.wyrównanieToolStripMenuItem_Click);
+            this.momentyToolStripMenuItem.Name = "momentyToolStripMenuItem";
+            this.momentyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.momentyToolStripMenuItem.Text = "Momenty";
+            this.momentyToolStripMenuItem.Click += new System.EventHandler(this.momentyToolStripMenuItem_Click);
+            // 
+            // obszarIObwódToolStripMenuItem
+            // 
+            this.obszarIObwódToolStripMenuItem.Name = "obszarIObwódToolStripMenuItem";
+            this.obszarIObwódToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.obszarIObwódToolStripMenuItem.Text = "Obszar i obwód";
+            this.obszarIObwódToolStripMenuItem.Click += new System.EventHandler(this.obszarIObwódToolStripMenuItem_Click);
+            // 
+            // wsToolStripMenuItem
+            // 
+            this.wsToolStripMenuItem.Name = "wsToolStripMenuItem";
+            this.wsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.wsToolStripMenuItem.Text = "współczynnik kształtu";
+            this.wsToolStripMenuItem.Click += new System.EventHandler(this.wsToolStripMenuItem_Click);
             // 
             // MainPage
             // 
@@ -873,6 +901,9 @@ namespace APO_AndrzejMróz_17870
         private System.Windows.Forms.ToolStripMenuItem progowanieOtsuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem metodaWododziałowaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wyrównanieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem momentyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem obszarIObwódToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wsToolStripMenuItem;
     }
 }
 
