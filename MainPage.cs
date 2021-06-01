@@ -646,5 +646,7 @@ namespace APO_AndrzejMróz_17870
             if (formFactors.ShowDialog() == DialogResult.Cancel)
                 return;
         }
+
+       
     }
 }

@@ -1148,32 +1148,119 @@ namespace APO_AndrzejMróz_17870
         }
         public void wyrownanie()
         {
-            // histR 
-            //   histG 
-            //    histB
-            drawHistogram();
-            Bitmap newBitmap = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format24bppRgb);
+            Bitmap newBm = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format24bppRgb);
 
+            int size = bitmap.Height * bitmap.Width;
+            Dictionary<int, int>[] histo = HistogramCreate(bitmap);
+            int[] LUTred = calculateLUT2(histo[0], size);
+            int[] LUTgreen = calculateLUT2(histo[1], size);
+            int[] LUTblue = calculateLUT2(histo[2], size);
 
-
+            int[] red = new int[256];
+            int[] green = new int[256];
+            int[] blue = new int[256];
             for (int x = 0; x < bitmap.Width; x++)
             {
                 for (int y = 0; y < bitmap.Height; y++)
                 {
                     Color pixel = bitmap.GetPixel(x, y);
-
-                    Color newPixel = Color.FromArgb(histR[pixel.R > 255 ? pixel.R : 255], histG[pixel.G > 255 ? pixel.G : 255], histB[pixel.B > 255 ? pixel.B : 255]);
-                    newBitmap.SetPixel(x, y, newPixel);
-                    histR[newPixel.R]++;
-                    histG[newPixel.G]++;
-                    histB[newPixel.B]++;
+                    Color newPixel = Color.FromArgb(LUTred[pixel.R], LUTgreen[pixel.G], LUTblue[pixel.B]);
+                    newBm.SetPixel(x, y, newPixel);
+                    red[newPixel.R]++;
+                    green[newPixel.G]++;
+                    blue[newPixel.B]++;
                 }
             }
-            bitmap = newBitmap;
-            pictureBox1.Refresh();
+
+            pictureBox1.Image=newBm;
             drawHistogram();
+            refresh();
+          
+        }
+        public static Dictionary<int, int>[] HistogramCreate(Bitmap bm)
+        {
+           
+            Dictionary<int, int> histoRed = new Dictionary<int, int>();
+            Dictionary<int, int> histoGreen = new Dictionary<int, int>();
+            Dictionary<int, int> histoBlue = new Dictionary<int, int>();
+            Dictionary<int, int>[] histo = new Dictionary<int, int>[3];
+
+            for (int i = 0; i < 256; ++i)
+            {
+                histoRed.Add(i, 0);
+                histoGreen.Add(i, 0);
+                histoBlue.Add(i, 0);
+            }
+            for (int x = 0; x < bm.Width; x++)
+            {
+                for (int y = 0; y < bm.Height; y++)
+                {
+                    Color c = bm.GetPixel(x, y);
+                    int red = c.R;
+
+                    histoRed[red] = histoRed[red] + 1;
+
+                }
+            }
+
+            for (int x = 0; x < bm.Width; x++)
+            {
+                for (int y = 0; y < bm.Height; y++)
+                {
+                    Color c = bm.GetPixel(x, y);
+                    int green = c.G;
+
+                    histoGreen[green] = histoGreen[green] + 1;
+
+                }
+            }
+
+            for (int x = 0; x < bm.Width; x++)
+            {
+                for (int y = 0; y < bm.Height; y++)
+                {
+                    Color c = bm.GetPixel(x, y);
+                    int blue = c.B;
+
+                    histoBlue[blue] = histoBlue[blue] + 1;
+
+                }
+            }
+            histo[0] = histoRed;
+            histo[1] = histoGreen;
+            histo[2] = histoBlue;
+
+            return histo;
 
         }
+        public static int[] calculateLUT2(Dictionary<int, int> values, int size)
+        {
+            int minValue = 0;
+            for (int i = 0; i < 256; i++)
+            {
+                if (values[i] != 0)
+                {
+                    minValue = i;
+                    break;
+                }
+            }
+
+            int[] result = new int[256];
+            double sum = 0;
+            for (int i = 0; i < 256; i++)
+            {
+                sum += values[i];
+                result[i] = (int)(((sum - minValue) / (size - minValue)) * 255.0);
+            }
+
+            return result;
+        }
+
+
+
+
+
+
         public void FiltracjaDwuetapowa(Emgu.CV.CvEnum.BorderType type, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9, int v10, int v11, int v12, int v13, int v14, int v15, int v16, int v17, int v18)
         {
             // dodawanie masek 

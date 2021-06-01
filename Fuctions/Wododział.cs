@@ -11,78 +11,70 @@ using System.Threading.Tasks;
 
 namespace APO_AndrzejMróz_17870.Fuctions
 {
-   public class Wododział
+    public class Wododział
     {
         //Funkcja do segmentacji obrazu metodą wododziałową
-        public static Bitmap Watershed(Bitmap srcimg, string imgPath, WatershedForm form, float multiplier, int blocksize = 0)
+        public static Bitmap Watershed(Bitmap sourceImage, string pathPicture, WatershedForm form, float factor, int param = 0)
         {
-            Bitmap imgBmp = srcimg;
+            Bitmap Bmp = sourceImage;
             //Wczytanie obrazu do segmentacji
-            Mat img = GetMatFromSDImage(srcimg);
+            Mat img = GetMatFromSDImage(sourceImage);
 
             //Konwersja obrazu na czarno-biały
-            Mat img_gray = new Mat();
-            CvInvoke.CvtColor(img, img_gray, ColorConversion.Bgr2Gray);
+            Mat grayBmp = new Mat();
+            CvInvoke.CvtColor(img, grayBmp, ColorConversion.Bgr2Gray);
 
-            //Progowanie obrazu czyli wstępne wyznaczenie obiektów
-            Mat thresh = new Mat();
-            if (blocksize == 0)
+            //Progowanie obrazu wybraną metodą
+            Mat threshold = new Mat();
+            if (param == 0)
             {
-                CvInvoke.Threshold(img_gray, thresh, 0, 255, ThresholdType.Otsu);
+                CvInvoke.Threshold(grayBmp, threshold, 0, 255, ThresholdType.Otsu);
             }
             else
             {
-                CvInvoke.AdaptiveThreshold(img_gray, thresh, 255, AdaptiveThresholdType.MeanC, ThresholdType.Binary, blocksize, 5);
+                CvInvoke.AdaptiveThreshold(grayBmp, threshold, 255, AdaptiveThresholdType.MeanC, ThresholdType.Binary, param, 5);
             }
 
-            
 
-            //Negacja obrazu, ponieważ chcemy by tło było czarne a obiekty białe
-            CvInvoke.BitwiseNot(thresh, thresh);
 
-            //Odszumianie obrazu przez operacje morfologiczne
-            float[,] k = { {1, 1, 1},
-                        {1, 1, 1},
-                        {1, 1, 1}};
-            ConvolutionKernelF kernel = new ConvolutionKernelF(k);
-            Point point = new Point(-1, -1);
-            Mat opening = new Mat();
-            CvInvoke.MorphologyEx(thresh, opening, MorphOp.Open, kernel, point, 1, BorderType.Default, new MCvScalar());
+            //Negacja obrazu
+            CvInvoke.BitwiseNot(threshold, threshold);
 
-            //Wyznaczenie jednoznacznych obszarów tła
-            Mat sure_bg = new Mat();
-            CvInvoke.Dilate(opening, sure_bg, kernel, point, 1, BorderType.Default, new MCvScalar());
+            //Odszumianie przez operacje morfologiczne
+            ConvolutionKernelF kernel;
+            Point point;
+            Mat Open;
+            noiseReduction(threshold, out kernel, out point, out Open);
 
-            //Wyznaczanie transformaty odległościowej
-            Mat dist_transform = new Mat();
-            CvInvoke.DistanceTransform(opening, dist_transform, null, DistType.L2, 5);
+            // jednoznaczne obszary tła
+            Mat Bg = new Mat();
+            CvInvoke.Dilate(Open, Bg, kernel, point, 1, BorderType.Default, new MCvScalar());
 
-            //Musimy zapisać i odczytać obraz transformaty bo inaczej nie działa
-            string imgPathTemp = imgPath;
-            int find = imgPathTemp.IndexOf(@".");
-            string imgPathTemp2 = imgPathTemp.Substring(0, find) + "_temp.bmp";
-            dist_transform.Save(imgPathTemp2);
-            dist_transform = new Mat(imgPathTemp2);
-            File.Delete(imgPathTemp2);
+            // transformata odległościowa
+            Mat DistanceTransform = new Mat();
+            CvInvoke.DistanceTransform(Open, DistanceTransform, null, DistType.L2, 5);
 
-            //Określenie jednoznacznych obszarów obiektów przez progowanie obrazu transformaty odlegościowej
-            Mat sure_fg = new Mat();
-            CvInvoke.Threshold(dist_transform, sure_fg, multiplier * Max(dist_transform.ToBitmap()), 255, ThresholdType.Binary);
+            //zapis i odczyt obrazu transformaty
+            string temp = TransformRecord(pathPicture, ref DistanceTransform);
 
-            //Wyznaczenie obszarów "niepewnych" czyli odejmujemy jednoznaczne obszary tła od jednoznacznych obszarów obiektów
-            Mat unknown = new Mat();
-            CvInvoke.CvtColor(sure_fg, sure_fg, ColorConversion.Bgr2Gray);
-            CvInvoke.Subtract(sure_bg, sure_fg, unknown, dtype: DepthType.Cv8U);
+            //Określamy jednoznaczne obszary obiektów poprzez progowanie obrazu transformaty odlegościowej
+            Mat Fg = new Mat();
+            CvInvoke.Threshold(DistanceTransform, Fg, factor * Max(DistanceTransform.ToBitmap()), 255, ThresholdType.Binary);
+
+            //Wyznaczenie obszarów niepewnych poprzez odejmowanie jednoznacznych obszarów tła od jednoznacznych obszarów obiektów
+            Mat Unknown = new Mat();
+            CvInvoke.CvtColor(Fg, Fg, ColorConversion.Bgr2Gray);
+            CvInvoke.Subtract(Bg, Fg, Unknown, dtype: DepthType.Cv8U);
 
             //Etykietowanie obiektów
-            Mat markers = new Mat();
-            int counter = CvInvoke.ConnectedComponents(sure_fg, markers);
-            markers.Save(imgPathTemp2);
-            markers = new Mat(imgPathTemp2);
-            File.Delete(imgPathTemp2);
+            Mat Markers = new Mat();
+            int counter = CvInvoke.ConnectedComponents(Fg, Markers);
+            Markers.Save(temp);
+            Markers = new Mat(temp);
+            File.Delete(temp);
 
-            ///Dodanie wartości 1 do etykiet, tak aby tło miało wartość 1 a nie 0.
-            Bitmap markersBmp = markers.ToBitmap();
+            ///Dodanie wartości 1 do etykiet, tak aby tło miało wartość 1 zamstast 0.
+            Bitmap markersBmp = Markers.ToBitmap();
             for (int i = 0; i < markersBmp.Width; i++)
             {
                 for (int j = 0; j < markersBmp.Height; j++)
@@ -93,8 +85,8 @@ namespace APO_AndrzejMróz_17870.Fuctions
                 }
             }
 
-            //Oznaczenie obszarów "niepewnych" jako zero
-            Bitmap unknownBmp = unknown.ToBitmap();
+            //Oznaczenie obszarów niepewnych jako 0
+            Bitmap unknownBmp = Unknown.ToBitmap();
             for (int i = 0; i < unknownBmp.Width; i++)
             {
                 for (int j = 0; j < unknownBmp.Height; j++)
@@ -107,21 +99,20 @@ namespace APO_AndrzejMróz_17870.Fuctions
                     }
                 }
             }
-            CvInvoke.CvtColor(markers, markers, ColorConversion.Bgr2Gray);
-            img.Save(imgPathTemp2);
+            CvInvoke.CvtColor(Markers, Markers, ColorConversion.Bgr2Gray);
+            img.Save(temp);
 
-            //Do przeprowadzenia alogrytmu użyjemy obiektów typu Image(na Mat coś nie działa)
-            Image<Bgr, Byte> img2 = new Image<Bgr, Byte>(imgPathTemp2);
-            File.Delete(imgPathTemp2);
-            markers.Save(imgPathTemp2);
-            Image<Gray, Int32> markers2 = new Image<Gray, Int32>(imgPathTemp2);
-            File.Delete(imgPathTemp2);
+            //algortm przeprowadzamy na obiatach Image
+            Image<Bgr, Byte> img2 = new Image<Bgr, Byte>(temp);
+            File.Delete(temp);
+            Markers.Save(temp);
+            Image<Gray, Int32> markers2 = new Image<Gray, Int32>(temp);
+            File.Delete(temp);
 
-            //Przeprowadzenie algorytmu wododziału z biblioteki Emgu CV
+            //algorytm wododziałowy z Emgu CV
             CvInvoke.Watershed(img2, markers2);
 
-            //Zapisanie resultatu algorytmu na obrazie pierwotnym
-           // Bitmap imgBmp = img.ToBitmap();
+            //Zapisanie wyniku algorytmu na obrazie pierwotnym         
             Bitmap markers2Bmp = markers2.ToBitmap();
             for (int i = 0; i < markers2Bmp.Width; i++)
             {
@@ -133,7 +124,7 @@ namespace APO_AndrzejMróz_17870.Fuctions
                     {
                         try
                         {
-                            imgBmp.SetPixel(i, j, nc);
+                            Bmp.SetPixel(i, j, nc);
                         }
                         catch (Exception)
                         {
@@ -144,11 +135,153 @@ namespace APO_AndrzejMróz_17870.Fuctions
                     }
                 }
             }
-            form.objNum = counter;
-            //return dist_transform.ToBitmap();
-            return imgBmp;
+            form.ObjCounter = counter;
+
+            return Bmp;
         }
-        //Funkcja przyjmująca obiekt typu Image i przerabiająca go na obiekt typu Mat
+
+        private static void noiseReduction(Mat threshold, out ConvolutionKernelF kernel, out Point point, out Mat opening)
+        {
+            float[,] mask = { {1, 1, 1},
+                        {1, 1, 1},
+                        {1, 1, 1}};
+            kernel = new ConvolutionKernelF(mask);
+            point = new Point(-1, -1);
+            opening = new Mat();
+            CvInvoke.MorphologyEx(threshold, opening, MorphOp.Open, kernel, point, 1, BorderType.Default, new MCvScalar());
+        }
+
+        private static string TransformRecord(string pathPicture, ref Mat DistanceTransform)
+        {
+            string auxiliaryPath = pathPicture;
+            int find = auxiliaryPath.IndexOf(@".");
+            string temp = auxiliaryPath.Substring(0, find) + "_temp.bmp";
+            DistanceTransform.Save(temp);
+            DistanceTransform = new Mat(temp);
+            File.Delete(temp);
+            return temp;
+        }
+
+        //przeciązenie funkcji Watershed na potrzeby progowania
+        public static Bitmap Watershed(Bitmap sourceImage, string pathPicture, WatershedForm form, float factor, Bitmap bmp, int param = 0)
+        {
+            Bitmap Bmp = bmp;
+           
+            Mat img = GetMatFromSDImage(bmp);
+
+          
+            Mat grayBmp = new Mat();
+            CvInvoke.CvtColor(img, grayBmp, ColorConversion.Bgr2Gray);
+
+           
+            Mat threshold = new Mat();
+            if (param == 0)
+            {
+                CvInvoke.Threshold(grayBmp, threshold, 0, 255, ThresholdType.Otsu);
+            }
+            else
+            {
+                CvInvoke.AdaptiveThreshold(grayBmp, threshold, 255, AdaptiveThresholdType.MeanC, ThresholdType.Binary, param, 5);
+            }
+
+
+
+          
+            CvInvoke.BitwiseNot(threshold, threshold);
+
+
+            ConvolutionKernelF kernel;
+            Point point;
+            Mat Open;
+            noiseReduction(threshold, out kernel, out point, out Open);
+
+            Mat Bg = new Mat();
+            CvInvoke.Dilate(Open, Bg, kernel, point, 1, BorderType.Default, new MCvScalar());
+
+            Mat DistanceTransform = new Mat();
+            CvInvoke.DistanceTransform(Open, DistanceTransform, null, DistType.L2, 5);
+
+            string auxiliaryPath = pathPicture;
+            int find = auxiliaryPath.IndexOf(@".");
+            string temp = auxiliaryPath.Substring(0, find) + "_temp.bmp";
+            DistanceTransform.Save(temp);
+            DistanceTransform = new Mat(temp);
+            File.Delete(temp);
+
+            Mat Fg = new Mat();
+            CvInvoke.Threshold(DistanceTransform, Fg, factor * Max(DistanceTransform.ToBitmap()), 255, ThresholdType.Binary);
+
+            Mat Unknown = new Mat();
+            CvInvoke.CvtColor(Fg, Fg, ColorConversion.Bgr2Gray);
+            CvInvoke.Subtract(Bg, Fg, Unknown, dtype: DepthType.Cv8U);
+
+            Mat Markers = new Mat();
+            int counter = CvInvoke.ConnectedComponents(Fg, Markers);
+            Markers.Save(temp);
+            Markers = new Mat(temp);
+            File.Delete(temp);
+
+            Bitmap markersBmp = Markers.ToBitmap();
+            for (int i = 0; i < markersBmp.Width; i++)
+            {
+                for (int j = 0; j < markersBmp.Height; j++)
+                {
+                    Color oc = markersBmp.GetPixel(i, j);
+                    Color nc = Color.FromArgb(oc.A, oc.R, oc.G, oc.B);
+                    markersBmp.SetPixel(i, j, nc);
+                }
+            }
+
+            Bitmap unknownBmp = Unknown.ToBitmap();
+            for (int i = 0; i < unknownBmp.Width; i++)
+            {
+                for (int j = 0; j < unknownBmp.Height; j++)
+                {
+                    Color oc = unknownBmp.GetPixel(i, j);
+                    Color nc = Color.FromArgb(oc.A, 0, 0, 0);
+                    if (oc.R == 255)
+                    {
+                        markersBmp.SetPixel(i, j, nc);
+                    }
+                }
+            }
+            CvInvoke.CvtColor(Markers, Markers, ColorConversion.Bgr2Gray);
+            img.Save(temp);
+
+            Image<Bgr, Byte> img2 = new Image<Bgr, Byte>(temp);
+            File.Delete(temp);
+            Markers.Save(temp);
+            Image<Gray, Int32> markers2 = new Image<Gray, Int32>(temp);
+            File.Delete(temp);
+
+            CvInvoke.Watershed(img2, markers2);
+
+            Bitmap markers2Bmp = markers2.ToBitmap();
+            for (int i = 0; i < markers2Bmp.Width; i++)
+            {
+                for (int j = 0; j < markers2Bmp.Height; j++)
+                {
+                    Color oc = markers2Bmp.GetPixel(i, j);
+                    Color nc = Color.FromArgb(oc.A, 0, 0, 255);
+                    if (oc.R == 0)
+                    {
+                        try
+                        {
+                            sourceImage.SetPixel(i, j, nc);
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+
+                    }
+                }
+            }
+            form.ObjCounter = counter;
+            return sourceImage;
+        }
+       
         public static Mat GetMatFromSDImage(Image image)
         {
             int stride = 0;

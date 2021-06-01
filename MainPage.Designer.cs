@@ -49,6 +49,9 @@ namespace APO_AndrzejMróz_17870
             this.ąganieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redukcjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.segmentacjaWododziałowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.momentyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.obszarIObwódToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operacjeSasiedztwaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linioweWygładzanieWyostrzanieDetekcjaKrawedziToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mediToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,9 +115,6 @@ namespace APO_AndrzejMróz_17870
             this.progowanieOtsuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodaWododziałowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.momentyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.obszarIObwódToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,32 +152,32 @@ namespace APO_AndrzejMróz_17870
             // otwórzToolStripMenuItem
             // 
             this.otwórzToolStripMenuItem.Name = "otwórzToolStripMenuItem";
-            this.otwórzToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.otwórzToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.otwórzToolStripMenuItem.Text = "Otwórz...";
             this.otwórzToolStripMenuItem.Click += new System.EventHandler(this.otwórzToolStripMenuItem_Click);
             // 
             // duplikujToolStripMenuItem
             // 
             this.duplikujToolStripMenuItem.Name = "duplikujToolStripMenuItem";
-            this.duplikujToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.duplikujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.duplikujToolStripMenuItem.Text = "Duplikuj";
             this.duplikujToolStripMenuItem.Click += new System.EventHandler(this.duplikujToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(118, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // zamknijToolStripMenuItem
             // 
             this.zamknijToolStripMenuItem.Name = "zamknijToolStripMenuItem";
-            this.zamknijToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.zamknijToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zamknijToolStripMenuItem.Text = "Zamknij";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             // 
             // obrazToolStripMenuItem
             // 
@@ -213,14 +213,14 @@ namespace APO_AndrzejMróz_17870
             // rozciąganieToolStripMenuItem
             // 
             this.rozciąganieToolStripMenuItem.Name = "rozciąganieToolStripMenuItem";
-            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.rozciąganieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rozciąganieToolStripMenuItem.Text = "rozciąganie";
             this.rozciąganieToolStripMenuItem.Click += new System.EventHandler(this.rozciąganieToolStripMenuItem_Click);
             // 
             // wyrównanieToolStripMenuItem
             // 
             this.wyrównanieToolStripMenuItem.Name = "wyrównanieToolStripMenuItem";
-            this.wyrównanieToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.wyrównanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.wyrównanieToolStripMenuItem.Text = "wyrównanie";
             this.wyrównanieToolStripMenuItem.Click += new System.EventHandler(this.wyrównanieToolStripMenuItem_Click);
             // 
@@ -281,6 +281,27 @@ namespace APO_AndrzejMróz_17870
             this.segmentacjaWododziałowaToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
             this.segmentacjaWododziałowaToolStripMenuItem.Text = "Analiza obrazu";
             this.segmentacjaWododziałowaToolStripMenuItem.Click += new System.EventHandler(this.segmentacjaWododziałowaToolStripMenuItem_Click);
+            // 
+            // momentyToolStripMenuItem
+            // 
+            this.momentyToolStripMenuItem.Name = "momentyToolStripMenuItem";
+            this.momentyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.momentyToolStripMenuItem.Text = "Momenty";
+            this.momentyToolStripMenuItem.Click += new System.EventHandler(this.momentyToolStripMenuItem_Click);
+            // 
+            // obszarIObwódToolStripMenuItem
+            // 
+            this.obszarIObwódToolStripMenuItem.Name = "obszarIObwódToolStripMenuItem";
+            this.obszarIObwódToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.obszarIObwódToolStripMenuItem.Text = "Obszar i obwód";
+            this.obszarIObwódToolStripMenuItem.Click += new System.EventHandler(this.obszarIObwódToolStripMenuItem_Click);
+            // 
+            // wsToolStripMenuItem
+            // 
+            this.wsToolStripMenuItem.Name = "wsToolStripMenuItem";
+            this.wsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.wsToolStripMenuItem.Text = "współczynnik kształtu";
+            this.wsToolStripMenuItem.Click += new System.EventHandler(this.wsToolStripMenuItem_Click);
             // 
             // operacjeSasiedztwaToolStripMenuItem
             // 
@@ -777,27 +798,6 @@ namespace APO_AndrzejMróz_17870
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // momentyToolStripMenuItem
-            // 
-            this.momentyToolStripMenuItem.Name = "momentyToolStripMenuItem";
-            this.momentyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.momentyToolStripMenuItem.Text = "Momenty";
-            this.momentyToolStripMenuItem.Click += new System.EventHandler(this.momentyToolStripMenuItem_Click);
-            // 
-            // obszarIObwódToolStripMenuItem
-            // 
-            this.obszarIObwódToolStripMenuItem.Name = "obszarIObwódToolStripMenuItem";
-            this.obszarIObwódToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.obszarIObwódToolStripMenuItem.Text = "Obszar i obwód";
-            this.obszarIObwódToolStripMenuItem.Click += new System.EventHandler(this.obszarIObwódToolStripMenuItem_Click);
-            // 
-            // wsToolStripMenuItem
-            // 
-            this.wsToolStripMenuItem.Name = "wsToolStripMenuItem";
-            this.wsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.wsToolStripMenuItem.Text = "współczynnik kształtu";
-            this.wsToolStripMenuItem.Click += new System.EventHandler(this.wsToolStripMenuItem_Click);
             // 
             // MainPage
             // 
