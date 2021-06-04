@@ -34,6 +34,7 @@ namespace APO_AndrzejMróz_17870.Fuctions
             {
                 CvInvoke.AdaptiveThreshold(grayBmp, threshold, 255, AdaptiveThresholdType.MeanC, ThresholdType.Binary, param, 5);
             }
+          
 
 
 
@@ -102,7 +103,7 @@ namespace APO_AndrzejMróz_17870.Fuctions
             CvInvoke.CvtColor(Markers, Markers, ColorConversion.Bgr2Gray);
             img.Save(temp);
 
-            //algortm przeprowadzamy na obiatach Image
+            //algortm przeprowadzamy na obiektach typu Image
             Image<Bgr, Byte> img2 = new Image<Bgr, Byte>(temp);
             File.Delete(temp);
             Markers.Save(temp);
@@ -284,7 +285,7 @@ namespace APO_AndrzejMróz_17870.Fuctions
        
         public static Mat GetMatFromSDImage(Image image)
         {
-            int stride = 0;
+            int step = 0;
             Bitmap bmp = new Bitmap(image);
 
             System.Drawing.Rectangle rect = new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height);
@@ -293,14 +294,14 @@ namespace APO_AndrzejMróz_17870.Fuctions
             System.Drawing.Imaging.PixelFormat pf = bmp.PixelFormat;
             if (pf == System.Drawing.Imaging.PixelFormat.Format32bppArgb)
             {
-                stride = bmp.Width * 4;
+                step = bmp.Width * 4;
             }
             else
             {
-                stride = bmp.Width * 3;
+                step = bmp.Width * 3;
             }
 
-            Image<Bgra, byte> cvImage = new Image<Bgra, byte>(bmp.Width, bmp.Height, stride, (IntPtr)bmpData.Scan0);
+            Image<Bgra, byte> cvImage = new Image<Bgra, byte>(bmp.Width, bmp.Height, step, (IntPtr)bmpData.Scan0);
 
             bmp.UnlockBits(bmpData);
 

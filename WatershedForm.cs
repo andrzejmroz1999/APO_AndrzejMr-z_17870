@@ -41,17 +41,76 @@ namespace APO_AndrzejMróz_17870
             float factor;
             Single.TryParse(textBox2.Text, out factor);
 
-            if (checkBox1.Checked)
+            if (checkBox3.Checked == false)
             {
-                pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor);
-                label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
-                label1.Visible = true;
+                if (checkBox1.Checked)
+                {
+                    pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor);
+                    label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
+                    label1.Visible = true;
+                }
+                else if (checkBox2.Checked)
+                {
+                    pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, trackBar1.Value);
+                    label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
+                    label1.Visible = true;
+                }
             }
-            else
+            if (checkBox3.Checked == true)
             {
-                pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, int.Parse(textBox4.Text));
-                label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
-                label1.Visible = true;
+                Bitmap bmp = new Bitmap(bitmap.Width, bitmap.Height);
+
+
+
+               
+                Single.TryParse(textBox2.Text, out factor);
+
+                int prog = int.Parse(textBox3.Text);
+                int newValuePixel = 0, newValuePicture = 0;
+
+                int[] progowanieHist = new int[2];
+
+                for (int x = 0; x < bitmap.Width; ++x)
+                {
+                    for (int y = 0; y < bitmap.Height; ++y)
+                    {
+                        Color c = bitmap.GetPixel(x, y);
+
+                        if (c.R <= prog)
+                        {
+                            newValuePixel = 0;
+                        }
+                        else
+                        {
+                            newValuePixel = 1;
+                        }
+
+                        progowanieHist[newValuePixel] += 1;
+
+                        if (newValuePixel == 1) { newValuePicture = 255; }
+                        else { newValuePicture = 0; }
+
+                        Color newColor = Color.FromArgb(255, newValuePicture, newValuePicture, newValuePicture);
+                        bmp.SetPixel(x, y, newColor);
+                    }
+                }
+
+                if (checkBox1.Checked)
+                {
+
+                    pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, bmp);
+                    label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
+                    label1.Visible = true;
+
+                }
+                else
+                {
+                    pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, bmp, trackBar1.Value);
+                    label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
+                    label1.Visible = true;
+
+
+                }
             }
         }
 
@@ -73,14 +132,14 @@ namespace APO_AndrzejMróz_17870
             {
                 checkBox1.Checked = false;
                 label4.Enabled = true;
-                textBox4.Enabled = true;
+                trackBar1.Enabled = true;
                 textBox1.Enabled = true;
             }
             else
             {
                 checkBox1.Checked = true;
                 label4.Enabled = false;
-                textBox4.Enabled = false;
+                trackBar1.Enabled = false;
                 textBox1.Enabled = false;
             }
         }
@@ -98,7 +157,14 @@ namespace APO_AndrzejMróz_17870
             else button1.Enabled = true;
         }
 
-        
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            if (trackBar1.Value % 2 == 0)
+            {
+                trackBar1.Value += 1;
+            }
+            textBox1.Text = trackBar1.Value.ToString();
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -114,7 +180,7 @@ namespace APO_AndrzejMróz_17870
             }
             else
             {
-                result = Wododział.Watershed(bitmap, imgPath, this, factor, int.Parse(textBox4.Text));
+                result = Wododział.Watershed(bitmap, imgPath, this, factor, trackBar1.Value);
                 label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
                 label1.Visible = true;
             }
@@ -122,66 +188,7 @@ namespace APO_AndrzejMróz_17870
             // Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            
-            Bitmap bmp = new Bitmap(bitmap.Width, bitmap.Height);
-
-
-
-            float factor;
-            Single.TryParse(textBox2.Text, out factor);
-
-            int prog = int.Parse(textBox3.Text);
-            int newValuePixel = 0, newValuePicture = 0;
-
-            int[] progowanieHist = new int[2];
-
-            for (int x = 0; x < bitmap.Width; ++x)
-            {
-                for (int y = 0; y < bitmap.Height; ++y)
-                {
-                    Color c = bitmap.GetPixel(x, y);
-
-                    if (c.R <= prog)
-                    {
-                        newValuePixel = 0;
-                    }
-                    else
-                    {
-                        newValuePixel = 1;
-                    }
-
-                    progowanieHist[newValuePixel] += 1;
-
-                    if (newValuePixel == 1) { newValuePicture = 255; }
-                    else { newValuePicture = 0; }
-
-                    Color newColor = Color.FromArgb(255, newValuePicture, newValuePicture, newValuePicture);
-                    bmp.SetPixel(x, y, newColor);
-                }
-            }
-
-            if (checkBox1.Checked)
-            {
-
-                pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, bmp);
-                label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
-                label1.Visible = true;
-                
-            }
-            else
-            {
-                pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, bmp, int.Parse(textBox4.Text));
-                label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
-                label1.Visible = true;
-                
-
-            }
-
-
-
-        }
+       
 
 
     }
