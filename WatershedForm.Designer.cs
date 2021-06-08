@@ -55,6 +55,7 @@ namespace APO_AndrzejMróz_17870
             this.pictureBox1.Size = new System.Drawing.Size(200, 200);
             this.pictureBox1.TabIndex = 51;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // button1
             // 
@@ -137,6 +138,7 @@ namespace APO_AndrzejMróz_17870
             this.textBox1.Size = new System.Drawing.Size(58, 20);
             this.textBox1.TabIndex = 69;
             this.textBox1.Text = "45";
+            this.textBox1.Visible = false;
             // 
             // trackBar1
             // 
@@ -151,6 +153,7 @@ namespace APO_AndrzejMróz_17870
             this.trackBar1.TabIndex = 68;
             this.trackBar1.TickFrequency = 2;
             this.trackBar1.Value = 45;
+            this.trackBar1.Visible = false;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label5
@@ -180,6 +183,7 @@ namespace APO_AndrzejMróz_17870
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 73;
+            this.textBox3.Visible = false;
             // 
             // label2
             // 
@@ -190,6 +194,7 @@ namespace APO_AndrzejMróz_17870
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 74;
             this.label2.Text = "Wartości progowania";
+            this.label2.Visible = false;
             // 
             // checkBox3
             // 
@@ -201,6 +206,7 @@ namespace APO_AndrzejMróz_17870
             this.checkBox3.TabIndex = 75;
             this.checkBox3.Text = "progowanie";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // WatershedForm
             // 

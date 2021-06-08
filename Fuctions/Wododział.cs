@@ -141,15 +141,15 @@ namespace APO_AndrzejMróz_17870.Fuctions
             return Bmp;
         }
 
-        private static void noiseReduction(Mat threshold, out ConvolutionKernelF kernel, out Point point, out Mat opening)
+        private static void noiseReduction(Mat threshold, out ConvolutionKernelF kernel, out Point point, out Mat open)
         {
             float[,] mask = { {1, 1, 1},
                         {1, 1, 1},
                         {1, 1, 1}};
             kernel = new ConvolutionKernelF(mask);
             point = new Point(-1, -1);
-            opening = new Mat();
-            CvInvoke.MorphologyEx(threshold, opening, MorphOp.Open, kernel, point, 1, BorderType.Default, new MCvScalar());
+            open = new Mat();
+            CvInvoke.MorphologyEx(threshold, open, MorphOp.Open, kernel, point, 1, BorderType.Default, new MCvScalar());
         }
 
         private static string TransformRecord(string pathPicture, ref Mat DistanceTransform)

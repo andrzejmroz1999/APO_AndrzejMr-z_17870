@@ -134,6 +134,9 @@ namespace APO_AndrzejMróz_17870
                 label4.Enabled = true;
                 trackBar1.Enabled = true;
                 textBox1.Enabled = true;
+                textBox1.Visible = true;
+                trackBar1.Visible = true;
+                label4.Visible = false;
             }
             else
             {
@@ -188,9 +191,11 @@ namespace APO_AndrzejMróz_17870
             // Close();
         }
 
-       
-
-
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            label2.Visible = true;
+            textBox3.Visible = true;
+        }
     }
 }
 
