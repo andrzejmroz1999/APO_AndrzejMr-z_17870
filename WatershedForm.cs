@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using APO_AndrzejMróz_17870.Fuctions;
-
+using System.Threading;
 
 namespace APO_AndrzejMróz_17870
 {
@@ -46,12 +46,14 @@ namespace APO_AndrzejMróz_17870
                 if (checkBox1.Checked)
                 {
                     pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor);
+                    pictureBox1.Refresh();
                     label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
                     label1.Visible = true;
                 }
                 else if (checkBox2.Checked)
                 {
                     pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, trackBar1.Value);
+                    pictureBox1.Refresh();
                     label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
                     label1.Visible = true;
                 }
@@ -99,6 +101,7 @@ namespace APO_AndrzejMróz_17870
                 {
 
                     pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, bmp);
+                    pictureBox1.Refresh();
                     label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
                     label1.Visible = true;
 
@@ -106,6 +109,7 @@ namespace APO_AndrzejMróz_17870
                 else
                 {
                     pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, bmp, trackBar1.Value);
+                    pictureBox1.Refresh();
                     label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
                     label1.Visible = true;
 
@@ -195,6 +199,131 @@ namespace APO_AndrzejMróz_17870
         {
             label2.Visible = true;
             textBox3.Visible = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            float factor;
+            Single.TryParse(textBox2.Text, out factor);
+
+            if (checkBox3.Checked == false)
+            {
+                if (checkBox1.Checked)
+                {
+                    pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor);
+                    pictureBox1.Refresh();
+                    label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
+                    label1.Visible = true;
+                }
+                else if (checkBox2.Checked)
+                {
+                    pictureBox1.Image = Wododział.Watershed(bitmap, imgPath, this, factor, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
+                    label1.Visible = true;
+                }
+            }
+            if (checkBox3.Checked == true)
+            {
+                Bitmap bmp = new Bitmap(bitmap.Width, bitmap.Height);
+
+
+
+
+                Single.TryParse(textBox2.Text, out factor);
+
+                int prog = int.Parse(textBox3.Text);
+                int newValuePixel = 0, newValuePicture = 0;
+
+                int[] progowanieHist = new int[2];
+
+                for (int x = 0; x < bitmap.Width; ++x)
+                {
+                    for (int y = 0; y < bitmap.Height; ++y)
+                    {
+                        Color c = bitmap.GetPixel(x, y);
+
+                        if (c.R <= prog)
+                        {
+                            newValuePixel = 0;
+                        }
+                        else
+                        {
+                            newValuePixel = 1;
+                        }
+
+                        progowanieHist[newValuePixel] += 1;
+
+                        if (newValuePixel == 1) { newValuePicture = 255; }
+                        else { newValuePicture = 0; }
+
+                        Color newColor = Color.FromArgb(255, newValuePicture, newValuePicture, newValuePicture);
+                        bmp.SetPixel(x, y, newColor);
+                    }
+                }
+
+                if (checkBox1.Checked)
+                {
+
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp,1);
+                    pictureBox1.Refresh();
+                    label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
+                    label1.Visible = true;
+
+                }
+                else
+                {
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp,1, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 0;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 2, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 1;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 3, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 2;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 4, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 3;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 5, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 4;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 6, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 5;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 7, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 6;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 8, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 7;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 9, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 8;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 10, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 9;
+                    Thread.Sleep(5000);
+                    pictureBox1.Image = Wododział.WatershedVisualization(bitmap, imgPath, this, factor, bmp, 11, trackBar1.Value);
+                    pictureBox1.Refresh();
+                    comboBox1.SelectedIndex = 10;
+                   
+
+                    label1.Text = "Znaleziono " + ObjCounter.ToString() + " objektów";
+                    label1.Visible = true;
+
+
+                }
+            }
         }
     }
 }
