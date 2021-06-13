@@ -1310,7 +1310,9 @@ namespace APO_AndrzejMróz_17870
         public void Wododzial(Bitmap bitmapR)
         {
             bitmap = bitmapR;
-            pictureBox1.Image = bitmap;
+            pictureBox1.Width = bitmapR.Width;
+            pictureBox1.Height = bitmapR.Height;
+            pictureBox1.Image = bitmapR;
             pictureBox1.Refresh();
             drawHistogram();
         }
